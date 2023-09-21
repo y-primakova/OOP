@@ -1,22 +1,24 @@
 package ru.nsu.primakova;
+import java.util.Arrays;
+
+import static java.util.Arrays.copyOf;
 
 public class Heapsort {
-    public static void main(String[] args) {
-    }
     public static int[] heapsort(int[] arr) {
         int n = arr.length;
+        int[] arr_sort = copyOf(arr, n);
 
         for (int i = n / 2 - 1; i >= 0; i--) {
-            heapS(arr, n, i);
+            heapS(arr_sort, n, i);
         }
         for (int i = n - 1; i > 0; i--) {
-            int a = arr[0];
-            arr[0] = arr[i];
-            arr[i] = a;
+            int a = arr_sort[0];
+            arr_sort[0] = arr_sort[i];
+            arr_sort[i] = a;
 
-            heapS(arr, i, 0);
+            heapS(arr_sort, i, 0);
         }
-        return arr;
+        return arr_sort;
     }
 
     private static void heapS(int[] arr, int n, int i) {
