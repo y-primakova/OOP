@@ -3,46 +3,34 @@ import static java.lang.Math.abs;
 
 public class Polynomial {
     private final int length;
-    public final int[] args;
+    private final int[] args;
     public Polynomial(int[] arr){
         this.length = arr.length;
         this.args = arr;
     }
-    public Polynomial plus(Polynomial p){
-        int n1 = p.length;
-        int n2 = this.length;
+    private Polynomial plus_minus(Polynomial p1, Polynomial p2, int koef){
+        int n1 = p1.length;
+        int n2 = p2.length;
         int n_max = Math.max(n1,n2);
-        Polynomial p_new = new Polynomial(new int[n_max]);
+        var p_new = new Polynomial(new int[n_max]);
         for(int i = 0; i < n_max; i++){
             if(i >= n1){
-                p_new.args[i] = this.args[i];
+                p_new.args[i] = p2.args[i];
                 continue;
             }
             if(i >= n2){
-                p_new.args[i] = p.args[i];
+                p_new.args[i] = koef*p1.args[i];
                 continue;
             }
-            p_new.args[i] = p.args[i] + this.args[i];
+            p_new.args[i] = p2.args[i] + koef*p1.args[i];
         }
         return p_new;
     }
+    public Polynomial plus(Polynomial p){
+        return plus_minus(p, this, 1);
+    }
     public Polynomial minus(Polynomial p){
-        int n1 = p.length;
-        int n2 = this.length;
-        int n_max = Math.max(n1,n2);
-        Polynomial p_new = new Polynomial(new int[n_max]);
-        for(int i = 0; i < n_max; i++){
-            if(i >= n1){
-                p_new.args[i] = this.args[i];
-                continue;
-            }
-            if(i >= n2){
-                p_new.args[i] = ((-1)*p.args[i]);
-                continue;
-            }
-            p_new.args[i] = this.args[i] - p.args[i];
-        }
-        return p_new;
+        return plus_minus(p, this, -1);
     }
     public Polynomial times(Polynomial p){
         int n1 = p.length;
@@ -79,18 +67,25 @@ public class Polynomial {
         }
         return p_new;
     }
-    public boolean equals(Polynomial p){
-        int n1 = p.length;
-        int n2 = this.length;
-        int n_max = Math.max(n1,n2);
-        for(int i = 0; i < n_max; i++){
-            if(i >= n1){
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+        var p = (Polynomial) obj;
+
+        for(int i = 0; i < Math.max(p.length,this.length); i++){
+            if(i >= p.length){
                 if(this.args[i]!=0) {
                     return false;
                 }
                 continue;
             }
-            if(i >= n2){
+            if(i >= this.length){
                 if(p.args[i]!=0) {
                     return false;
                 }
