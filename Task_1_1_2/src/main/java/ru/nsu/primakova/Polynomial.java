@@ -1,4 +1,5 @@
 package ru.nsu.primakova;
+
 import static java.lang.Math.abs;
 
 public class Polynomial {
@@ -9,35 +10,37 @@ public class Polynomial {
         this.args = new int[arr.length];
         System.arraycopy(arr, 0, this.args, 0, arr.length);
     }
+
     private Polynomial plus_minus(Polynomial p1, Polynomial p2, int koef) {
-        int n1 = p1.length;
-        int n2 = p2.length;
-        int n_max = Math.max(n1, n2);
+        var n_max = Math.max(p1.length, p2.length);
         var p_new = new Polynomial(new int[n_max]);
         for (int i = 0; i < n_max; i++) {
-            if (i >= n1){
+            if (i >= p1.length) {
                 p_new.args[i] = p2.args[i];
                 continue;
             }
-            if (i >= n2) {
+            if (i >= p2.length) {
                 p_new.args[i] = koef * p1.args[i];
                 continue;
             }
-            p_new.args[i] = p2.args[i] + koef*p1.args[i];
+            p_new.args[i] = p2.args[i] + koef * p1.args[i];
         }
         return p_new;
     }
+
     public Polynomial plus(Polynomial p) {
         return plus_minus(p, this, 1);
     }
+
     public Polynomial minus(Polynomial p) {
         return plus_minus(p, this, -1);
     }
+
     public Polynomial times(Polynomial p) {
         int n1 = p.length;
         int n2 = this.length;
         var p_new = new Polynomial(new int[n1 + n2 - 1]);
-        for (int i = 0; i < n1 + n2 - 1; i++){
+        for (int i = 0; i < n1 + n2 - 1; i++) {
             p_new.args[i] = 0;
         }
         for (int i = 0; i < n1; i++) {
@@ -47,6 +50,7 @@ public class Polynomial {
         }
         return p_new;
     }
+
     public int evaluate(int number) {
         int value = 0;
         int deg = 1;
@@ -56,6 +60,7 @@ public class Polynomial {
         }
         return value;
     }
+
     public Polynomial differentiate(int deg) {
         var p_new = new Polynomial(new int[this.length - deg]);
         for (int i = deg; i < this.length; i++) {
@@ -79,7 +84,7 @@ public class Polynomial {
         }
         var p = (Polynomial) obj;
 
-        for (int i = 0; i < Math.max(p.length,this.length); i++) {
+        for (int i = 0; i < Math.max(p.length, this.length); i++) {
             if (i >= p.length) {
                 if (this.args[i] != 0) {
                     return false;
@@ -102,13 +107,16 @@ public class Polynomial {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
+        boolean isEmpty = true;
         for (int i = this.length - 1; i >= 0; i--) {
-            if (this.args[i] == 0) continue;
-            if ((!str.isEmpty()) && this.args[i] > 0) {
+            if (this.args[i] == 0) {
+                continue;
+            }
+            if (!isEmpty && this.args[i] > 0) {
                 str.append(" + ");
             }
             if (this.args[i] < 0) {
-                if (str.isEmpty()) {
+                if (isEmpty) {
                     str.append("-");
                 }
                 else {
@@ -129,8 +137,9 @@ public class Polynomial {
             if (i != 1) {
                 str.append("^").append(i);
             }
+            isEmpty = false;
         }
-        if (str.isEmpty()) {
+        if (isEmpty) {
             str = new StringBuilder("0");
         }
         return str.toString();
