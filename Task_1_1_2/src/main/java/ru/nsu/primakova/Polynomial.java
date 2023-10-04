@@ -5,6 +5,7 @@ import static java.lang.Math.abs;
 public class Polynomial {
     private final int length;
     private final int[] args;
+    
     public Polynomial(int[] arr) {
         this.length = arr.length;
         this.args = new int[arr.length];
