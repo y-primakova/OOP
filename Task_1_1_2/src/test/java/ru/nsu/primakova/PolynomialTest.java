@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class PolynomialTest {
+
     @Test
     public void plusTest() {
         var p1 = new Polynomial(new int[] {2, 3, -1});

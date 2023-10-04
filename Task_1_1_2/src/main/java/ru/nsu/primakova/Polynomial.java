@@ -12,20 +12,20 @@ public class Polynomial {
     }
 
     private Polynomial plus_minus(Polynomial p1, Polynomial p2, int koef) {
-        var n_max = Math.max(p1.length, p2.length);
-        var p_new = new Polynomial(new int[n_max]);
-        for (int i = 0; i < n_max; i++) {
+        var nMax = Math.max(p1.length, p2.length);
+        var pNew = new Polynomial(new int[nMax]);
+        for (int i = 0; i < nMax; i++) {
             if (i >= p1.length) {
-                p_new.args[i] = p2.args[i];
+                pNew.args[i] = p2.args[i];
                 continue;
             }
             if (i >= p2.length) {
-                p_new.args[i] = koef * p1.args[i];
+                pNew.args[i] = koef * p1.args[i];
                 continue;
             }
-            p_new.args[i] = p2.args[i] + koef * p1.args[i];
+            pNew.args[i] = p2.args[i] + koef * p1.args[i];
         }
-        return p_new;
+        return pNew;
     }
 
     public Polynomial plus(Polynomial p) {
@@ -39,16 +39,16 @@ public class Polynomial {
     public Polynomial times(Polynomial p) {
         int n1 = p.length;
         int n2 = this.length;
-        var p_new = new Polynomial(new int[n1 + n2 - 1]);
+        var pNew = new Polynomial(new int[n1 + n2 - 1]);
         for (int i = 0; i < n1 + n2 - 1; i++) {
-            p_new.args[i] = 0;
+            pNew.args[i] = 0;
         }
         for (int i = 0; i < n1; i++) {
             for (int j = 0; j < n2; j++) {
-                p_new.args[i + j] += p.args[i] * this.args[j];
+                pNew.args[i + j] += p.args[i] * this.args[j];
             }
         }
-        return p_new;
+        return pNew;
     }
 
     public int evaluate(int number) {
@@ -62,16 +62,16 @@ public class Polynomial {
     }
 
     public Polynomial differentiate(int deg) {
-        var p_new = new Polynomial(new int[this.length - deg]);
+        var pNew = new Polynomial(new int[this.length - deg]);
         for (int i = deg; i < this.length; i++) {
-            p_new.args[i - deg] = this.args[i];
+            pNew.args[i - deg] = this.args[i];
         }
         for (int d = deg; d > 0; d--) {
             for (int i = 0; i < this.length - deg; i++) {
-                p_new.args[i] = p_new.args[i] * (i + d);
+                pNew.args[i] = pNew.args[i] * (i + d);
             }
         }
-        return p_new;
+        return pNew;
     }
 
     @Override
@@ -118,8 +118,7 @@ public class Polynomial {
             if (this.args[i] < 0) {
                 if (isEmpty) {
                     str.append("-");
-                }
-                else {
+                }else {
                     str.append(" - ");
                 }
             }
@@ -129,8 +128,7 @@ public class Polynomial {
             }
             if (abs(this.args[i]) == 1) {
                 str.append("x");
-            }
-            else {
+            }else {
                 str.append(abs(this.args[i])).append("x");
             }
 
