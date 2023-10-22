@@ -1,7 +1,7 @@
 package ru.nsu.primakova;
 
 /**
- * Class Main
+ * Class Main.
  */
 public class Main {
     /**

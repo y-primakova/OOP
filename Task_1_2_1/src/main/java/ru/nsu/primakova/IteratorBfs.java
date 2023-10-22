@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 import java.util.Queue;
 
 /**
- * Iterator class using the BFS algorithm
+ * Iterator class using the BFS algorithm.
  */
 public class IteratorBfs<T> implements Iterator<T> {
     private final Queue<Tree<T>> queue;

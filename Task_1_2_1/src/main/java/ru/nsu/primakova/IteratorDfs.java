@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
 import java.util.Stack;
 
 /**
- * Iterator class using the DFS algorithm
+ * Iterator class using the DFS algorithm.
  */
 public class IteratorDfs<T> implements Iterator<T> {
     private final Stack<Tree<T>> stack;

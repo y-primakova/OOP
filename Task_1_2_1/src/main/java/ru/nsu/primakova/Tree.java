@@ -11,7 +11,8 @@ public class Tree<T> {
     private final ArrayList<Tree<T>> children;
 
     /**
-     * Class constructor
+     * Class constructor.
+     *
      * @param value - value of the tree element
      */
     public Tree(T value) {
@@ -33,7 +34,8 @@ public class Tree<T> {
     }
 
     /**
-     * Add a child to the tree
+     * Add a child to the tree.
+     *
      * @param value - value of the new tree element
      * @return new tree
      */
@@ -50,7 +52,7 @@ public class Tree<T> {
     }
 
     /**
-     * Remove a child from a tree
+     * Remove a child from a tree.
      */
     public void remove() {
         if (this.parent != null) {

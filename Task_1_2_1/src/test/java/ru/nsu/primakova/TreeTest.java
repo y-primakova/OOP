@@ -1,15 +1,16 @@
 package ru.nsu.primakova;
 
-import java.util.ArrayList;
-import java.util.Objects;
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+import java.util.ArrayList;
+import java.util.Objects;
+import org.junit.jupiter.api.Test;
+
 /**
- * Class TreeTest
+ * Class TreeTest.
  */
 public class TreeTest {
     private Tree<String> tree1(String x, String r) {
@@ -146,17 +147,17 @@ public class TreeTest {
         var c = tree1("C", "remove_subtree");
         var d = tree1("D", "remove_subtree");
 
-        var children_tree = new ArrayList<>();
-        children_tree.add(a);
-        var children_subtree = new ArrayList<>();
-        children_subtree.add(c);
-        children_subtree.add(d);
+        var childrenTree = new ArrayList<>();
+        childrenTree.add(a);
+        var childrenSubtree = new ArrayList<>();
+        childrenSubtree.add(c);
+        childrenSubtree.add(d);
 
         assertEquals("R1", tree.get_value());
-        assertEquals(children_tree, tree.get_children());
+        assertEquals(childrenTree, tree.get_children());
         assertNull(tree.get_parent());
         assertEquals("R2", subtree.get_value());
-        assertEquals(children_subtree, subtree.get_children());
+        assertEquals(childrenSubtree, subtree.get_children());
         assertNull(subtree.get_parent());
     }
 
