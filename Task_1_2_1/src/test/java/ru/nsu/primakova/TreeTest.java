@@ -8,6 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+/**
+ * Class TreeTest
+ */
 public class TreeTest {
     private Tree<String> tree1(String x, String r) {
         var tree = new Tree<>("R1");             //  R1

@@ -3,6 +3,9 @@ package ru.nsu.primakova;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Class IteratorBfsTest
+ */
 public class IteratorBfsTest {
     @Test
     public void testBfs() {

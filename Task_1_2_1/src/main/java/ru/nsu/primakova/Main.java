@@ -1,6 +1,12 @@
 package ru.nsu.primakova;
 
+/**
+ * Class Main
+ */
 public class Main {
+    /**
+     *
+     */
     public static void main(String[] args) {
         var tree = new Tree<>("R1");
         var a = tree.addChild("A");

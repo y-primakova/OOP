@@ -1,8 +1,11 @@
 package ru.nsu.primakova;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
+/**
+ * Class IteratorDfsTest
+ */
 public class IteratorDfsTest {
     @Test
     public void testDfs() {

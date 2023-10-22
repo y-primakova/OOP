@@ -2,11 +2,18 @@ package ru.nsu.primakova;
 
 import java.util.ArrayList;
 
+/**
+ * Class Tree
+ */
 public class Tree<T> {
     private final T value;
     private Tree<T> parent;
     private final ArrayList<Tree<T>> children;
 
+    /**
+     * Class constructor
+     * @param value - value of the tree element
+     */
     public Tree(T value) {
         this.value = value;
         this.parent = null;
@@ -25,6 +32,11 @@ public class Tree<T> {
         return this.children;
     }
 
+    /**
+     * Add a child to the tree
+     * @param value - value of the new tree element
+     * @return new tree
+     */
     public Tree<T> addChild(T value) {
         var tree = new Tree<>(value);
         this.children.add(tree);
@@ -37,6 +49,9 @@ public class Tree<T> {
         subtree.parent = this;
     }
 
+    /**
+     * Remove a child from a tree
+     */
     public void remove() {
         if (this.parent != null) {
             this.parent.children.remove(this);
@@ -56,7 +71,7 @@ public class Tree<T> {
         var bfs1 = new IteratorBfs<>(tree);
         var bfs2 = new IteratorBfs<>(this);
         while (bfs1.hasNext() && bfs2.hasNext()) {
-            if (!bfs1.next().equals(bfs2.next())){
+            if (!bfs1.next().equals(bfs2.next())) {
                 return false;
             }
         }
