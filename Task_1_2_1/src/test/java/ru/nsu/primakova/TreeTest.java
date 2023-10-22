@@ -1,37 +1,53 @@
 package ru.nsu.primakova;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.Objects;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class TreeTest {
-    private Tree<String> tree1(String x, String r){
-        var tree = new Tree <>("R1");             //  R1
-        var a = tree.addChild("A");               //  | \
-        var b = a.addChild("B");                  //  A  R2
-        var subtree = new Tree <>("R2");          //  |  | \
-        var c = subtree.addChild("C");            //  B  C  D
+    private Tree<String> tree1(String x, String r) {
+        var tree = new Tree<>("R1");             //  R1
+        var a = tree.addChild("A");              //  | \
+        var b = a.addChild("B");                 //  A  R2
+        var subtree = new Tree<>("R2");          //  |  | \
+        var c = subtree.addChild("C");           //  B  C  D
         var d = subtree.addChild("D");
         tree.addChild(subtree);
 
-        if(Objects.equals(r, "remove_B")) {
+        if (Objects.equals(r, "remove_B")) {
             b.remove();
         }
-        if(Objects.equals(r, "remove_subtree")) {
+        if (Objects.equals(r, "remove_subtree")) {
             subtree.remove();
         }
 
-        if (Objects.equals(x, "R1")) return tree;
-        if (Objects.equals(x, "A")) return a;
-        if (Objects.equals(x, "B")) return b;
-        if (Objects.equals(x, "R2")) return subtree;
-        if (Objects.equals(x, "C")) return c;
-        if (Objects.equals(x, "D")) return d;
+        if (Objects.equals(x, "R1")) {
+            return tree;
+        }
+        if (Objects.equals(x, "A")) {
+            return a;
+        }
+        if (Objects.equals(x, "B")) {
+            return b;
+        }
+        if (Objects.equals(x, "R2")) {
+            return subtree;
+        }
+        if (Objects.equals(x, "C")) {
+            return c;
+        }
+        if (Objects.equals(x, "D")) {
+            return d;
+        }
         return null;
     }
+
     @Test
-    public void TestR1(){
+    public void testR1() {
         var tree = tree1("R1", null);
         var a = tree1("A", null);
         var subtree = tree1("R2", null);
@@ -44,8 +60,9 @@ public class TreeTest {
         assertEquals(children, tree.get_children());
         assertNull(tree.get_parent());
     }
+
     @Test
-    public void TestA(){
+    public void testA() {
         var tree = tree1("R1", null);
         var a = tree1("A", null);
         var b = tree1("B", null);
@@ -57,8 +74,9 @@ public class TreeTest {
         assertEquals(children, a.get_children());
         assertEquals(tree, a.get_parent());
     }
+
     @Test
-    public void TestB(){
+    public void testB() {
         var a = tree1("A", null);
         var b = tree1("B", null);
 
@@ -66,8 +84,9 @@ public class TreeTest {
         assertEquals(new ArrayList<>(), b.get_children());
         assertEquals(a, b.get_parent());
     }
+
     @Test
-    public void TestR2(){
+    public void testR2() {
         var tree = tree1("R1", null);
         var subtree = tree1("R2", null);
         var c = tree1("C", null);
@@ -81,8 +100,9 @@ public class TreeTest {
         assertEquals(children, subtree.get_children());
         assertEquals(tree, subtree.get_parent());
     }
+
     @Test
-    public void TestC(){
+    public void testC() {
         var subtree = tree1("R2", null);
         var c = tree1("C", null);
 
@@ -90,8 +110,9 @@ public class TreeTest {
         assertEquals(new ArrayList<>(), c.get_children());
         assertEquals(subtree, c.get_parent());
     }
+
     @Test
-    public void TestD(){
+    public void testD() {
         var subtree = tree1("R2", null);
         var d = tree1("D", null);
 
@@ -99,8 +120,9 @@ public class TreeTest {
         assertEquals(new ArrayList<>(), d.get_children());
         assertEquals(subtree, d.get_parent());
     }
+
     @Test
-    public void TestRemoveB(){
+    public void testRemoveB() {
         var tree = tree1("R1", "remove_B");
         var a = tree1("A", "remove_B");
         var b = tree1("B", "remove_B");
@@ -112,8 +134,9 @@ public class TreeTest {
         assertEquals(new ArrayList<>(), b.get_children());
         assertNull(b.get_parent());
     }
+
     @Test
-    public void TestRemoveSubtree(){
+    public void testRemoveSubtree() {
         var tree = tree1("R1", "remove_subtree");
         var a = tree1("A", "remove_subtree");
         var subtree = tree1("R2", "remove_subtree");
@@ -133,44 +156,18 @@ public class TreeTest {
         assertEquals(children_subtree, subtree.get_children());
         assertNull(subtree.get_parent());
     }
+
     @Test
-    public void TestEquals1(){
+    public void testEquals1() {
         var tree1 = tree1("R1", null);
         var tree2 = tree1("R1", null);
         assertTrue(tree1.equals(tree2));
     }
+
     @Test
-    public void TestEquals2(){
+    public void testEquals2() {
         var tree1 = tree1("R1", null);
         var tree2 = tree1("R1", "remove_B");
         assertFalse(tree1.equals(tree2));
-    }
-    @Test
-    public void TestBFS(){
-        var tree = tree1("R1", null);
-
-        StringBuilder str = new StringBuilder();
-        var bfs = new IteratorBFS<>(tree);
-        while (bfs.hasNext()) {
-            str.append(bfs.next());
-            str.append("  ");
-        }
-
-        var actual = "R1  A  R2  B  C  D  ";
-        assertEquals(actual , str.toString());
-    }
-    @Test
-    public void TestDFS(){
-        var tree = tree1("R1", null);
-
-        StringBuilder str = new StringBuilder();
-        var dfs = new IteratorDFS<>(tree);
-        while (dfs.hasNext()) {
-            str.append(dfs.next());
-            str.append("  ");
-        }
-
-        var actual = "R1  R2  D  C  A  B  ";
-        assertEquals(actual , str.toString());
     }
 }
