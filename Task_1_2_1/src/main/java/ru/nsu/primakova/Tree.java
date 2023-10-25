@@ -39,14 +39,20 @@ public class Tree<T> {
      * @param value - value of the new tree element
      * @return new tree
      */
-    public Tree<T> addChild(T value) {
+    public Tree<T> addChild(T value) throws NullNodeException {
+        if (value == null) {
+            throw new NullNodeException("Null node");
+        }
         var tree = new Tree<>(value);
         this.children.add(tree);
         tree.parent = this;
         return tree;
     }
 
-    public void addChild(Tree<T> subtree) {
+    public void addChild(Tree<T> subtree) throws NullNodeException {
+        if (subtree == null) {
+            throw new NullNodeException("Null subtree");
+        }
         this.children.add(subtree);
         subtree.parent = this;
     }

@@ -9,14 +9,25 @@ public class Main {
      */
     public static void main(String[] args) {
         var tree = new Tree<>("R1");
-        var a = tree.addChild("A");
-        var b = a.addChild("B");
         var subtree = new Tree<>("R2");
-        var c = subtree.addChild("C");
-        var d = subtree.addChild("D");
-        tree.addChild(subtree);
-        b.remove();
-
+        try {
+            var a = tree.addChild((String) null);
+            a.addChild("B");
+        } catch (NullNodeException e) {
+            System.out.println("Error(a,b): " + e.getMessage());
+        }
+        try {
+            subtree.addChild("C");
+            subtree.addChild("D");
+        } catch (NullNodeException e) {
+            System.out.println("Error(c,d): " + e.getMessage());
+        }
+        try {
+            tree.addChild(subtree);
+        } catch (NullNodeException e) {
+            System.out.println("Error(subtree): " + e.getMessage());
+        }
         System.out.println(tree.toString());
     }
 }
+

@@ -14,38 +14,42 @@ import org.junit.jupiter.api.Test;
  */
 public class TreeTest {
     private Tree<String> tree1(String x, String r) {
-        var tree = new Tree<>("R1");             //  R1
-        var a = tree.addChild("A");              //  | \
-        var b = a.addChild("B");                 //  A  R2
-        var subtree = new Tree<>("R2");          //  |  | \
-        var c = subtree.addChild("C");           //  B  C  D
-        var d = subtree.addChild("D");
-        tree.addChild(subtree);
+        try {
+            var tree = new Tree<>("R1");             //  R1
+            var a = tree.addChild("A");              //  | \
+            var b = a.addChild("B");                 //  A  R2
+            var subtree = new Tree<>("R2");          //  |  | \
+            var c = subtree.addChild("C");           //  B  C  D
+            var d = subtree.addChild("D");
+            tree.addChild(subtree);
 
-        if (Objects.equals(r, "remove_B")) {
-            b.remove();
-        }
-        if (Objects.equals(r, "remove_subtree")) {
-            subtree.remove();
-        }
+            if (Objects.equals(r, "remove_B")) {
+                b.remove();
+            }
+            if (Objects.equals(r, "remove_subtree")) {
+                subtree.remove();
+            }
 
-        if (Objects.equals(x, "R1")) {
-            return tree;
-        }
-        if (Objects.equals(x, "A")) {
-            return a;
-        }
-        if (Objects.equals(x, "B")) {
-            return b;
-        }
-        if (Objects.equals(x, "R2")) {
-            return subtree;
-        }
-        if (Objects.equals(x, "C")) {
-            return c;
-        }
-        if (Objects.equals(x, "D")) {
-            return d;
+            if (Objects.equals(x, "R1")) {
+                return tree;
+            }
+            if (Objects.equals(x, "A")) {
+                return a;
+            }
+            if (Objects.equals(x, "B")) {
+                return b;
+            }
+            if (Objects.equals(x, "R2")) {
+                return subtree;
+            }
+            if (Objects.equals(x, "C")) {
+                return c;
+            }
+            if (Objects.equals(x, "D")) {
+                return d;
+            }
+        } catch (NullNodeException e) {
+            System.out.println("Error: " + e.getMessage());
         }
         return null;
     }
@@ -173,5 +177,17 @@ public class TreeTest {
         var tree1 = tree1("R1", null);
         var tree2 = tree1("R1", "remove_B");
         assertFalse(tree1.equals(tree2));
+    }
+
+    @Test
+    public void testNullNodeException() {
+        var tree = tree1("R1", null);
+        boolean a = false;
+        try {
+            tree.addChild((String) null);
+        } catch (NullNodeException e) {
+            a = true;
+        }
+        assertTrue(a);
     }
 }
