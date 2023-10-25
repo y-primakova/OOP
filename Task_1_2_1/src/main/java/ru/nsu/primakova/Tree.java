@@ -3,7 +3,7 @@ package ru.nsu.primakova;
 import java.util.ArrayList;
 
 /**
- * Class Tree
+ * Class Tree.
  */
 public class Tree<T> {
     private final T value;
