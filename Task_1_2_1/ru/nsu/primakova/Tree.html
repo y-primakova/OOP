@@ -305,13 +305,16 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>addChild</h4>
-<pre class="methodSignature">public&nbsp;<a href="Tree.html" title="class in ru.nsu.primakova">Tree</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;addChild&#8203;(<a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;value)</pre>
+<pre class="methodSignature">public&nbsp;<a href="Tree.html" title="class in ru.nsu.primakova">Tree</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;addChild&#8203;(<a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;value)
+                 throws <a href="NullNodeException.html" title="class in ru.nsu.primakova">NullNodeException</a></pre>
 <div class="block">Add a child to the tree.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>value</code> - - value of the new tree element</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>new tree</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="NullNodeException.html" title="class in ru.nsu.primakova">NullNodeException</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -321,7 +324,12 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>addChild</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;addChild&#8203;(<a href="Tree.html" title="class in ru.nsu.primakova">Tree</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;subtree)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;addChild&#8203;(<a href="Tree.html" title="class in ru.nsu.primakova">Tree</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;subtree)
+              throws <a href="NullNodeException.html" title="class in ru.nsu.primakova">NullNodeException</a></pre>
+<dl>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="NullNodeException.html" title="class in ru.nsu.primakova">NullNodeException</a></code></dd>
+</dl>
 </li>
 </ul>
 <a id="remove()">
