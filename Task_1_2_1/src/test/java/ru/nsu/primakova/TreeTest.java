@@ -70,7 +70,7 @@ public class TreeTest {
         assertEquals("R1", tree.get_value());
         assertEquals(children, tree.get_children());
         assertNull(tree.get_parent());
-        assertEquals(6, tree.get_length());
+        assertEquals(3, tree.get_nModification());
     }
 
     @Test
@@ -85,7 +85,7 @@ public class TreeTest {
         assertEquals("A", a.get_value());
         assertEquals(children, a.get_children());
         assertEquals(tree, a.get_parent());
-        assertEquals(2, a.get_length());
+        assertEquals(1, a.get_nModification());
     }
 
     @Test
@@ -96,7 +96,7 @@ public class TreeTest {
         assertEquals("B", b.get_value());
         assertEquals(new ArrayList<>(), b.get_children());
         assertEquals(a, b.get_parent());
-        assertEquals(1, b.get_length());
+        assertEquals(0, b.get_nModification());
     }
 
     @Test
@@ -113,7 +113,7 @@ public class TreeTest {
         assertEquals("R2", subtree.get_value());
         assertEquals(children, subtree.get_children());
         assertEquals(tree, subtree.get_parent());
-        assertEquals(3, subtree.get_length());
+        assertEquals(2, subtree.get_nModification());
     }
 
     @Test
@@ -124,7 +124,7 @@ public class TreeTest {
         assertEquals("C", c.get_value());
         assertEquals(new ArrayList<>(), c.get_children());
         assertEquals(subtree, c.get_parent());
-        assertEquals(1, c.get_length());
+        assertEquals(0, c.get_nModification());
     }
 
     @Test
@@ -135,7 +135,7 @@ public class TreeTest {
         assertEquals("D", d.get_value());
         assertEquals(new ArrayList<>(), d.get_children());
         assertEquals(subtree, d.get_parent());
-        assertEquals(1, d.get_length());
+        assertEquals(0, d.get_nModification());
     }
 
     @Test
@@ -147,12 +147,12 @@ public class TreeTest {
         assertEquals("A", a.get_value());
         assertEquals(new ArrayList<>(), a.get_children());
         assertEquals(tree, a.get_parent());
-        assertEquals(1, a.get_length());
+        assertEquals(2, a.get_nModification());
 
         assertEquals("B", b.get_value());
         assertEquals(new ArrayList<>(), b.get_children());
         assertNull(b.get_parent());
-        assertEquals(1, b.get_length());
+        assertEquals(0, b.get_nModification());
     }
 
     @Test
@@ -172,12 +172,12 @@ public class TreeTest {
         assertEquals("R1", tree.get_value());
         assertEquals(childrenTree, tree.get_children());
         assertNull(tree.get_parent());
-        assertEquals(3, tree.get_length());
+        assertEquals(4, tree.get_nModification());
 
         assertEquals("R2", subtree.get_value());
         assertEquals(childrenSubtree, subtree.get_children());
         assertNull(subtree.get_parent());
-        assertEquals(3, subtree.get_length());
+        assertEquals(2, subtree.get_nModification());
     }
 
     @Test
@@ -196,22 +196,22 @@ public class TreeTest {
         assertEquals("R1", tree.get_value());
         assertEquals(childrenTree, tree.get_children());
         assertNull(tree.get_parent());
-        assertEquals(5, tree.get_length());
+        assertEquals(4, tree.get_nModification());
 
         assertEquals("R2", subtree.get_value());
         assertEquals(new ArrayList<>(), subtree.get_children());
         assertNull(subtree.get_parent());
-        assertEquals(1, subtree.get_length());
+        assertEquals(3, subtree.get_nModification());
 
         assertEquals("C", c.get_value());
         assertEquals(new ArrayList<>(), c.get_children());
         assertEquals(tree, c.get_parent());
-        assertEquals(1, c.get_length());
+        assertEquals(0, c.get_nModification());
 
         assertEquals("D", d.get_value());
         assertEquals(new ArrayList<>(), d.get_children());
         assertEquals(tree, d.get_parent());
-        assertEquals(1, d.get_length());
+        assertEquals(0, d.get_nModification());
     }
 
     @Test

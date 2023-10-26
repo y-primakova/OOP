@@ -1,15 +1,16 @@
 package ru.nsu.primakova;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Class Tree.
  */
-public class Tree<T> {
+public class Tree<T> implements Iterable<T> {
     private final T value;
     private Tree<T> parent;
     private ArrayList<Tree<T>> children;
-    private int length;
+    private int nModification;
 
     /**
      * Class constructor.
@@ -20,7 +21,7 @@ public class Tree<T> {
         this.value = value;
         this.parent = null;
         this.children = new ArrayList<>();
-        this.length = 1;
+        this.nModification = 0;
     }
 
     public T get_value() {
@@ -35,8 +36,8 @@ public class Tree<T> {
         return this.children;
     }
 
-    public int get_length() {
-        return this.length;
+    public int get_nModification() {
+        return this.nModification;
     }
 
     /**
@@ -52,7 +53,7 @@ public class Tree<T> {
         var tree = new Tree<>(value);
         this.children.add(tree);
         tree.parent = this;
-        this.increaseLength(1);
+        this.increaseModification();
         return tree;
     }
 
@@ -67,13 +68,13 @@ public class Tree<T> {
         }
         this.children.add(subtree);
         subtree.parent = this;
-        this.increaseLength(subtree.length);
+        this.increaseModification();
     }
 
-    private void increaseLength(int k) {
-        this.length += k;
+    private void increaseModification() {
+        this.nModification += 1;
         if (this.parent != null) {
-            this.parent.increaseLength(k);
+            this.parent.increaseModification();
         }
     }
 
@@ -83,7 +84,7 @@ public class Tree<T> {
     public void remove() {
         if (this.parent != null) {
             this.parent.children.remove(this);
-            this.parent.length -= this.length;
+            this.parent.increaseModification();
             this.parent = null;
         }
     }
@@ -98,11 +99,15 @@ public class Tree<T> {
             for (var child : this.children) {
                 child.parent = this.parent;
             }
-            this.parent.length -= 1;
-            this.length = 1;
+            this.increaseModification();
             this.children = new ArrayList<>();
             this.parent = null;
         }
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new IteratorBfs<>(this);
     }
 
     @Override
@@ -114,8 +119,8 @@ public class Tree<T> {
             return false;
         }
         var tree = (Tree<?>) obj;
-        var bfs1 = new IteratorBfs<>(tree);
-        var bfs2 = new IteratorBfs<>(this);
+        var bfs1 = tree.iterator();
+        var bfs2 = this.iterator();
         while (bfs1.hasNext() && bfs2.hasNext()) {
             if (!bfs1.next().equals(bfs2.next())) {
                 return false;
@@ -130,9 +135,8 @@ public class Tree<T> {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        var bfs = new IteratorBfs<>(this);
-        while (bfs.hasNext()) {
-            str.append(bfs.next());
+        for (var elem : this) {
+            str.append(elem);
             str.append("  ");
         }
         return str.toString();

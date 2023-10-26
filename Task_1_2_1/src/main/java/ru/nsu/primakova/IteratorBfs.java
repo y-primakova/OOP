@@ -11,19 +11,19 @@ import java.util.Queue;
  */
 public class IteratorBfs<T> implements Iterator<T> {
     private final Queue<Tree<T>> queue;
-    private final int length;
+    private final int nModification;
     private final Tree<T> startTree;
 
     public IteratorBfs(Tree<T> tree) {
         this.queue = new LinkedList<>();
         this.queue.add(tree);
-        this.length = tree.get_length();
+        this.nModification = tree.get_nModification();
         this.startTree = tree;
     }
 
     @Override
     public boolean hasNext() {
-        if (this.length != startTree.get_length()) {
+        if (this.nModification != startTree.get_nModification()) {
             throw new ConcurrentModificationException();
         }
         return !this.queue.isEmpty();

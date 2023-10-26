@@ -20,6 +20,7 @@ public class IteratorDfsTest {
             tree.addChild(subtree);
 
             StringBuilder str = new StringBuilder();
+
             var dfs = new IteratorDfs<>(tree);
             while (dfs.hasNext()) {
                 str.append(dfs.next());
