@@ -217,13 +217,15 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#remove()">remove</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Remove a child from a tree.</div>
+<div class="block">Remove a child/subtree from a tree.</div>
 </td>
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeAndSaveChildren()">removeAndSaveChildren</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Remove only child from a tree.</div>
+</td>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
@@ -346,6 +348,8 @@ extends java.lang.Object</pre>
 <pre class="methodSignature">public&nbsp;void&nbsp;addChild&#8203;(<a href="Tree.html" title="class in ru.nsu.primakova">Tree</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;subtree)
               throws <a href="NullNodeException.html" title="class in ru.nsu.primakova">NullNodeException</a></pre>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>subtree</code> - - new subtree of the tree</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="NullNodeException.html" title="class in ru.nsu.primakova">NullNodeException</a></code></dd>
 </dl>
@@ -358,7 +362,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>remove</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;remove()</pre>
-<div class="block">Remove a child from a tree.</div>
+<div class="block">Remove a child/subtree from a tree.</div>
 </li>
 </ul>
 <a id="removeAndSaveChildren()">
@@ -368,6 +372,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>removeAndSaveChildren</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;removeAndSaveChildren()</pre>
+<div class="block">Remove only child from a tree.</div>
 </li>
 </ul>
 <a id="equals(java.lang.Object)">
