@@ -57,6 +57,8 @@ public class Tree<T> {
     }
 
     /**
+     * Add a subtree to the tree.
+     *
      * @param subtree - new subtree of the tree
      */
     public void addChild(Tree<T> subtree) throws NullNodeException {
