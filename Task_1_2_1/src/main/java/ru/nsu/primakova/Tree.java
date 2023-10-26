@@ -10,7 +10,7 @@ public class Tree<T> implements Iterable<T> {
     private final T value;
     private Tree<T> parent;
     private ArrayList<Tree<T>> children;
-    private int nModification;
+    private int modification;
 
     /**
      * Class constructor.
@@ -21,7 +21,7 @@ public class Tree<T> implements Iterable<T> {
         this.value = value;
         this.parent = null;
         this.children = new ArrayList<>();
-        this.nModification = 0;
+        this.modification = 0;
     }
 
     public T get_value() {
@@ -37,7 +37,7 @@ public class Tree<T> implements Iterable<T> {
     }
 
     public int get_nModification() {
-        return this.nModification;
+        return this.modification;
     }
 
     /**
@@ -72,7 +72,7 @@ public class Tree<T> implements Iterable<T> {
     }
 
     private void increaseModification() {
-        this.nModification += 1;
+        this.modification += 1;
         if (this.parent != null) {
             this.parent.increaseModification();
         }

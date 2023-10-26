@@ -10,20 +10,20 @@ import java.util.Stack;
  */
 public class IteratorDfs<T> implements Iterator<T> {
     private final Stack<Tree<T>> stack;
-    private final int nModification;
+    private final int modification;
     private final Tree<T> startTree;
 
 
     public IteratorDfs(Tree<T> tree) {
         this.stack = new Stack<>();
         stack.push(tree);
-        this.nModification = tree.get_nModification();
+        this.modification = tree.get_nModification();
         this.startTree = tree;
     }
 
     @Override
     public boolean hasNext() {
-        if (this.nModification != startTree.get_nModification()) {
+        if (this.modification != startTree.get_nModification()) {
             throw new ConcurrentModificationException();
         }
         return !this.stack.isEmpty();
