@@ -56,6 +56,9 @@ public class Tree<T> {
         return tree;
     }
 
+    /**
+     * @param subtree - new subtree of the tree
+     */
     public void addChild(Tree<T> subtree) throws NullNodeException {
         if (subtree == null) {
             throw new NullNodeException("Null subtree");
@@ -67,13 +70,13 @@ public class Tree<T> {
 
     private void increaseLength(int k) {
         this.length += k;
-        if (this.parent != null){
+        if (this.parent != null) {
             this.parent.increaseLength(k);
         }
     }
 
     /**
-     * Remove a child from a tree.
+     * Remove a child/subtree from a tree.
      */
     public void remove() {
         if (this.parent != null) {
@@ -83,6 +86,9 @@ public class Tree<T> {
         }
     }
 
+    /**
+     * Remove only child from a tree.
+     */
     public void removeAndSaveChildren() {
         if (this.parent != null) {
             this.parent.children.remove(this);
@@ -96,6 +102,7 @@ public class Tree<T> {
             this.parent = null;
         }
     }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {
