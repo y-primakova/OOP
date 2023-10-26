@@ -8,7 +8,8 @@ import java.util.ArrayList;
 public class Tree<T> {
     private final T value;
     private Tree<T> parent;
-    private final ArrayList<Tree<T>> children;
+    private ArrayList<Tree<T>> children;
+    private int length;
 
     /**
      * Class constructor.
@@ -19,6 +20,7 @@ public class Tree<T> {
         this.value = value;
         this.parent = null;
         this.children = new ArrayList<>();
+        this.length = 1;
     }
 
     public T get_value() {
@@ -31,6 +33,10 @@ public class Tree<T> {
 
     public ArrayList<Tree<T>> get_children() {
         return this.children;
+    }
+
+    public int get_length() {
+        return this.length;
     }
 
     /**
@@ -46,6 +52,7 @@ public class Tree<T> {
         var tree = new Tree<>(value);
         this.children.add(tree);
         tree.parent = this;
+        this.increaseLength(1);
         return tree;
     }
 
@@ -55,6 +62,14 @@ public class Tree<T> {
         }
         this.children.add(subtree);
         subtree.parent = this;
+        this.increaseLength(subtree.length);
+    }
+
+    private void increaseLength(int k) {
+        this.length += k;
+        if (this.parent != null){
+            this.parent.increaseLength(k);
+        }
     }
 
     /**
@@ -63,10 +78,24 @@ public class Tree<T> {
     public void remove() {
         if (this.parent != null) {
             this.parent.children.remove(this);
+            this.parent.length -= this.length;
             this.parent = null;
         }
     }
 
+    public void removeAndSaveChildren() {
+        if (this.parent != null) {
+            this.parent.children.remove(this);
+            this.parent.children.addAll(this.children);
+            for (var child : this.children) {
+                child.parent = this.parent;
+            }
+            this.parent.length -= 1;
+            this.length = 1;
+            this.children = new ArrayList<>();
+            this.parent = null;
+        }
+    }
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {

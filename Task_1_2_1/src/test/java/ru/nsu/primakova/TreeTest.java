@@ -29,6 +29,9 @@ public class TreeTest {
             if (Objects.equals(r, "remove_subtree")) {
                 subtree.remove();
             }
+            if (Objects.equals(r, "removeAndSaveChildren")) {
+                subtree.removeAndSaveChildren();
+            }
 
             if (Objects.equals(x, "R1")) {
                 return tree;
@@ -67,6 +70,7 @@ public class TreeTest {
         assertEquals("R1", tree.get_value());
         assertEquals(children, tree.get_children());
         assertNull(tree.get_parent());
+        assertEquals(6, tree.get_length());
     }
 
     @Test
@@ -81,6 +85,7 @@ public class TreeTest {
         assertEquals("A", a.get_value());
         assertEquals(children, a.get_children());
         assertEquals(tree, a.get_parent());
+        assertEquals(2, a.get_length());
     }
 
     @Test
@@ -91,6 +96,7 @@ public class TreeTest {
         assertEquals("B", b.get_value());
         assertEquals(new ArrayList<>(), b.get_children());
         assertEquals(a, b.get_parent());
+        assertEquals(1, b.get_length());
     }
 
     @Test
@@ -107,6 +113,7 @@ public class TreeTest {
         assertEquals("R2", subtree.get_value());
         assertEquals(children, subtree.get_children());
         assertEquals(tree, subtree.get_parent());
+        assertEquals(3, subtree.get_length());
     }
 
     @Test
@@ -117,6 +124,7 @@ public class TreeTest {
         assertEquals("C", c.get_value());
         assertEquals(new ArrayList<>(), c.get_children());
         assertEquals(subtree, c.get_parent());
+        assertEquals(1, c.get_length());
     }
 
     @Test
@@ -127,6 +135,7 @@ public class TreeTest {
         assertEquals("D", d.get_value());
         assertEquals(new ArrayList<>(), d.get_children());
         assertEquals(subtree, d.get_parent());
+        assertEquals(1, d.get_length());
     }
 
     @Test
@@ -138,9 +147,12 @@ public class TreeTest {
         assertEquals("A", a.get_value());
         assertEquals(new ArrayList<>(), a.get_children());
         assertEquals(tree, a.get_parent());
+        assertEquals(1, a.get_length());
+
         assertEquals("B", b.get_value());
         assertEquals(new ArrayList<>(), b.get_children());
         assertNull(b.get_parent());
+        assertEquals(1, b.get_length());
     }
 
     @Test
@@ -160,9 +172,46 @@ public class TreeTest {
         assertEquals("R1", tree.get_value());
         assertEquals(childrenTree, tree.get_children());
         assertNull(tree.get_parent());
+        assertEquals(3, tree.get_length());
+
         assertEquals("R2", subtree.get_value());
         assertEquals(childrenSubtree, subtree.get_children());
         assertNull(subtree.get_parent());
+        assertEquals(3, subtree.get_length());
+    }
+
+    @Test
+    public void removeAndSaveChildren() {
+        var tree = tree1("R1", "removeAndSaveChildren");
+        var a = tree1("A", "removeAndSaveChildren");
+        var subtree = tree1("R2", "removeAndSaveChildren");
+        var c = tree1("C", "removeAndSaveChildren");
+        var d = tree1("D", "removeAndSaveChildren");
+
+        var childrenTree = new ArrayList<>();
+        childrenTree.add(a);
+        childrenTree.add(c);
+        childrenTree.add(d);
+
+        assertEquals("R1", tree.get_value());
+        assertEquals(childrenTree, tree.get_children());
+        assertNull(tree.get_parent());
+        assertEquals(5, tree.get_length());
+
+        assertEquals("R2", subtree.get_value());
+        assertEquals(new ArrayList<>(), subtree.get_children());
+        assertNull(subtree.get_parent());
+        assertEquals(1, subtree.get_length());
+
+        assertEquals("C", c.get_value());
+        assertEquals(new ArrayList<>(), c.get_children());
+        assertEquals(tree, c.get_parent());
+        assertEquals(1, c.get_length());
+
+        assertEquals("D", d.get_value());
+        assertEquals(new ArrayList<>(), d.get_children());
+        assertEquals(tree, d.get_parent());
+        assertEquals(1, d.get_length());
     }
 
     @Test

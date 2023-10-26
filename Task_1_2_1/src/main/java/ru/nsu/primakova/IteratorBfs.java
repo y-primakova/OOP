@@ -1,5 +1,6 @@
 package ru.nsu.primakova;
 
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
@@ -10,14 +11,21 @@ import java.util.Queue;
  */
 public class IteratorBfs<T> implements Iterator<T> {
     private final Queue<Tree<T>> queue;
+    private final int length;
+    private final Tree<T> startTree;
 
     public IteratorBfs(Tree<T> tree) {
         this.queue = new LinkedList<>();
-        queue.add(tree);
+        this.queue.add(tree);
+        this.length = tree.get_length();
+        this.startTree = tree;
     }
 
     @Override
     public boolean hasNext() {
+        if (this.length != startTree.get_length()) {
+            throw new ConcurrentModificationException();
+        }
         return !this.queue.isEmpty();
     }
 
