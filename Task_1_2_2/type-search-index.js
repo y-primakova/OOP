@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"ru.nsu.primakova","l":"AdjacencyList"},{"p":"ru.nsu.primakova","l":"AdjacencyMatrix"},{"l":"All Classes","url":"allclasses-index.html"},{"p":"ru.nsu.primakova","l":"Edge"},{"p":"ru.nsu.primakova","l":"Graph"},{"p":"ru.nsu.primakova","l":"IncidenceMatrix"},{"p":"ru.nsu.primakova","l":"Main"},{"p":"ru.nsu.primakova","l":"Vertex"}]
