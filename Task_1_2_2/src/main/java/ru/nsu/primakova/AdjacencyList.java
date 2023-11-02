@@ -3,6 +3,9 @@ package ru.nsu.primakova;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Class AdjacencyList.
+ */
 public class AdjacencyList<T> extends Graph<T>{
     private final HashMap<Vertex<T>, HashMap<Vertex<T>, Integer>> adjacencyList;
 
@@ -20,6 +23,23 @@ public class AdjacencyList<T> extends Graph<T>{
         this.adjacencyList.put(edge.get_startVertex(), new HashMap<>());
         this.adjacencyList.put(edge.get_endVertex(), new HashMap<>());
         this.adjacencyList.get(edge.get_startVertex()).put(edge.get_endVertex(), edge.get_value());
+    }
+
+    public AdjacencyList(ArrayList<Edge<T>> listEdge, ArrayList<Vertex<T>> listVertex) {
+        super(listEdge, listVertex);
+        this.adjacencyList = new HashMap<>();
+        for (var vertex: listVertex) {
+            this.adjacencyList.put(vertex, new HashMap<>());
+        }
+        for (var edge: listEdge) {
+            this.adjacencyList.get(edge.get_startVertex()).put(edge.get_endVertex(), edge.get_value());
+            if (!this.adjacencyList.containsKey(edge.get_endVertex())) {
+                this.adjacencyList.put(edge.get_endVertex(), new HashMap<>());
+            }
+            if (!this.adjacencyList.containsKey(edge.get_startVertex())) {
+                this.adjacencyList.put(edge.get_startVertex(), new HashMap<>());
+            }
+        }
     }
 
     public HashMap<Vertex<T>, HashMap<Vertex<T>, Integer>> get_adjacencyList() {
@@ -53,7 +73,7 @@ public class AdjacencyList<T> extends Graph<T>{
 
     @Override
     public void removeVertex(Vertex<T> vertex) {
-        for (var v : this.adjacencyList.keySet()) {
+        for (var v: this.adjacencyList.keySet()) {
             this.adjacencyList.get(v).remove(vertex);
         }
         this.adjacencyList.remove(vertex);
@@ -61,32 +81,32 @@ public class AdjacencyList<T> extends Graph<T>{
 
     @Override
     public HashMap<Vertex<T>, Integer> shortestPath(Vertex<T> vertex) {
-        HashMap<Vertex<T>, Integer> min_dist = new HashMap<>();
-        ArrayList<Vertex<T>> need_to_visit = new ArrayList<>();
+        HashMap<Vertex<T>, Integer> minDist = new HashMap<>();
+        ArrayList<Vertex<T>> needToVisit = new ArrayList<>();
         ArrayList<Vertex<T>> visited = new ArrayList<>();
-        min_dist.put(vertex, 0);
-        need_to_visit.add(vertex);
-        while (!need_to_visit.isEmpty()) {
-            var v =need_to_visit.get(0);
+        minDist.put(vertex, 0);
+        needToVisit.add(vertex);
+        while (!needToVisit.isEmpty()) {
+            var v =needToVisit.get(0);
             if (visited.contains(v)) {
-                need_to_visit.remove(v);
+                needToVisit.remove(v);
                 continue;
             }
-            need_to_visit.addAll(this.adjacencyList.get(v).keySet());
-            for (var key : this.adjacencyList.get(v).keySet()) {
-                if(min_dist.containsKey(key)){
-                    if(min_dist.get(key) > this.adjacencyList.get(v).get(key) + min_dist.get(v)) {
-                        min_dist.put(key, this.adjacencyList.get(v).get(key) + min_dist.get(v));
+            needToVisit.addAll(this.adjacencyList.get(v).keySet());
+            for (var key: this.adjacencyList.get(v).keySet()) {
+                if(minDist.containsKey(key)){
+                    if (minDist.get(key) > this.adjacencyList.get(v).get(key) + minDist.get(v)) {
+                        minDist.put(key, this.adjacencyList.get(v).get(key) + minDist.get(v));
                     }
                 }
                 else {
-                    min_dist.put(key, this.adjacencyList.get(v).get(key) + min_dist.get(v));
+                    minDist.put(key, this.adjacencyList.get(v).get(key) + minDist.get(v));
                 }
             }
-            need_to_visit.remove(v);
+            needToVisit.remove(v);
             visited.add(v);
         }
-        return min_dist;
+        return minDist;
     }
 
     public String shortestPathString(Vertex<T> vertex) {

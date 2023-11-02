@@ -1,8 +1,11 @@
 package ru.nsu.primakova;
 
-        import java.util.ArrayList;
-        import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.HashMap;
 
+/**
+ * Class IncidenceMatrix.
+ */
 public class IncidenceMatrix<T> extends Graph<T>{
     private final HashMap<Vertex<T>, HashMap<Vertex<T>, Integer>> incidenceMatrix;
 
@@ -22,6 +25,24 @@ public class IncidenceMatrix<T> extends Graph<T>{
         this.incidenceMatrix.put(edge.get_endVertex(), new HashMap<>());
         this.incidenceMatrix.get(edge.get_startVertex()).put(edge.get_endVertex(), edge.get_value());
         this.incidenceMatrix.get(edge.get_endVertex()).put(edge.get_startVertex(), -edge.get_value());
+    }
+
+    public IncidenceMatrix(ArrayList<Edge<T>> listEdge, ArrayList<Vertex<T>> listVertex) {
+        super(listEdge, listVertex);
+        this.incidenceMatrix = new HashMap<>();
+        for (var vertex: listVertex) {
+            this.incidenceMatrix.put(vertex, new HashMap<>());
+        }
+        for (var edge: listEdge) {
+            this.incidenceMatrix.get(edge.get_startVertex()).put(edge.get_endVertex(), edge.get_value());
+            this.incidenceMatrix.get(edge.get_endVertex()).put(edge.get_startVertex(), -edge.get_value());
+            if (!this.incidenceMatrix.containsKey(edge.get_endVertex())) {
+                this.incidenceMatrix.put(edge.get_endVertex(), new HashMap<>());
+            }
+            if (!this.incidenceMatrix.containsKey(edge.get_startVertex())) {
+                this.incidenceMatrix.put(edge.get_startVertex(), new HashMap<>());
+            }
+        }
     }
 
     public HashMap<Vertex<T>, HashMap<Vertex<T>, Integer>> get_incidenceMatrix() {
@@ -57,7 +78,7 @@ public class IncidenceMatrix<T> extends Graph<T>{
 
     @Override
     public void removeVertex(Vertex<T> vertex) {
-        for (var v : this.incidenceMatrix.keySet()) {
+        for (var v: this.incidenceMatrix.keySet()) {
             this.incidenceMatrix.get(v).remove(vertex);
         }
         this.incidenceMatrix.remove(vertex);
@@ -65,41 +86,40 @@ public class IncidenceMatrix<T> extends Graph<T>{
 
     @Override
     public HashMap<Vertex<T>, Integer> shortestPath(Vertex<T> vertex) {
-        HashMap<Vertex<T>, Integer> min_dist = new HashMap<>();
-        ArrayList<Vertex<T>> need_to_visit = new ArrayList<>();
+        HashMap<Vertex<T>, Integer> minDist = new HashMap<>();
+        ArrayList<Vertex<T>> needToVisit = new ArrayList<>();
         ArrayList<Vertex<T>> visited = new ArrayList<>();
-        min_dist.put(vertex, 0);
-        need_to_visit.add(vertex);
-        while (!need_to_visit.isEmpty()) {
-            var v =need_to_visit.get(0);
+        minDist.put(vertex, 0);
+        needToVisit.add(vertex);
+        while (!needToVisit.isEmpty()) {
+            var v =needToVisit.get(0);
             if (visited.contains(v)) {
-                need_to_visit.remove(v);
+                needToVisit.remove(v);
                 continue;
             }
-//            need_to_visit.addAll(this.incidenceMatrix.get(v).keySet());
-            for (var key : this.incidenceMatrix.get(v).keySet()) {
+            for (var key: this.incidenceMatrix.get(v).keySet()) {
                 if (this.incidenceMatrix.get(v).get(key) >= 0) {
-                    need_to_visit.add(key);
-                    if (min_dist.containsKey(key)) {
-                        if(min_dist.get(key) > this.incidenceMatrix.get(v).get(key) + min_dist.get(v)) {
-                            min_dist.put(key, this.incidenceMatrix.get(v).get(key) + min_dist.get(v));
+                    needToVisit.add(key);
+                    if (minDist.containsKey(key)) {
+                        if(minDist.get(key) > this.incidenceMatrix.get(v).get(key) + minDist.get(v)) {
+                            minDist.put(key, this.incidenceMatrix.get(v).get(key) + minDist.get(v));
                         }
                     }
                     else {
-                        min_dist.put(key, this.incidenceMatrix.get(v).get(key) + min_dist.get(v));
+                        minDist.put(key, this.incidenceMatrix.get(v).get(key) + minDist.get(v));
                     }
                 }
             }
-            need_to_visit.remove(v);
+            needToVisit.remove(v);
             visited.add(v);
         }
-        return min_dist;
+        return minDist;
     }
 
     public String shortestPathString(Vertex<T> vertex) {
         StringBuilder str = new StringBuilder();
         var res = shortestPath(vertex);
-        for (var key : this.shortestPath(vertex).keySet()) {
+        for (var key: this.shortestPath(vertex).keySet()) {
             str.append(key.get_name()).append(" ");
         }
         str.append("\n");
@@ -118,7 +138,7 @@ public class IncidenceMatrix<T> extends Graph<T>{
             str.append("\n");
             str.append(vertex1.get_name()).append("  ");
             for (var vertex2: this.incidenceMatrix.keySet()) {
-                if(!this.incidenceMatrix.get(vertex1).containsKey(vertex2)) {
+                if (!this.incidenceMatrix.get(vertex1).containsKey(vertex2)) {
                     str.append("0\t");
                 }
                 else {
