@@ -16,16 +16,7 @@ public class AdjacencyMatrix<T> extends Graph<T>{
 //        }
 //    }
 
-//    public AdjacencyMatrix(int value, T nameStart, T nameEnd) throws WrongVertexNameException {
-//        super(value, nameStart, nameEnd);
-//        this.adjacencyMatrix = new HashMap<>();
-//        var edge = new Edge<T>(value, nameStart, nameEnd);
-//        this.adjacencyMatrix.put(edge.get_startVertex(), new HashMap<>());
-//        this.adjacencyMatrix.put(edge.get_endVertex(), new HashMap<>());
-//        this.adjacencyMatrix.get(edge.get_startVertex()).put(edge.get_endVertex(), value);
-//    }
-
-    public AdjacencyMatrix(int value, Vertex<T> start, Vertex<T> end) throws WrongVertexNameException {
+    public AdjacencyMatrix(int value, Vertex<T> start, Vertex<T> end) {
         super(value, start, end);
         this.adjacencyMatrix = new HashMap<>();
         this.adjacencyMatrix.put(start, new HashMap<>());
@@ -122,19 +113,19 @@ public class AdjacencyMatrix<T> extends Graph<T>{
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append("   ");
-        for (var vertex1: this.adjacencyMatrix.keySet()) {//this.adjacencyMatrix.keySet()
-            str.append(vertex1.get_name()).append(" ");
+        str.append("    ");
+        for (var vertex1: this.adjacencyMatrix.keySet()) {
+            str.append(vertex1.get_name()).append("  ");
         }
         for (var vertex1: this.adjacencyMatrix.keySet()) {
             str.append("\n");
             str.append(vertex1.get_name()).append("  ");
             for (var vertex2: this.adjacencyMatrix.keySet()) {
                 if(!this.adjacencyMatrix.get(vertex1).containsKey(vertex2)) {
-                    str.append("0  ");
+                    str.append("0\t");
                 }
                 else {
-                    str.append(this.adjacencyMatrix.get(vertex1).get(vertex2)).append("  ");
+                    str.append(this.adjacencyMatrix.get(vertex1).get(vertex2)).append("\t");
                 }
             }
         }

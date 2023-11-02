@@ -11,7 +11,7 @@ public class Main {
     /**
      * main.
      */
-    public static void main(String[] args) throws WrongVertexNameException {
+    public static void main(String[] args) {
         var v1 = new Vertex<String>("v1");
         var v2 = new Vertex<String>("v2");
         var v3 = new Vertex<String>("v3");

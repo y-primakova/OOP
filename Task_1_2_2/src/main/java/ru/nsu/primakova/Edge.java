@@ -8,12 +8,6 @@ public class Edge<T> {
     private final Vertex<T> endVertex;
     private int value;
 
-//    public Edge(int value, T nameStart, T nameEnd) {
-//        this.startVertex = new Vertex<T>(nameStart);
-//        this.endVertex = new Vertex<T>(nameEnd);
-//        this.value = value;
-//    }
-
     public Edge(int value, Vertex<T> start, Vertex<T> end) {
         this.startVertex = start;
         this.endVertex = end;

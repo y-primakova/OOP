@@ -6,12 +6,13 @@ package ru.nsu.primakova;
 public class IncidenceMatrix<T> extends Graph<T>{
     private final HashMap<Vertex<T>, HashMap<Vertex<T>, Integer>> incidenceMatrix;
 
-    public IncidenceMatrix(int value, Vertex<T> start, Vertex<T> end) throws WrongVertexNameException {
+    public IncidenceMatrix(int value, Vertex<T> start, Vertex<T> end) {
         super(value, start, end);
         this.incidenceMatrix = new HashMap<>();
         this.incidenceMatrix.put(start, new HashMap<>());
         this.incidenceMatrix.put(end, new HashMap<>());
         this.incidenceMatrix.get(start).put(end, value);
+        this.incidenceMatrix.get(end).put(start, value);
     }
 
     public IncidenceMatrix(Edge<T> edge) {
@@ -20,6 +21,7 @@ public class IncidenceMatrix<T> extends Graph<T>{
         this.incidenceMatrix.put(edge.get_startVertex(), new HashMap<>());
         this.incidenceMatrix.put(edge.get_endVertex(), new HashMap<>());
         this.incidenceMatrix.get(edge.get_startVertex()).put(edge.get_endVertex(), edge.get_value());
+        this.incidenceMatrix.get(edge.get_endVertex()).put(edge.get_startVertex(), -edge.get_value());
     }
 
     public HashMap<Vertex<T>, HashMap<Vertex<T>, Integer>> get_incidenceMatrix() {
@@ -31,6 +33,7 @@ public class IncidenceMatrix<T> extends Graph<T>{
         addVertex(edge.get_endVertex());
         addVertex(edge.get_startVertex());
         this.incidenceMatrix.get(edge.get_startVertex()).put(edge.get_endVertex(), edge.get_value());
+        this.incidenceMatrix.get(edge.get_endVertex()).put(edge.get_startVertex(), -edge.get_value());
     }
 
     @Override
@@ -43,6 +46,7 @@ public class IncidenceMatrix<T> extends Graph<T>{
     @Override
     public void removeEdge(Edge<T> edge) {
         this.incidenceMatrix.get(edge.get_startVertex()).remove(edge.get_endVertex());
+        this.incidenceMatrix.get(edge.get_endVertex()).remove(edge.get_startVertex());
         if (this.incidenceMatrix.get(edge.get_startVertex()).isEmpty()) {
             removeVertex(edge.get_startVertex());
         }
@@ -103,19 +107,19 @@ public class IncidenceMatrix<T> extends Graph<T>{
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append("   ");
-        for (var vertex1: this.incidenceMatrix.keySet()) {//this.adjacencyMatrix.keySet()
-            str.append(vertex1.get_name()).append(" ");
+        str.append("    ");
+        for (var vertex1: this.incidenceMatrix.keySet()) {
+            str.append(vertex1.get_name()).append("  ");
         }
         for (var vertex1: this.incidenceMatrix.keySet()) {
             str.append("\n");
             str.append(vertex1.get_name()).append("  ");
             for (var vertex2: this.incidenceMatrix.keySet()) {
                 if(!this.incidenceMatrix.get(vertex1).containsKey(vertex2)) {
-                    str.append("0  ");
+                    str.append("0\t");
                 }
                 else {
-                    str.append(this.incidenceMatrix.get(vertex1).get(vertex2)).append("  ");
+                    str.append(this.incidenceMatrix.get(vertex1).get(vertex2)).append("\t");
                 }
             }
         }
