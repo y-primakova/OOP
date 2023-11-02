@@ -103,21 +103,16 @@ public class AdjacencyList<T> extends Graph<T>{
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append("    ");
         for (var vertex1: this.adjacencyList.keySet()) {
-            str.append(vertex1.get_name()).append("  ");
-        }
-        for (var vertex1: this.adjacencyList.keySet()) {
-            str.append("\n");
-            str.append(vertex1.get_name()).append("  ");
-            for (var vertex2: this.adjacencyList.keySet()) {
-                if(!this.adjacencyList.get(vertex1).containsKey(vertex2)) {
-                    str.append("0\t");
-                }
-                else {
-                    str.append(this.adjacencyList.get(vertex1).get(vertex2)).append("\t");
-                }
+            str.append(vertex1.get_name()).append("   ");
+
+            for (var vertex2: this.adjacencyList.get(vertex1).keySet()) {
+                str.append("(");
+                str.append(vertex2.get_name()).append(",  ");
+                str.append(this.adjacencyList.get(vertex1).get(vertex2));
+                str.append(");\t\t");
             }
+            str.append("\n");
         }
         return str.toString();
     }

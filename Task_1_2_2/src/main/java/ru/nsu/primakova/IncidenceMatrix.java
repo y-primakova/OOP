@@ -76,15 +76,18 @@ public class IncidenceMatrix<T> extends Graph<T>{
                 need_to_visit.remove(v);
                 continue;
             }
-            need_to_visit.addAll(this.incidenceMatrix.get(v).keySet());
+//            need_to_visit.addAll(this.incidenceMatrix.get(v).keySet());
             for (var key : this.incidenceMatrix.get(v).keySet()) {
-                if(min_dist.containsKey(key)){
-                    if(min_dist.get(key) > this.incidenceMatrix.get(v).get(key) + min_dist.get(v)) {
+                if (this.incidenceMatrix.get(v).get(key) >= 0) {
+                    need_to_visit.add(key);
+                    if (min_dist.containsKey(key)) {
+                        if(min_dist.get(key) > this.incidenceMatrix.get(v).get(key) + min_dist.get(v)) {
+                            min_dist.put(key, this.incidenceMatrix.get(v).get(key) + min_dist.get(v));
+                        }
+                    }
+                    else {
                         min_dist.put(key, this.incidenceMatrix.get(v).get(key) + min_dist.get(v));
                     }
-                }
-                else {
-                    min_dist.put(key, this.incidenceMatrix.get(v).get(key) + min_dist.get(v));
                 }
             }
             need_to_visit.remove(v);
