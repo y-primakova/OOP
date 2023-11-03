@@ -34,7 +34,7 @@ public class AdjacencyMatrix<T> extends Graph<T> {
         this.adjacencyMatrix = new HashMap<>();
         this.adjacencyMatrix.put(edge.get_startVertex(), new HashMap<>());
         this.adjacencyMatrix.put(edge.get_endVertex(), new HashMap<>());
-        this.adjacencyMatrix.get(edge.get_startVertex()).put(edge.get_endVertex(), edge.get_value());
+        this.adjacencyMatrix.get(edge.get_startVertex()).put(edge.get_endVertex(),edge.get_value());
     }
 
     /**
@@ -50,7 +50,7 @@ public class AdjacencyMatrix<T> extends Graph<T> {
             this.adjacencyMatrix.put(vertex, new HashMap<>());
         }
         for (var edge : listEdge) {
-            this.adjacencyMatrix.get(edge.get_startVertex()).put(edge.get_endVertex(), edge.get_value());
+            this.adjacencyMatrix.get(edge.get_startVertex()).put(edge.get_endVertex(),edge.get_value());
             if (!this.adjacencyMatrix.containsKey(edge.get_endVertex())) {
                 this.adjacencyMatrix.put(edge.get_endVertex(), new HashMap<>());
             }
