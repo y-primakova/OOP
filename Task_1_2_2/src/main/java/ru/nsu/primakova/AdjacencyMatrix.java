@@ -6,7 +6,7 @@ import java.util.HashMap;
 /**
  * Class AdjacencyMatrix.
  */
-public class AdjacencyMatrix<T> extends Graph<T>{
+public class AdjacencyMatrix<T> extends Graph<T> {
     private final HashMap<Vertex<T>, HashMap<Vertex<T>, Integer>> adjacencyMatrix;
 
     /**
@@ -46,10 +46,10 @@ public class AdjacencyMatrix<T> extends Graph<T>{
     public AdjacencyMatrix(ArrayList<Edge<T>> listEdge, ArrayList<Vertex<T>> listVertex) {
         super(listEdge, listVertex);
         this.adjacencyMatrix = new HashMap<>();
-        for (var vertex: listVertex) {
+        for (var vertex : listVertex) {
             this.adjacencyMatrix.put(vertex, new HashMap<>());
         }
-        for (var edge: listEdge) {
+        for (var edge : listEdge) {
             this.adjacencyMatrix.get(edge.get_startVertex()).put(edge.get_endVertex(), edge.get_value());
             if (!this.adjacencyMatrix.containsKey(edge.get_endVertex())) {
                 this.adjacencyMatrix.put(edge.get_endVertex(), new HashMap<>());
@@ -91,7 +91,7 @@ public class AdjacencyMatrix<T> extends Graph<T>{
 
     @Override
     public void removeVertex(Vertex<T> vertex) {
-        for (var v: this.adjacencyMatrix.keySet()) {
+        for (var v : this.adjacencyMatrix.keySet()) {
             this.adjacencyMatrix.get(v).remove(vertex);
         }
         this.adjacencyMatrix.remove(vertex);
@@ -111,13 +111,12 @@ public class AdjacencyMatrix<T> extends Graph<T>{
                 continue;
             }
             needToVisit.addAll(this.adjacencyMatrix.get(v).keySet());
-            for (var key: this.adjacencyMatrix.get(v).keySet()) {
+            for (var key : this.adjacencyMatrix.get(v).keySet()) {
                 if (minDist.containsKey(key)) {
                     if (minDist.get(key) > this.adjacencyMatrix.get(v).get(key) + minDist.get(v)) {
                         minDist.put(key, this.adjacencyMatrix.get(v).get(key) + minDist.get(v));
                     }
-                }
-                else {
+                } else {
                     minDist.put(key, this.adjacencyMatrix.get(v).get(key) + minDist.get(v));
                 }
             }
@@ -148,7 +147,7 @@ public class AdjacencyMatrix<T> extends Graph<T>{
     public String toString() {
         StringBuilder str = new StringBuilder();
         str.append("    ");
-        for (var vertex1: this.adjacencyMatrix.keySet()) {
+        for (var vertex1 : this.adjacencyMatrix.keySet()) {
             str.append(vertex1.get_name()).append("  ");
         }
         for (var vertex1 : this.adjacencyMatrix.keySet()) {
@@ -157,8 +156,7 @@ public class AdjacencyMatrix<T> extends Graph<T>{
             for (var vertex2 : this.adjacencyMatrix.keySet()) {
                 if (!this.adjacencyMatrix.get(vertex1).containsKey(vertex2)) {
                     str.append("0\t");
-                }
-                else {
+                } else {
                     str.append(this.adjacencyMatrix.get(vertex1).get(vertex2)).append("\t");
                 }
             }

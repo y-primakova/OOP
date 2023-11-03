@@ -107,12 +107,12 @@ public abstract class Graph<T> {
     /**
      * Remove vertex.
      *
-     * @param vertex
+     * @param vertex -vertex of the graph
      */
     public void removeVertex(Vertex<T> vertex) {
         if (this.listVertex.contains(vertex)) {
             this.listVertex.add(vertex);
-            for (var edge: listEdge) {
+            for (var edge : listEdge) {
                 if (edge.get_endVertex() == vertex) {
                     this.listEdge.remove(edge);
                 }

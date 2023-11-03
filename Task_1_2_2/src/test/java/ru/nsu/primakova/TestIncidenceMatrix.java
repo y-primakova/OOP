@@ -1,35 +1,14 @@
 package ru.nsu.primakova;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.HashMap;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 /**
  * Class TestIncidenceMatrix.
  */
 public class TestIncidenceMatrix {
-    private Graph<String> graph1(String x) {
-        var v1 = new Vertex<>("v1");
-        var v2 = new Vertex<>("v2");
-        var v3 = new Vertex<>("v3");
-        var v4 = new Vertex<>("v4");
-        var v5 = new Vertex<>("v5");
-        var v6 = new Vertex<>("v6");
-        var v7 = new Vertex<>("v7");
-        var v8 = new Vertex<>("v8");
-        var g = new IncidenceMatrix<>(3, v1, v2);
-        g.addEdge(new Edge<>(2, v2, v3));
-        g.addEdge(new Edge<>(7, v1, v7));
-        g.addEdge(new Edge<>(2, v7, v6));
-        g.addEdge(new Edge<>(4, v2, v4));
-        g.addEdge(new Edge<>(5, v4, v6));
-        g.addEdge(new Edge<>(1, v4, v5));
-        g.addEdge(new Edge<>(1, v3, v4));
-        g.addEdge(new Edge<>(5, v8, v1));
-        return g;
-    }
 
     @Test
     public void testAddEdge() {

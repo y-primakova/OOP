@@ -21,19 +21,19 @@ public class Edge<T> {
         this.value = value;
     }
 
-    public int get_value(){
+    public int get_value() {
         return this.value;
     }
 
-    public Vertex<T> get_startVertex(){
+    public Vertex<T> get_startVertex() {
         return this.startVertex;
     }
 
-    public Vertex<T> get_endVertex(){
+    public Vertex<T> get_endVertex() {
         return this.endVertex;
     }
 
-    public void change_value(int newValue){
+    public void change_value(int newValue) {
         this.value = newValue;
     }
 }

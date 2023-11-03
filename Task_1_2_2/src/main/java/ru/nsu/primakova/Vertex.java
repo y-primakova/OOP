@@ -9,19 +9,19 @@ public class Vertex<T> {
     /**
      * Class constructor.
      */
-    public Vertex(){
+    public Vertex() {
         this.name = null;
     }
 
-    public Vertex(T name){
+    public Vertex(T name) {
         this.name = name;
     }
 
-    public T get_name(){
+    public T get_name() {
         return this.name;
     }
 
-    public void change_name(T newName){
+    public void change_name(T newName) {
         this.name = newName;
     }
 }

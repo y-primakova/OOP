@@ -6,7 +6,7 @@ import java.util.HashMap;
 /**
  * Class IncidenceMatrix.
  */
-public class IncidenceMatrix<T> extends Graph<T>{
+public class IncidenceMatrix<T> extends Graph<T> {
     private final HashMap<Vertex<T>, HashMap<Vertex<T>, Integer>> incidenceMatrix;
 
     /**
@@ -122,8 +122,7 @@ public class IncidenceMatrix<T> extends Graph<T>{
                         if (minDist.get(key) > this.incidenceMatrix.get(v).get(key) + minDist.get(v)) {
                             minDist.put(key, this.incidenceMatrix.get(v).get(key) + minDist.get(v));
                         }
-                    }
-                    else {
+                    } else {
                         minDist.put(key, this.incidenceMatrix.get(v).get(key) + minDist.get(v));
                     }
                 }
