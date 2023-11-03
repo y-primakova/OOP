@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":6,"i2":10,"i3":10,"i4":10,"i5":6,"i6":6};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -188,16 +188,22 @@ extends java.lang.Object</pre>
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(int,ru.nsu.primakova.Vertex,ru.nsu.primakova.Vertex)">Graph</a></span>&#8203;(int&nbsp;value,
      <a href="Vertex.html" title="class in ru.nsu.primakova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;start,
      <a href="Vertex.html" title="class in ru.nsu.primakova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;end)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Class constructor.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.util.ArrayList,java.util.ArrayList)">Graph</a></span>&#8203;(java.util.ArrayList&lt;<a href="Edge.html" title="class in ru.nsu.primakova">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;&nbsp;listEdge,
      java.util.ArrayList&lt;<a href="Vertex.html" title="class in ru.nsu.primakova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;&nbsp;listVertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Class constructor.</div>
+</td>
 </tr>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(ru.nsu.primakova.Edge)">Graph</a></span>&#8203;(<a href="Edge.html" title="class in ru.nsu.primakova">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;edge)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Class constructor.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -220,12 +226,16 @@ extends java.lang.Object</pre>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addEdge(ru.nsu.primakova.Edge)">addEdge</a></span>&#8203;(<a href="Edge.html" title="class in ru.nsu.primakova">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;edge)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Add new edge.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>abstract void</code></td>
+<td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addVertex(ru.nsu.primakova.Vertex)">addVertex</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.primakova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;vertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Add new vertex.</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>java.util.ArrayList&lt;<a href="Edge.html" title="class in ru.nsu.primakova">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;</code></td>
@@ -240,12 +250,16 @@ extends java.lang.Object</pre>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEdge(ru.nsu.primakova.Edge)">removeEdge</a></span>&#8203;(<a href="Edge.html" title="class in ru.nsu.primakova">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;edge)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Remove edge.</div>
+</td>
 </tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><code>abstract void</code></td>
+<td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeVertex(ru.nsu.primakova.Vertex)">removeVertex</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.primakova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;vertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Remove vertex.</div>
+</td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>abstract java.util.HashMap&lt;<a href="Vertex.html" title="class in ru.nsu.primakova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;,&#8203;java.lang.Integer&gt;</code></td>
@@ -313,6 +327,13 @@ extends java.lang.Object</pre>
 <pre>public&nbsp;Graph&#8203;(int&nbsp;value,
              <a href="Vertex.html" title="class in ru.nsu.primakova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;start,
              <a href="Vertex.html" title="class in ru.nsu.primakova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;end)</pre>
+<div class="block">Class constructor.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>value</code> - - value of the new edge</dd>
+<dd><code>start</code> - - start vertex of the new edge</dd>
+<dd><code>end</code> - - end vertex of the new edge</dd>
+</dl>
 </li>
 </ul>
 <a id="&lt;init&gt;(ru.nsu.primakova.Edge)">
@@ -322,6 +343,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>Graph</h4>
 <pre>public&nbsp;Graph&#8203;(<a href="Edge.html" title="class in ru.nsu.primakova">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;edge)</pre>
+<div class="block">Class constructor.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>edge</code> - - new edge</dd>
+</dl>
 </li>
 </ul>
 <a id="&lt;init&gt;(java.util.ArrayList,java.util.ArrayList)">
@@ -332,6 +358,12 @@ extends java.lang.Object</pre>
 <h4>Graph</h4>
 <pre>public&nbsp;Graph&#8203;(java.util.ArrayList&lt;<a href="Edge.html" title="class in ru.nsu.primakova">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;&nbsp;listEdge,
              java.util.ArrayList&lt;<a href="Vertex.html" title="class in ru.nsu.primakova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;&nbsp;listVertex)</pre>
+<div class="block">Class constructor.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>listEdge</code> - - list of new edges</dd>
+<dd><code>listVertex</code> - - list of new vertexes</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -369,6 +401,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>addEdge</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;addEdge&#8203;(<a href="Edge.html" title="class in ru.nsu.primakova">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;edge)</pre>
+<div class="block">Add new edge.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>edge</code> - - new edge</dd>
+</dl>
 </li>
 </ul>
 <a id="removeEdge(ru.nsu.primakova.Edge)">
@@ -378,6 +415,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>removeEdge</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;removeEdge&#8203;(<a href="Edge.html" title="class in ru.nsu.primakova">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;edge)</pre>
+<div class="block">Remove edge.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>edge</code> - - edge of the graph</dd>
+</dl>
 </li>
 </ul>
 <a id="addVertex(ru.nsu.primakova.Vertex)">
@@ -386,7 +428,12 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>addVertex</h4>
-<pre class="methodSignature">public abstract&nbsp;void&nbsp;addVertex&#8203;(<a href="Vertex.html" title="class in ru.nsu.primakova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;vertex)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;addVertex&#8203;(<a href="Vertex.html" title="class in ru.nsu.primakova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;vertex)</pre>
+<div class="block">Add new vertex.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>vertex</code> - - new vertex</dd>
+</dl>
 </li>
 </ul>
 <a id="removeVertex(ru.nsu.primakova.Vertex)">
@@ -395,7 +442,12 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>removeVertex</h4>
-<pre class="methodSignature">public abstract&nbsp;void&nbsp;removeVertex&#8203;(<a href="Vertex.html" title="class in ru.nsu.primakova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;vertex)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;removeVertex&#8203;(<a href="Vertex.html" title="class in ru.nsu.primakova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;vertex)</pre>
+<div class="block">Remove vertex.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>vertex</code> - </dd>
+</dl>
 </li>
 </ul>
 <a id="shortestPath(ru.nsu.primakova.Vertex)">
