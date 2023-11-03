@@ -6,6 +6,9 @@ package ru.nsu.primakova;
 public class Vertex<T> {
     private T name;
 
+    /**
+     * Class constructor.
+     */
     public Vertex(){
         this.name = null;
     }

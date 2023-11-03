@@ -9,6 +9,13 @@ import java.util.HashMap;
 public class AdjacencyMatrix<T> extends Graph<T>{
     private final HashMap<Vertex<T>, HashMap<Vertex<T>, Integer>> adjacencyMatrix;
 
+    /**
+     * Class constructor.
+     *
+     * @param value - value of the new edge
+     * @param start - start vertex of the new edge
+     * @param end - end vertex of the new edge
+     */
     public AdjacencyMatrix(int value, Vertex<T> start, Vertex<T> end) {
         super(value, start, end);
         this.adjacencyMatrix = new HashMap<>();
@@ -17,6 +24,11 @@ public class AdjacencyMatrix<T> extends Graph<T>{
         this.adjacencyMatrix.get(start).put(end, value);
     }
 
+    /**
+     * Class constructor.
+     *
+     * @param edge - new edge
+     */
     public AdjacencyMatrix(Edge<T> edge) {
         super(edge);
         this.adjacencyMatrix = new HashMap<>();
@@ -25,6 +37,12 @@ public class AdjacencyMatrix<T> extends Graph<T>{
         this.adjacencyMatrix.get(edge.get_startVertex()).put(edge.get_endVertex(), edge.get_value());
     }
 
+    /**
+     * Class constructor.
+     *
+     * @param listEdge - list of new edges
+     * @param listVertex - list of new vertexes
+     */
     public AdjacencyMatrix(ArrayList<Edge<T>> listEdge, ArrayList<Vertex<T>> listVertex) {
         super(listEdge, listVertex);
         this.adjacencyMatrix = new HashMap<>();
@@ -109,6 +127,12 @@ public class AdjacencyMatrix<T> extends Graph<T>{
         return minDist;
     }
 
+    /**
+     * shortestPath as a string.
+     *
+     * @param vertex - the vertex from which the distances are calculated
+     * @return string
+     */
     public String shortestPathString(Vertex<T> vertex) {
         StringBuilder str = new StringBuilder();
         var res = shortestPath(vertex);
@@ -127,10 +151,10 @@ public class AdjacencyMatrix<T> extends Graph<T>{
         for (var vertex1: this.adjacencyMatrix.keySet()) {
             str.append(vertex1.get_name()).append("  ");
         }
-        for (var vertex1: this.adjacencyMatrix.keySet()) {
+        for (var vertex1 : this.adjacencyMatrix.keySet()) {
             str.append("\n");
             str.append(vertex1.get_name()).append("  ");
-            for (var vertex2: this.adjacencyMatrix.keySet()) {
+            for (var vertex2 : this.adjacencyMatrix.keySet()) {
                 if (!this.adjacencyMatrix.get(vertex1).containsKey(vertex2)) {
                     str.append("0\t");
                 }

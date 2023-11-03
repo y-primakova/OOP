@@ -10,6 +10,13 @@ public abstract class Graph<T> {
     protected ArrayList<Edge<T>> listEdge;
     protected ArrayList<Vertex<T>> listVertex;
 
+    /**
+     * Class constructor.
+     *
+     * @param value - value of the new edge
+     * @param start - start vertex of the new edge
+     * @param end - end vertex of the new edge
+     */
     public Graph(int value, Vertex<T> start, Vertex<T> end) {
         this.listEdge = new ArrayList<>();
         this.listVertex = new ArrayList<>();
@@ -18,6 +25,11 @@ public abstract class Graph<T> {
         this.listVertex.add(end);
     }
 
+    /**
+     * Class constructor.
+     *
+     * @param edge - new edge
+     */
     public Graph(Edge<T> edge) {
         this.listEdge = new ArrayList<>();
         this.listVertex = new ArrayList<>();
@@ -26,12 +38,18 @@ public abstract class Graph<T> {
         this.listVertex.add(edge.get_endVertex());
     }
 
+    /**
+     * Class constructor.
+     *
+     * @param listEdge - list of new edges
+     * @param listVertex - list of new vertexes
+     */
     public Graph(ArrayList<Edge<T>> listEdge, ArrayList<Vertex<T>> listVertex) {
         this.listEdge = new ArrayList<>();
         this.listVertex = new ArrayList<>();
         this.listEdge.addAll(listEdge);
         this.listVertex.addAll(listVertex);
-        for (var edge: listEdge) {
+        for (var edge : listEdge) {
             if (!listVertex.contains(edge.get_endVertex())) {
                 listVertex.add(edge.get_endVertex());
             }
@@ -49,6 +67,11 @@ public abstract class Graph<T> {
         return this.listVertex;
     }
 
+    /**
+     * Add new edge.
+     *
+     * @param edge - new edge
+     */
     public void addEdge(Edge<T> edge) {
         if (!this.listEdge.contains(edge)) {
             this.listEdge.add(edge);
@@ -61,20 +84,44 @@ public abstract class Graph<T> {
         }
     }
 
+    /**
+     * Remove edge.
+     *
+     * @param edge - edge of the graph
+     */
     public void removeEdge(Edge<T> edge) {
-        if (this.listEdge.contains(edge)) {
-            this.listVertex.remove(edge.get_endVertex());
-            this.listVertex.remove(edge.get_startVertex());
-            this.listEdge.remove(edge);
+        this.listEdge.remove(edge);
+    }
+
+    /**
+     * Add new vertex.
+     *
+     * @param vertex - new vertex
+     */
+    public void addVertex(Vertex<T> vertex) {
+        if (!this.listVertex.contains(vertex)) {
+            this.listVertex.add(vertex);
         }
     }
-    //public abstract void addEdge(Edge<T> edge);
 
-    public abstract void addVertex(Vertex<T> vertex);
-
-    //public abstract void removeEdge(Edge<T> edge);
-
-    public abstract void removeVertex(Vertex<T> vertex);
+    /**
+     * Remove vertex.
+     *
+     * @param vertex
+     */
+    public void removeVertex(Vertex<T> vertex) {
+        if (this.listVertex.contains(vertex)) {
+            this.listVertex.add(vertex);
+            for (var edge: listEdge) {
+                if (edge.get_endVertex() == vertex) {
+                    this.listEdge.remove(edge);
+                }
+                if (edge.get_startVertex() == vertex) {
+                    this.listEdge.remove(edge);
+                }
+            }
+        }
+    }
 
     public abstract HashMap<Vertex<T>, Integer> shortestPath(Vertex<T> vertex);
 }
