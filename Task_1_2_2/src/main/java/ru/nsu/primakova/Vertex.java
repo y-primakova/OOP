@@ -29,11 +29,12 @@ public class Vertex<T> {
 
     /**
      * Add a vertex to the list if it isn`t there.
+     * 
      * @param list - list of vertex
      * @return a vertex(v) from the list if it`s there otherwise return the vertex(this)
      */
     public Vertex<T> listAddVertex(ArrayList<Vertex<T>> list) {
-        for(var v : list) {
+        for (var v : list) {
             if (v.equals(this)) {
                 return v;
             }

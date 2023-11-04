@@ -33,15 +33,24 @@ public class TestIncidenceMatrix {
         actual.put(v6, new HashMap<>());
         actual.put(v7, new HashMap<>());
         actual.put(v8, new HashMap<>());
-        actual.get(v1).put(v2, 1); actual.get(v2).put(v1, -1);
-        actual.get(v2).put(v3, 2); actual.get(v3).put(v2, -2);
-        actual.get(v1).put(v7, 3); actual.get(v7).put(v1, -3);
-        actual.get(v7).put(v6, 4); actual.get(v6).put(v7, -4);
-        actual.get(v2).put(v4, 5); actual.get(v4).put(v2, -5);
-        actual.get(v4).put(v6, 6); actual.get(v6).put(v4, -6);
-        actual.get(v4).put(v5, 7); actual.get(v5).put(v4, -7);
-        actual.get(v3).put(v4, 8); actual.get(v4).put(v3, -8);
-        actual.get(v8).put(v1, 9); actual.get(v1).put(v8, -9);
+        actual.get(v1).put(v2, 1);
+        actual.get(v2).put(v1, -1);
+        actual.get(v2).put(v3, 2);
+        actual.get(v3).put(v2, -2);
+        actual.get(v1).put(v7, 3);
+        actual.get(v7).put(v1, -3);
+        actual.get(v7).put(v6, 4);
+        actual.get(v6).put(v7, -4);
+        actual.get(v2).put(v4, 5);
+        actual.get(v4).put(v2, -5);
+        actual.get(v4).put(v6, 6);
+        actual.get(v6).put(v4, -6);
+        actual.get(v4).put(v5, 7);
+        actual.get(v5).put(v4, -7);
+        actual.get(v3).put(v4, 8);
+        actual.get(v4).put(v3, -8);
+        actual.get(v8).put(v1, 9);
+        actual.get(v1).put(v8, -9);
 
         assertEquals(readGraph.get_incidenceMatrix(), actual);
     }

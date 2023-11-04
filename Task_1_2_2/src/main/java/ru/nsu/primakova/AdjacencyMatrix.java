@@ -69,6 +69,12 @@ public class AdjacencyMatrix<T> extends Graph<T> {
         return this.adjacencyMatrix;
     }
 
+    /**
+     * load a graph from a txt file.
+     *
+     * @param filename - file name
+     * @return AdjacencyList
+     */
     public AdjacencyMatrix<String> read(String filename) {
         Scanner scanner;
         try {

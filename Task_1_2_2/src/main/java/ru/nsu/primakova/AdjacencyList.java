@@ -67,6 +67,12 @@ public class AdjacencyList<T> extends Graph<T> {
         return this.adjacencyList;
     }
 
+    /**
+     * load a graph from a txt file.
+     *
+     * @param filename - file name
+     * @return AdjacencyList
+     */
     public AdjacencyList<String> read(String filename) {
         Scanner scanner;
         try {
@@ -85,28 +91,7 @@ public class AdjacencyList<T> extends Graph<T> {
             var endVertex = new Vertex<>(scanner.next());
             var value = scanner.nextInt();
 
-            var have_start = false;
-            var have_end = false;
-            for (var v : listVertex) {
-                if (v.equals(startVertex)) {
-                    have_start = true;
-                    startVertex = v;
-                }
-                if (v.equals(endVertex)) {
-                    have_end = true;
-                    endVertex = v;
-                }
-                if(have_start && have_end) {
-                    break;
-                }
-            }
-            if (!have_start) {
-                listVertex.add(startVertex);
-            }
-            if (!have_end) {
-                listVertex.add(endVertex);
-            }
-            listEdge.add(new Edge<>(value, startVertex, endVertex));
+            listEdge.add(new Edge<>(value, startVertex.listAddVertex(listVertex), endVertex.listAddVertex(listVertex)));
         }
         return new AdjacencyList<>(listEdge, listVertex);
     }
