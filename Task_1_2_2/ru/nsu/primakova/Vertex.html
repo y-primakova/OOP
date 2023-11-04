@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -186,9 +186,21 @@ extends java.lang.Object</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#equals(java.lang.Object)">equals</a></span>&#8203;(java.lang.Object&nbsp;obj)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="Vertex.html" title="type parameter in Vertex">T</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#get_name()">get_name</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code><a href="Vertex.html" title="class in ru.nsu.primakova">Vertex</a>&lt;<a href="Vertex.html" title="type parameter in Vertex">T</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#listAddVertex(java.util.ArrayList)">listAddVertex</a></span>&#8203;(java.util.ArrayList&lt;<a href="Vertex.html" title="class in ru.nsu.primakova">Vertex</a>&lt;<a href="Vertex.html" title="type parameter in Vertex">T</a>&gt;&gt;&nbsp;list)</code></th>
+<td class="colLast">
+<div class="block">Add a vertex to the list if it isn`t there.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -196,7 +208,7 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+<code>clone, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
 </ul>
 </li>
 </ul>
@@ -259,10 +271,39 @@ extends java.lang.Object</pre>
 </a><a id="change_name(T)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>change_name</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;change_name&#8203;(<a href="Vertex.html" title="type parameter in Vertex">T</a>&nbsp;newName)</pre>
+</li>
+</ul>
+<a id="listAddVertex(java.util.ArrayList)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>listAddVertex</h4>
+<pre class="methodSignature">public&nbsp;<a href="Vertex.html" title="class in ru.nsu.primakova">Vertex</a>&lt;<a href="Vertex.html" title="type parameter in Vertex">T</a>&gt;&nbsp;listAddVertex&#8203;(java.util.ArrayList&lt;<a href="Vertex.html" title="class in ru.nsu.primakova">Vertex</a>&lt;<a href="Vertex.html" title="type parameter in Vertex">T</a>&gt;&gt;&nbsp;list)</pre>
+<div class="block">Add a vertex to the list if it isn`t there.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>list</code> - - list of vertex</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a vertex(v) from the list if it`s there otherwise return the vertex(this)</dd>
+</dl>
+</li>
+</ul>
+<a id="equals(java.lang.Object)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>equals</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;equals&#8203;(java.lang.Object&nbsp;obj)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code>equals</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+</dl>
 </li>
 </ul>
 </li>
