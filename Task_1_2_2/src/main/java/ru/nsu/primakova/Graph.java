@@ -50,11 +50,11 @@ public abstract class Graph<T> {
         this.listEdge.addAll(listEdge);
         this.listVertex.addAll(listVertex);
         for (var edge : listEdge) {
-            if (!listVertex.contains(edge.get_endVertex())) {
-                listVertex.add(edge.get_endVertex());
+            if (!this.listVertex.contains(edge.get_endVertex())) {
+                this.listVertex.add(edge.get_endVertex());
             }
-            if (!listVertex.contains(edge.get_startVertex())) {
-                listVertex.add(edge.get_startVertex());
+            if (!this.listVertex.contains(edge.get_startVertex())) {
+                this.listVertex.add(edge.get_startVertex());
             }
         }
     }

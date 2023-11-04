@@ -1,7 +1,10 @@
 package ru.nsu.primakova;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 /**
  * Class IncidenceMatrix.
@@ -52,19 +55,63 @@ public class IncidenceMatrix<T> extends Graph<T> {
             this.incidenceMatrix.put(vertex, new HashMap<>());
         }
         for (var edge : listEdge) {
-            this.incidenceMatrix.get(edge.get_startVertex()).put(edge.get_endVertex(), edge.get_value());
-            this.incidenceMatrix.get(edge.get_endVertex()).put(edge.get_startVertex(), -edge.get_value());
             if (!this.incidenceMatrix.containsKey(edge.get_endVertex())) {
                 this.incidenceMatrix.put(edge.get_endVertex(), new HashMap<>());
             }
             if (!this.incidenceMatrix.containsKey(edge.get_startVertex())) {
                 this.incidenceMatrix.put(edge.get_startVertex(), new HashMap<>());
             }
+            this.incidenceMatrix.get(edge.get_startVertex()).put(edge.get_endVertex(), edge.get_value());
+            this.incidenceMatrix.get(edge.get_endVertex()).put(edge.get_startVertex(), -edge.get_value());
         }
     }
 
     public HashMap<Vertex<T>, HashMap<Vertex<T>, Integer>> get_incidenceMatrix() {
         return this.incidenceMatrix;
+    }
+
+    public IncidenceMatrix<String> read(String filename) {
+        Scanner scanner;
+        try {
+            scanner = new Scanner(new File(filename));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        int edgesAmount = scanner.nextInt();
+
+        var listVertex = new ArrayList<Vertex<String>>();
+        var listEdge = new ArrayList<Edge<String>>();
+
+        for (int i = 0; i < edgesAmount; i++) {
+            var startVertex = new Vertex<>(scanner.next());
+            var endVertex = new Vertex<>(scanner.next());
+            var value = scanner.nextInt();
+
+            var have_start = false;
+            var have_end = false;
+            for (var v : listVertex) {
+                if (v.equals(startVertex)) {
+                    have_start = true;
+                    startVertex = v;
+                }
+                if (v.equals(endVertex)) {
+                    have_end = true;
+                    endVertex = v;
+                }
+                if (have_start && have_end) {
+                    break;
+                }
+            }
+            if (!have_start) {
+                listVertex.add(startVertex);
+            }
+            if (!have_end) {
+                listVertex.add(endVertex);
+            }
+            listEdge.add(new Edge<>(value, startVertex, endVertex));
+        }
+        return new IncidenceMatrix<>(listEdge, listVertex);
     }
 
     @Override

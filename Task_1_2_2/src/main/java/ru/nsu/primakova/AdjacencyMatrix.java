@@ -1,7 +1,10 @@
 package ru.nsu.primakova;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 /**
  * Class AdjacencyMatrix.
@@ -51,19 +54,42 @@ public class AdjacencyMatrix<T> extends Graph<T> {
             this.adjacencyMatrix.put(vertex, new HashMap<>());
         }
         for (var edge : listEdge) {
-            var x = this.adjacencyMatrix.get(edge.get_startVertex());
-            x.put(edge.get_endVertex(), edge.get_value());
             if (!this.adjacencyMatrix.containsKey(edge.get_endVertex())) {
                 this.adjacencyMatrix.put(edge.get_endVertex(), new HashMap<>());
             }
             if (!this.adjacencyMatrix.containsKey(edge.get_startVertex())) {
                 this.adjacencyMatrix.put(edge.get_startVertex(), new HashMap<>());
             }
+            var x = this.adjacencyMatrix.get(edge.get_startVertex());
+            x.put(edge.get_endVertex(), edge.get_value());
         }
     }
 
     public HashMap<Vertex<T>, HashMap<Vertex<T>, Integer>> get_adjacencyMatrix() {
         return this.adjacencyMatrix;
+    }
+
+    public AdjacencyMatrix<String> read(String filename) {
+        Scanner scanner;
+        try {
+            scanner = new Scanner(new File(filename));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        int edgesAmount = scanner.nextInt();
+
+        var listVertex = new ArrayList<Vertex<String>>();
+        var listEdge = new ArrayList<Edge<String>>();
+
+        for (int i = 0; i < edgesAmount; i++) {
+            var startVertex = new Vertex<>(scanner.next());
+            var endVertex = new Vertex<>(scanner.next());
+            var value = scanner.nextInt();
+
+            listEdge.add(new Edge<>(value, startVertex.listAddVertex(listVertex), endVertex.listAddVertex(listVertex)));
+        }
+        return new AdjacencyMatrix<>(listEdge, listVertex);
     }
 
     @Override
