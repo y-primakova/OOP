@@ -103,8 +103,10 @@ public class IncidenceMatrix<T> extends Graph<T> {
     public void addEdge(Edge<T> edge) {
         addVertex(edge.get_endVertex());
         addVertex(edge.get_startVertex());
-        this.incidenceMatrix.get(edge.get_startVertex()).put(edge.get_endVertex(), edge.get_value());
-        this.incidenceMatrix.get(edge.get_endVertex()).put(edge.get_startVertex(), -edge.get_value());
+        var x = this.incidenceMatrix.get(edge.get_startVertex());
+        x.put(edge.get_endVertex(), edge.get_value());
+        var y = this.incidenceMatrix.get(edge.get_endVertex());
+        y.put(edge.get_startVertex(), -edge.get_value());
     }
 
     @Override

@@ -100,7 +100,8 @@ public class AdjacencyList<T> extends Graph<T> {
     public void addEdge(Edge<T> edge) {
         addVertex(edge.get_endVertex());
         addVertex(edge.get_startVertex());
-        this.adjacencyList.get(edge.get_startVertex()).put(edge.get_endVertex(), edge.get_value());
+        var x = this.adjacencyList.get(edge.get_startVertex());
+        x.put(edge.get_endVertex(), edge.get_value());
     }
 
     @Override
