@@ -59,7 +59,8 @@ public class AdjacencyList<T> extends Graph<T> {
             if (!this.adjacencyList.containsKey(edge.get_startVertex())) {
                 this.adjacencyList.put(edge.get_startVertex(), new HashMap<>());
             }
-            this.adjacencyList.get(edge.get_startVertex()).put(edge.get_endVertex(), edge.get_value());
+            var x = this.adjacencyList.get(edge.get_startVertex());
+            x.put(edge.get_endVertex(), edge.get_value());
         }
     }
 

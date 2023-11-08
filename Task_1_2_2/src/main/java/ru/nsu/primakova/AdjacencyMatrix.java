@@ -1,8 +1,10 @@
 package ru.nsu.primakova;
 
+import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Scanner;
 
 /**
  * Class AdjacencyMatrix.

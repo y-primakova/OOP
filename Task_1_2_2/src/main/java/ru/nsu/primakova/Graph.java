@@ -68,6 +68,7 @@ public abstract class Graph<T> {
     }
 
     public abstract Graph<String> read(String filename);
+
     public abstract void addEdge(Edge<T> edge);
 
     public abstract void removeEdge(Edge<T> edge);
