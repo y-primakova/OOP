@@ -32,8 +32,4 @@ public class Edge<T> {
     public Vertex<T> get_endVertex() {
         return this.endVertex;
     }
-
-    public void change_value(int newValue) {
-        this.value = newValue;
-    }
 }

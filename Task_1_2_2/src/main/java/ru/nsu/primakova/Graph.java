@@ -67,61 +67,16 @@ public abstract class Graph<T> {
         return this.listVertex;
     }
 
-    /**
-     * Add new edge.
-     *
-     * @param edge - new edge
-     */
-    public void addEdge(Edge<T> edge) {
-        if (!this.listEdge.contains(edge)) {
-            this.listEdge.add(edge);
-            if (!this.listVertex.contains(edge.get_endVertex())) {
-                this.listVertex.add(edge.get_endVertex());
-            }
-            if (!this.listVertex.contains(edge.get_startVertex())) {
-                this.listVertex.add(edge.get_startVertex());
-            }
-        }
-    }
+    public abstract Graph<String> read(String filename);
+    public abstract void addEdge(Edge<T> edge);
 
-    /**
-     * Remove edge.
-     *
-     * @param edge - edge of the graph
-     */
-    public void removeEdge(Edge<T> edge) {
-        this.listEdge.remove(edge);
-    }
+    public abstract void removeEdge(Edge<T> edge);
 
-    /**
-     * Add new vertex.
-     *
-     * @param vertex - new vertex
-     */
-    public void addVertex(Vertex<T> vertex) {
-        if (!this.listVertex.contains(vertex)) {
-            this.listVertex.add(vertex);
-        }
-    }
+    public abstract void addVertex(Vertex<T> vertex);
 
-    /**
-     * Remove vertex.
-     *
-     * @param vertex -vertex of the graph
-     */
-    public void removeVertex(Vertex<T> vertex) {
-        if (this.listVertex.contains(vertex)) {
-            this.listVertex.add(vertex);
-            for (var edge : listEdge) {
-                if (edge.get_endVertex() == vertex) {
-                    this.listEdge.remove(edge);
-                }
-                if (edge.get_startVertex() == vertex) {
-                    this.listEdge.remove(edge);
-                }
-            }
-        }
-    }
+    public abstract void removeVertex(Vertex<T> vertex);
+
+    public abstract void changeValueEdge(Edge<T> edge, int newValue);
 
     public abstract HashMap<Vertex<T>, Integer> shortestPath(Vertex<T> vertex);
 }

@@ -67,12 +67,7 @@ public class AdjacencyList<T> extends Graph<T> {
         return this.adjacencyList;
     }
 
-    /**
-     * load a graph from a txt file.
-     *
-     * @param filename - file name
-     * @return AdjacencyList
-     */
+    @Override
     public AdjacencyList<String> read(String filename) {
         Scanner scanner;
         try {
@@ -128,6 +123,11 @@ public class AdjacencyList<T> extends Graph<T> {
             this.adjacencyList.get(v).remove(vertex);
         }
         this.adjacencyList.remove(vertex);
+    }
+
+    @Override
+    public void changeValueEdge(Edge<T> edge, int newValue) {
+        this.adjacencyList.get(edge.get_startVertex()).put(edge.get_endVertex(), newValue);
     }
 
     @Override

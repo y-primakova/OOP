@@ -23,10 +23,6 @@ public class Vertex<T> {
         return this.name;
     }
 
-    public void change_name(T newName) {
-        this.name = newName;
-    }
-
     /**
      * Add a vertex to the list if it isn`t there.
      *

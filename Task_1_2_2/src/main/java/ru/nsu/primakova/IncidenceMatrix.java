@@ -70,12 +70,7 @@ public class IncidenceMatrix<T> extends Graph<T> {
         return this.incidenceMatrix;
     }
 
-    /**
-     * load a graph from a txt file.
-     *
-     * @param filename - file name
-     * @return AdjacencyList
-     */
+    @Override
     public IncidenceMatrix<String> read(String filename) {
         Scanner scanner;
         try {
@@ -134,6 +129,12 @@ public class IncidenceMatrix<T> extends Graph<T> {
             this.incidenceMatrix.get(v).remove(vertex);
         }
         this.incidenceMatrix.remove(vertex);
+    }
+
+    @Override
+    public void changeValueEdge(Edge<T> edge, int newValue) {
+        this.incidenceMatrix.get(edge.get_startVertex()).put(edge.get_endVertex(), newValue);
+        this.incidenceMatrix.get(edge.get_endVertex()).put(edge.get_startVertex(), -newValue);
     }
 
     @Override

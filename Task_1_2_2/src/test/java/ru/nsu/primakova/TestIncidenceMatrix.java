@@ -129,6 +129,28 @@ public class TestIncidenceMatrix {
     }
 
     @Test
+    public void testChangeValueEdge() {
+        var v1 = new Vertex<>("v1");
+        var v2 = new Vertex<>("v2");
+        var v3 = new Vertex<>("v3");
+        var g = new IncidenceMatrix<>(3, v1, v2);
+        var edge = new Edge<>(2, v2, v3);
+        g.addEdge(edge);
+        g.changeValueEdge(edge, 10);
+
+        HashMap<Vertex<String>, HashMap<Vertex<String>, Integer>> actual = new HashMap<>();
+        actual.put(v1, new HashMap<>());
+        actual.put(v2, new HashMap<>());
+        actual.put(v3, new HashMap<>());
+        actual.get(v1).put(v2, 3);
+        actual.get(v2).put(v3, 10);
+        actual.get(v2).put(v1, -3);
+        actual.get(v3).put(v2, -10);
+
+        assertEquals(g.get_incidenceMatrix(), actual);
+    }
+
+    @Test
     public void testShortestPath() {
         var v1 = new Vertex<>("v1");
         var v2 = new Vertex<>("v2");

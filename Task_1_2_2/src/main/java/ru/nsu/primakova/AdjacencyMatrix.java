@@ -2,9 +2,7 @@ package ru.nsu.primakova;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Class AdjacencyMatrix.
@@ -69,12 +67,7 @@ public class AdjacencyMatrix<T> extends Graph<T> {
         return this.adjacencyMatrix;
     }
 
-    /**
-     * load a graph from a txt file.
-     *
-     * @param filename - file name
-     * @return AdjacencyList
-     */
+    @Override
     public AdjacencyMatrix<String> read(String filename) {
         Scanner scanner;
         try {
@@ -130,6 +123,11 @@ public class AdjacencyMatrix<T> extends Graph<T> {
             this.adjacencyMatrix.get(v).remove(vertex);
         }
         this.adjacencyMatrix.remove(vertex);
+    }
+
+    @Override
+    public void changeValueEdge(Edge<T> edge, int newValue) {
+        this.adjacencyMatrix.get(edge.get_startVertex()).put(edge.get_endVertex(), newValue);
     }
 
     @Override
