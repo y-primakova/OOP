@@ -208,20 +208,20 @@ public class IncidenceMatrix<T> extends Graph<T> {
         var listedge = new ArrayList<>();
         for (var vertex : this.incidenceMatrix.keySet()) {
             for (var edge : this.incidenceMatrix.get(vertex).keySet()) {
-                str.append(vertex.get_name()).append("->").append(edge.get_endVertex().get_name()).append("  ");
-                if(!listedge.contains(edge)){
+                if (!listedge.contains(edge)) {
+                    str.append(edge.get_startVertex().get_name()).append("->").append(edge.get_endVertex().get_name()).append("  ");
                     listedge.add(edge);
                 }
             }
         }
         for (var vertex1 : this.incidenceMatrix.keySet()) {
             str.append("\n");
-            str.append(vertex1.get_name()).append("  ");
+            str.append(vertex1.get_name()).append("    ");
             for (var edge : listedge) {
                 if (!this.incidenceMatrix.get(vertex1).containsKey(edge)) {
-                    str.append("0\t");
+                    str.append("0\t\t");
                 } else {
-                    str.append(this.incidenceMatrix.get(vertex1).get(edge)).append("\t");
+                    str.append(this.incidenceMatrix.get(vertex1).get(edge)).append("\t\t");
                 }
             }
         }
