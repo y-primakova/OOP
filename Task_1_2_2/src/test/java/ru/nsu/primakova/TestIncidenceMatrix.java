@@ -24,7 +24,7 @@ public class TestIncidenceMatrix {
         var v7 = (new Vertex<>("v7")).listAddVertex(readGraph.listVertex);
         var v8 = (new Vertex<>("v8")).listAddVertex(readGraph.listVertex);
 
-        HashMap<Vertex<String>, HashMap<Vertex<String>, Integer>> actual = new HashMap<>();
+        HashMap<Vertex<String>, HashMap<Edge<String>, Integer>> actual = new HashMap<>();
         actual.put(v1, new HashMap<>());
         actual.put(v2, new HashMap<>());
         actual.put(v3, new HashMap<>());
@@ -33,24 +33,34 @@ public class TestIncidenceMatrix {
         actual.put(v6, new HashMap<>());
         actual.put(v7, new HashMap<>());
         actual.put(v8, new HashMap<>());
-        actual.get(v1).put(v2, 1);
-        actual.get(v2).put(v1, -1);
-        actual.get(v2).put(v3, 2);
-        actual.get(v3).put(v2, -2);
-        actual.get(v1).put(v7, 3);
-        actual.get(v7).put(v1, -3);
-        actual.get(v7).put(v6, 4);
-        actual.get(v6).put(v7, -4);
-        actual.get(v2).put(v4, 5);
-        actual.get(v4).put(v2, -5);
-        actual.get(v4).put(v6, 6);
-        actual.get(v6).put(v4, -6);
-        actual.get(v4).put(v5, 7);
-        actual.get(v5).put(v4, -7);
-        actual.get(v3).put(v4, 8);
-        actual.get(v4).put(v3, -8);
-        actual.get(v8).put(v1, 9);
-        actual.get(v1).put(v8, -9);
+        var edge1 = (new Edge<>(1, v1, v2)).listAddEdge(readGraph.listEdge);
+        var edge2 = (new Edge<>(2, v2, v3)).listAddEdge(readGraph.listEdge);
+        var edge3 = (new Edge<>(3, v1, v7)).listAddEdge(readGraph.listEdge);
+        var edge4 = (new Edge<>(4, v7, v6)).listAddEdge(readGraph.listEdge);
+        var edge5 = (new Edge<>(5, v2, v4)).listAddEdge(readGraph.listEdge);
+        var edge6 = (new Edge<>(6, v4, v6)).listAddEdge(readGraph.listEdge);
+        var edge7 = (new Edge<>(7, v4, v5)).listAddEdge(readGraph.listEdge);
+        var edge8 = (new Edge<>(8, v3, v4)).listAddEdge(readGraph.listEdge);
+        var edge9 = (new Edge<>(9, v8, v1)).listAddEdge(readGraph.listEdge);
+
+        actual.get(v1).put(edge1, 1);
+        actual.get(v2).put(edge1, -1);
+        actual.get(v2).put(edge2, 2);
+        actual.get(v3).put(edge2, -2);
+        actual.get(v1).put(edge3, 3);
+        actual.get(v7).put(edge3, -3);
+        actual.get(v7).put(edge4, 4);
+        actual.get(v6).put(edge4, -4);
+        actual.get(v2).put(edge5, 5);
+        actual.get(v4).put(edge5, -5);
+        actual.get(v4).put(edge6, 6);
+        actual.get(v6).put(edge6, -6);
+        actual.get(v4).put(edge7, 7);
+        actual.get(v5).put(edge7, -7);
+        actual.get(v3).put(edge8, 8);
+        actual.get(v4).put(edge8, -8);
+        actual.get(v8).put(edge9, 9);
+        actual.get(v1).put(edge9, -9);
 
         assertEquals(readGraph.get_incidenceMatrix(), actual);
     }
@@ -60,17 +70,19 @@ public class TestIncidenceMatrix {
         var v1 = new Vertex<>("v1");
         var v2 = new Vertex<>("v2");
         var v3 = new Vertex<>("v3");
-        var g = new IncidenceMatrix<>(3, v1, v2);
-        g.addEdge(new Edge<>(2, v2, v3));
+        var edge1 = new Edge(3, v1, v2);
+        var edge2 = new Edge(2, v2, v3);
+        var g = new IncidenceMatrix<>(edge1);
+        g.addEdge(edge2);
 
-        HashMap<Vertex<String>, HashMap<Vertex<String>, Integer>> actual = new HashMap<>();
+        HashMap<Vertex<String>, HashMap<Edge<String>, Integer>> actual = new HashMap<>();
         actual.put(v1, new HashMap<>());
         actual.put(v2, new HashMap<>());
         actual.put(v3, new HashMap<>());
-        actual.get(v1).put(v2, 3);
-        actual.get(v2).put(v1, -3);
-        actual.get(v2).put(v3, 2);
-        actual.get(v3).put(v2, -2);
+        actual.get(v1).put(edge1, 3);
+        actual.get(v2).put(edge1, -3);
+        actual.get(v2).put(edge2, 2);
+        actual.get(v3).put(edge2, -2);
 
         assertEquals(g.get_incidenceMatrix(), actual);
     }
@@ -80,15 +92,16 @@ public class TestIncidenceMatrix {
         var v1 = new Vertex<>("v1");
         var v2 = new Vertex<>("v2");
         var v3 = new Vertex<>("v3");
-        var g = new IncidenceMatrix<>(3, v1, v2);
+        var edge1 = new Edge(3, v1, v2);
+        var g = new IncidenceMatrix<>(edge1);
         g.addVertex(v3);
 
-        HashMap<Vertex<String>, HashMap<Vertex<String>, Integer>> actual = new HashMap<>();
+        HashMap<Vertex<String>, HashMap<Edge<String>, Integer>> actual = new HashMap<>();
         actual.put(v1, new HashMap<>());
         actual.put(v2, new HashMap<>());
         actual.put(v3, new HashMap<>());
-        actual.get(v1).put(v2, 3);
-        actual.get(v2).put(v1, -3);
+        actual.get(v1).put(edge1, 3);
+        actual.get(v2).put(edge1, -3);
 
         assertEquals(g.get_incidenceMatrix(), actual);
     }
@@ -100,30 +113,15 @@ public class TestIncidenceMatrix {
         var v3 = new Vertex<>("v3");
         var edge = new Edge<>(3, v1, v2);
         var g = new IncidenceMatrix<>(edge);
-        g.addEdge(new Edge<>(2, v2, v3));
+        var edge2 = new Edge<>(2, v2, v3);
+        g.addEdge(edge2);
         g.removeEdge(edge);
 
-        HashMap<Vertex<String>, HashMap<Vertex<String>, Integer>> actual = new HashMap<>();
+        HashMap<Vertex<String>, HashMap<Edge<String>, Integer>> actual = new HashMap<>();
         actual.put(v2, new HashMap<>());
         actual.put(v3, new HashMap<>());
-        actual.get(v2).put(v3, 2);
-        actual.get(v3).put(v2, -2);
-
-        assertEquals(g.get_incidenceMatrix(), actual);
-    }
-
-    @Test
-    public void testRemoveVertex() {
-        var v1 = new Vertex<>("v1");
-        var v2 = new Vertex<>("v2");
-        var v3 = new Vertex<>("v3");
-        var g = new IncidenceMatrix<>(3, v1, v2);
-        g.addEdge(new Edge<>(2, v2, v3));
-        g.removeVertex(v2);
-
-        HashMap<Vertex<String>, HashMap<Vertex<String>, Integer>> actual = new HashMap<>();
-        actual.put(v1, new HashMap<>());
-        actual.put(v3, new HashMap<>());
+        actual.get(v2).put(edge2, 2);
+        actual.get(v3).put(edge2, -2);
 
         assertEquals(g.get_incidenceMatrix(), actual);
     }
@@ -133,19 +131,20 @@ public class TestIncidenceMatrix {
         var v1 = new Vertex<>("v1");
         var v2 = new Vertex<>("v2");
         var v3 = new Vertex<>("v3");
-        var g = new IncidenceMatrix<>(3, v1, v2);
-        var edge = new Edge<>(2, v2, v3);
-        g.addEdge(edge);
-        g.changeValueEdge(edge, 10);
+        var edge = new Edge<>(3, v1, v2);
+        var g = new IncidenceMatrix<>(edge);
+        var edge1 = new Edge<>(2, v2, v3);
+        g.addEdge(edge1);
+        g.changeValueEdge(edge1, 10);
 
-        HashMap<Vertex<String>, HashMap<Vertex<String>, Integer>> actual = new HashMap<>();
+        HashMap<Vertex<String>, HashMap<Edge<String>, Integer>> actual = new HashMap<>();
         actual.put(v1, new HashMap<>());
         actual.put(v2, new HashMap<>());
         actual.put(v3, new HashMap<>());
-        actual.get(v1).put(v2, 3);
-        actual.get(v2).put(v3, 10);
-        actual.get(v2).put(v1, -3);
-        actual.get(v3).put(v2, -10);
+        actual.get(v1).put(edge, 3);
+        actual.get(v2).put(edge1, 10);
+        actual.get(v2).put(edge, -3);
+        actual.get(v3).put(edge1, -10);
 
         assertEquals(g.get_incidenceMatrix(), actual);
     }

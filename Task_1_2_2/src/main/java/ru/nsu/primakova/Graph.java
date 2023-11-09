@@ -1,7 +1,6 @@
 package ru.nsu.primakova;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Class Graph.

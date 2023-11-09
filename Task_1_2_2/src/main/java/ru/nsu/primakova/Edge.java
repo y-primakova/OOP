@@ -1,5 +1,7 @@
 package ru.nsu.primakova;
 
+import java.util.ArrayList;
+
 /**
  * Class Edge.
  */
@@ -31,5 +33,32 @@ public class Edge<T> {
 
     public Vertex<T> get_endVertex() {
         return this.endVertex;
+    }
+
+    public Edge<T> listAddEdge(ArrayList<Edge<T>> list) {
+        for (var e : list) {
+            if (e.equals(this)) {
+                return e;
+            }
+        }
+        list.add(this);
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+        var edge = (Edge<?>) obj;
+        if (edge.get_endVertex().equals(this.endVertex)) {
+            if (edge.get_startVertex().equals(this.startVertex)) {
+                return edge.get_value() == this.value;
+            }
+        }
+        return false;
     }
 }
