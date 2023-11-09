@@ -138,11 +138,12 @@ public class IncidenceMatrix<T> extends Graph<T> {
     }
 
     @Override
-    public HashMap<Vertex<T>, Integer> shortestPath(Vertex<T> vertex) {
-        HashMap<Vertex<T>, Integer> minDist = new HashMap<>();
+    public ArrayList<Vertex<T>> shortestPath(Vertex<T> vertex) {
+        ArrayList<Vertex<T>> res = new ArrayList<>();
         ArrayList<Vertex<T>> needToVisit = new ArrayList<>();
         ArrayList<Vertex<T>> visited = new ArrayList<>();
-        minDist.put(vertex, 0);
+        vertex.change_dist(0);
+        res.add(vertex);
         needToVisit.add(vertex);
         while (!needToVisit.isEmpty()) {
             var v = needToVisit.get(0);
@@ -153,19 +154,29 @@ public class IncidenceMatrix<T> extends Graph<T> {
             for (var key : this.incidenceMatrix.get(v).keySet()) {
                 if (this.incidenceMatrix.get(v).get(key) >= 0) {
                     needToVisit.add(key);
-                    if (minDist.containsKey(key)) {
-                        if (minDist.get(key) > this.incidenceMatrix.get(v).get(key) + minDist.get(v)) {
-                            minDist.put(key, this.incidenceMatrix.get(v).get(key) + minDist.get(v));
+                    if (res.contains(key)) {
+                        if (key.get_dist() > this.incidenceMatrix.get(v).get(key) + v.get_dist()) {
+                            key.change_dist(this.incidenceMatrix.get(v).get(key) + v.get_dist());
                         }
                     } else {
-                        minDist.put(key, this.incidenceMatrix.get(v).get(key) + minDist.get(v));
+                        key.change_dist(this.incidenceMatrix.get(v).get(key) + v.get_dist());
+                        res.add(key);
                     }
                 }
             }
             needToVisit.remove(v);
             visited.add(v);
         }
-        return minDist;
+        for (int i = 0; i < res.size() - 1; i++){
+            for (int j = 0; j < res.size() - i - 1; j++) {
+                if(res.get(j).get_dist() > res.get(j+1).get_dist()) {
+                    res.add(j, res.get(j+1));
+                    res.remove(j+2);
+                }
+            }
+        }
+
+        return res;
     }
 
     /**
@@ -176,12 +187,9 @@ public class IncidenceMatrix<T> extends Graph<T> {
      */
     public String shortestPathString(Vertex<T> vertex) {
         StringBuilder str = new StringBuilder();
-        var res = shortestPath(vertex);
-        for (var key : this.shortestPath(vertex).keySet()) {
-            str.append(key.get_name()).append(" ");
+        for (var v : this.shortestPath(vertex)) {
+            str.append(v.get_name()).append(" ").append(v.get_dist()).append("\n");
         }
-        str.append("\n");
-        str.append(this.shortestPath(vertex).values());
         return str.toString();
     }
 

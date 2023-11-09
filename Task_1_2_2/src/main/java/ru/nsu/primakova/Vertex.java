@@ -7,12 +7,14 @@ import java.util.ArrayList;
  */
 public class Vertex<T> {
     private T name;
+    private int dist;
 
     /**
      * Class constructor.
      */
     public Vertex() {
         this.name = null;
+        this.dist = -1;
     }
 
     public Vertex(T name) {
@@ -21,6 +23,14 @@ public class Vertex<T> {
 
     public T get_name() {
         return this.name;
+    }
+
+    public int get_dist() {
+        return this.dist;
+    }
+
+    public void change_dist(int newDist) {
+        this.dist = newDist;
     }
 
     /**

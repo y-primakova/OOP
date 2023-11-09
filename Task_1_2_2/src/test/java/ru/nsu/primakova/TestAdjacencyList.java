@@ -148,12 +148,16 @@ public class TestAdjacencyList {
         g.addEdge(new Edge<>(5, v4, v3));
         g.addEdge(new Edge<>(10, v5, v1));
 
-        HashMap<Vertex<String>, Integer> actual = new HashMap<>();
-        actual.put(v1, 0);
-        actual.put(v2, 5);
-        actual.put(v3, 8);
-        actual.put(v4, 3);
+        var actual = new ArrayList<>();
+        actual.add(v1);
+        actual.add(v4);
+        actual.add(v2);
+        actual.add(v3);
 
         assertEquals(g.shortestPath(v1), actual);
+        assertEquals(g.shortestPath(v1).get(0).get_dist(), 0);
+        assertEquals(g.shortestPath(v1).get(1).get_dist(), 3);
+        assertEquals(g.shortestPath(v1).get(2).get_dist(), 5);
+        assertEquals(g.shortestPath(v1).get(3).get_dist(), 8);
     }
 }

@@ -79,5 +79,5 @@ public abstract class Graph<T> {
 
     public abstract void changeValueEdge(Edge<T> edge, int newValue);
 
-    public abstract HashMap<Vertex<T>, Integer> shortestPath(Vertex<T> vertex);
+    public abstract ArrayList<Vertex<T>> shortestPath(Vertex<T> vertex);
 }

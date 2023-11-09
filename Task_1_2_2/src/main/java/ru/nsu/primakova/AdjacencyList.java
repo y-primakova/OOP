@@ -132,11 +132,12 @@ public class AdjacencyList<T> extends Graph<T> {
     }
 
     @Override
-    public HashMap<Vertex<T>, Integer> shortestPath(Vertex<T> vertex) {
-        HashMap<Vertex<T>, Integer> minDist = new HashMap<>();
+    public ArrayList<Vertex<T>> shortestPath(Vertex<T> vertex) {
+        ArrayList<Vertex<T>> res = new ArrayList<>();
         ArrayList<Vertex<T>> needToVisit = new ArrayList<>();
         ArrayList<Vertex<T>> visited = new ArrayList<>();
-        minDist.put(vertex, 0);
+        vertex.change_dist(0);
+        res.add(vertex);
         needToVisit.add(vertex);
         while (!needToVisit.isEmpty()) {
             var v = needToVisit.get(0);
@@ -146,18 +147,28 @@ public class AdjacencyList<T> extends Graph<T> {
             }
             needToVisit.addAll(this.adjacencyList.get(v).keySet());
             for (var key : this.adjacencyList.get(v).keySet()) {
-                if (minDist.containsKey(key)) {
-                    if (minDist.get(key) > this.adjacencyList.get(v).get(key) + minDist.get(v)) {
-                        minDist.put(key, this.adjacencyList.get(v).get(key) + minDist.get(v));
+                if (res.contains(key)) {
+                    if (key.get_dist() > this.adjacencyList.get(v).get(key) + v.get_dist()) {
+                        key.change_dist(this.adjacencyList.get(v).get(key) + v.get_dist());
                     }
                 } else {
-                    minDist.put(key, this.adjacencyList.get(v).get(key) + minDist.get(v));
+                    key.change_dist(this.adjacencyList.get(v).get(key) + v.get_dist());
+                    res.add(key);
                 }
             }
             needToVisit.remove(v);
             visited.add(v);
         }
-        return minDist;
+        for (int i = 0; i < res.size() - 1; i++){
+            for (int j = 0; j < res.size() - i - 1; j++) {
+                if(res.get(j).get_dist() > res.get(j+1).get_dist()) {
+                    res.add(j, res.get(j+1));
+                    res.remove(j+2);
+                }
+            }
+        }
+
+        return res;
     }
 
     /**
@@ -168,12 +179,9 @@ public class AdjacencyList<T> extends Graph<T> {
      */
     public String shortestPathString(Vertex<T> vertex) {
         StringBuilder str = new StringBuilder();
-        var res = shortestPath(vertex);
-        for (var key : res.keySet()) {
-            str.append(key.get_name()).append(" ");
+        for (var v : this.shortestPath(vertex)) {
+            str.append(v.get_name()).append(" ").append(v.get_dist()).append("\n");
         }
-        str.append("\n");
-        str.append(res.values());
         return str.toString();
     }
 
