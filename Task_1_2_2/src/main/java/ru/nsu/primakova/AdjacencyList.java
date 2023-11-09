@@ -159,11 +159,11 @@ public class AdjacencyList<T> extends Graph<T> {
             needToVisit.remove(v);
             visited.add(v);
         }
-        for (int i = 0; i < res.size() - 1; i++){
+        for (int i = 0; i < res.size() - 1; i++) {
             for (int j = 0; j < res.size() - i - 1; j++) {
-                if(res.get(j).get_dist() > res.get(j+1).get_dist()) {
-                    res.add(j, res.get(j+1));
-                    res.remove(j+2);
+                if (res.get(j).get_dist() > res.get(j + 1).get_dist()) {
+                    res.add(j, res.get(j + 1));
+                    res.remove(j + 2);
                 }
             }
         }
