@@ -125,7 +125,7 @@ public class AdjacencyMatrix<T> extends Graph<T> {
     public void addVertex(Vertex<T> vertex) {
         if (!this.adjacencyMatrix.containsKey(vertex)) {
             this.adjacencyMatrix.put(vertex, new HashMap<>());
-            for(var v : this.adjacencyMatrix.keySet()){
+            for (var v : this.adjacencyMatrix.keySet()) {
                 this.adjacencyMatrix.get(v).put(vertex, 0);
                 this.adjacencyMatrix.get(vertex).put(v, 0);
             }
