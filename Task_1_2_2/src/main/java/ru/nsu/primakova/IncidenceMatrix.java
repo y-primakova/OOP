@@ -62,6 +62,9 @@ public class IncidenceMatrix<T> extends Graph<T> {
             if (!this.incidenceMatrix.containsKey(edge.get_startVertex())) {
                 this.incidenceMatrix.put(edge.get_startVertex(), new HashMap<>());
             }
+            for (var v : this.incidenceMatrix.keySet()) {
+                this.incidenceMatrix.get(v).put(edge, 0);
+            }
             this.incidenceMatrix.get(edge.get_startVertex()).put(edge, edge.get_value());
             this.incidenceMatrix.get(edge.get_endVertex()).put(edge, -edge.get_value());
         }
@@ -92,6 +95,7 @@ public class IncidenceMatrix<T> extends Graph<T> {
 
             listEdge.add(new Edge<>(value, startVertex.listAddVertex(listVertex), endVertex.listAddVertex(listVertex)));
         }
+        scanner.close();
         return new IncidenceMatrix<>(listEdge, listVertex);
     }
 
@@ -99,6 +103,9 @@ public class IncidenceMatrix<T> extends Graph<T> {
     public void addEdge(Edge<T> edge) {
         addVertex(edge.get_endVertex());
         addVertex(edge.get_startVertex());
+        for (var v : this.incidenceMatrix.keySet()) {
+            this.incidenceMatrix.get(v).put(edge, 0);
+        }
         var x = this.incidenceMatrix.get(edge.get_startVertex());
         x.put(edge, edge.get_value());
         var y = this.incidenceMatrix.get(edge.get_endVertex());
@@ -109,30 +116,36 @@ public class IncidenceMatrix<T> extends Graph<T> {
     public void addVertex(Vertex<T> vertex) {
         if (!this.incidenceMatrix.containsKey(vertex)) {
             this.incidenceMatrix.put(vertex, new HashMap<>());
+            for (var v : this.incidenceMatrix.keySet()) {
+                for (var edge : this.incidenceMatrix.get(v).keySet()) {
+                    this.incidenceMatrix.get(vertex).put(edge, 0);
+                }
+            }
         }
     }
 
     @Override
     public void removeEdge(Edge<T> edge) {
-        this.incidenceMatrix.get(edge.get_startVertex()).remove(edge);
-        this.incidenceMatrix.get(edge.get_endVertex()).remove(edge);
-        if (this.incidenceMatrix.get(edge.get_startVertex()).isEmpty()) {
-            removeVertex(edge.get_startVertex());
-        }
-        if (this.incidenceMatrix.get(edge.get_endVertex()).isEmpty()) {
-            removeVertex(edge.get_endVertex());
+        for (var v : this.incidenceMatrix.keySet()) {
+            this.incidenceMatrix.get(v).remove(edge);
         }
     }
 
     @Override
     public void removeVertex(Vertex<T> vertex) {
-        for (var v : this.incidenceMatrix.keySet()) {
-            for (var edge : this.incidenceMatrix.get(v).keySet()) {
-                if (vertex.equals(edge.get_startVertex())) {
-                    this.incidenceMatrix.get(v).remove(edge);
+        for (var edge : this.incidenceMatrix.get(vertex).keySet()) {
+            if (vertex.equals(edge.get_startVertex())) {
+                for (var v : this.incidenceMatrix.keySet()) {
+                    if (!v.equals(vertex)) {
+                        this.incidenceMatrix.get(v).remove(edge);
+                    }
                 }
-                if (vertex.equals(edge.get_endVertex())) {
-                    this.incidenceMatrix.get(v).remove(edge);
+            }
+            if (vertex.equals(edge.get_endVertex())) {
+                for (var v : this.incidenceMatrix.keySet()) {
+                    if (!v.equals(vertex)) {
+                        this.incidenceMatrix.get(v).remove(edge);
+                    }
                 }
             }
         }
@@ -160,7 +173,7 @@ public class IncidenceMatrix<T> extends Graph<T> {
                 continue;
             }
             for (var edge : this.incidenceMatrix.get(v).keySet()) {
-                if (this.incidenceMatrix.get(v).get(edge) >= 0) {
+                if (this.incidenceMatrix.get(v).get(edge) > 0) {
                     needToVisit.add(edge.get_endVertex());
                     if (res.contains(edge.get_endVertex())) {
                         if (edge.get_endVertex().get_dist() > this.incidenceMatrix.get(v).get(edge) + v.get_dist()) {
@@ -205,24 +218,17 @@ public class IncidenceMatrix<T> extends Graph<T> {
     public String toString() {
         StringBuilder str = new StringBuilder();
         str.append("    ");
-        var listedge = new ArrayList<>();
         for (var vertex : this.incidenceMatrix.keySet()) {
             for (var edge : this.incidenceMatrix.get(vertex).keySet()) {
-                if (!listedge.contains(edge)) {
-                    str.append(edge.get_startVertex().get_name()).append("->").append(edge.get_endVertex().get_name()).append("  ");
-                    listedge.add(edge);
-                }
+                str.append(edge.get_startVertex().get_name()).append("->").append(edge.get_endVertex().get_name()).append("  ");
             }
+            break;
         }
-        for (var vertex1 : this.incidenceMatrix.keySet()) {
+        for (var vertex : this.incidenceMatrix.keySet()) {
             str.append("\n");
-            str.append(vertex1.get_name()).append("    ");
-            for (var edge : listedge) {
-                if (!this.incidenceMatrix.get(vertex1).containsKey(edge)) {
-                    str.append("0\t\t");
-                } else {
-                    str.append(this.incidenceMatrix.get(vertex1).get(edge)).append("\t\t");
-                }
+            str.append(vertex.get_name()).append("     ");
+            for (var edge : this.incidenceMatrix.get(vertex).keySet()) {
+                str.append(this.incidenceMatrix.get(vertex).get(edge)).append("\t\t");
             }
         }
         return str.toString();

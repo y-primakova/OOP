@@ -25,7 +25,7 @@ public class Vertex<T> {
         return this.name;
     }
 
-    public int get_dist() {
+    int get_dist() {
         return this.dist;
     }
 

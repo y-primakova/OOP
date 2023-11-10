@@ -19,29 +19,17 @@ public class TestAdjacencyList {
         var v2 = (new Vertex<>("v2")).listAddVertex(readGraph.listVertex);
         var v3 = (new Vertex<>("v3")).listAddVertex(readGraph.listVertex);
         var v4 = (new Vertex<>("v4")).listAddVertex(readGraph.listVertex);
-        var v5 = (new Vertex<>("v5")).listAddVertex(readGraph.listVertex);
-        var v6 = (new Vertex<>("v6")).listAddVertex(readGraph.listVertex);
-        var v7 = (new Vertex<>("v7")).listAddVertex(readGraph.listVertex);
-        var v8 = (new Vertex<>("v8")).listAddVertex(readGraph.listVertex);
 
         HashMap<Vertex<String>, HashMap<Vertex<String>, Integer>> actual = new HashMap<>();
         actual.put(v1, new HashMap<>());
         actual.put(v2, new HashMap<>());
         actual.put(v3, new HashMap<>());
         actual.put(v4, new HashMap<>());
-        actual.put(v5, new HashMap<>());
-        actual.put(v6, new HashMap<>());
-        actual.put(v7, new HashMap<>());
-        actual.put(v8, new HashMap<>());
         actual.get(v1).put(v2, 1);
         actual.get(v2).put(v3, 2);
-        actual.get(v1).put(v7, 3);
-        actual.get(v7).put(v6, 4);
-        actual.get(v2).put(v4, 5);
-        actual.get(v4).put(v6, 6);
-        actual.get(v4).put(v5, 7);
-        actual.get(v3).put(v4, 8);
-        actual.get(v8).put(v1, 9);
+        actual.get(v2).put(v4, 3);
+        actual.get(v3).put(v4, 4);
+        actual.get(v2).put(v1, 5);
 
         assertEquals(readGraph.get_adjacencyList(), actual);
     }
@@ -159,5 +147,23 @@ public class TestAdjacencyList {
         assertEquals(g.shortestPath(v1).get(1).get_dist(), 3);
         assertEquals(g.shortestPath(v1).get(2).get_dist(), 5);
         assertEquals(g.shortestPath(v1).get(3).get_dist(), 8);
+    }
+
+    @Test
+    public void testShortestPathString() {
+        var v1 = new Vertex<>("v1");
+        var v2 = new Vertex<>("v2");
+        var v3 = new Vertex<>("v3");
+        var v4 = new Vertex<>("v4");
+        var v5 = new Vertex<>("v5");
+        var g = new AdjacencyList<>(7, v1, v2);
+        g.addEdge(new Edge<>(3, v1, v4));
+        g.addEdge(new Edge<>(2, v4, v2));
+        g.addEdge(new Edge<>(5, v4, v3));
+        g.addEdge(new Edge<>(10, v5, v1));
+
+        var str = "v1 0\nv4 3\nv2 5\nv3 8\n";
+
+        assertEquals(g.shortestPathString(v1), str);
     }
 }

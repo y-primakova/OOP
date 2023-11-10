@@ -89,6 +89,7 @@ public class AdjacencyList<T> extends Graph<T> {
 
             listEdge.add(new Edge<>(value, startVertex.listAddVertex(listVertex), endVertex.listAddVertex(listVertex)));
         }
+        scanner.close();
         return new AdjacencyList<>(listEdge, listVertex);
     }
 
