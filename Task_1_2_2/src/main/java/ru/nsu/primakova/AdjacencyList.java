@@ -68,29 +68,10 @@ public class AdjacencyList<T> extends Graph<T> {
         return this.adjacencyList;
     }
 
-    @Override
-    public AdjacencyList<String> read(String filename) {
-        Scanner scanner;
-        try {
-            scanner = new Scanner(new File(filename));
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-        int edgesAmount = scanner.nextInt();
-
-        var listVertex = new ArrayList<Vertex<String>>();
-        var listEdge = new ArrayList<Edge<String>>();
-
-        for (int i = 0; i < edgesAmount; i++) {
-            var startVertex = new Vertex<>(scanner.next());
-            var endVertex = new Vertex<>(scanner.next());
-            var value = scanner.nextInt();
-
-            listEdge.add(new Edge<>(value, startVertex.listAddVertex(listVertex), endVertex.listAddVertex(listVertex)));
-        }
-        scanner.close();
-        return new AdjacencyList<>(listEdge, listVertex);
+  @Override
+    public AdjacencyList<T> read(String filename) {
+        super.read(filename);
+        return new AdjacencyList<>(this.listEdge, this.listVertex);
     }
 
     @Override

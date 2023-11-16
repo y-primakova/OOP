@@ -75,28 +75,9 @@ public class IncidenceMatrix<T> extends Graph<T> {
     }
 
     @Override
-    public IncidenceMatrix<String> read(String filename) {
-        Scanner scanner;
-        try {
-            scanner = new Scanner(new File(filename));
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-        int edgesAmount = scanner.nextInt();
-
-        var listVertex = new ArrayList<Vertex<String>>();
-        var listEdge = new ArrayList<Edge<String>>();
-
-        for (int i = 0; i < edgesAmount; i++) {
-            var startVertex = new Vertex<>(scanner.next());
-            var endVertex = new Vertex<>(scanner.next());
-            var value = scanner.nextInt();
-
-            listEdge.add(new Edge<>(value, startVertex.listAddVertex(listVertex), endVertex.listAddVertex(listVertex)));
-        }
-        scanner.close();
-        return new IncidenceMatrix<>(listEdge, listVertex);
+    public IncidenceMatrix<T> read(String filename) {
+        super.read(filename);
+        return new IncidenceMatrix<>(this.listEdge, this.listVertex);
     }
 
     @Override
