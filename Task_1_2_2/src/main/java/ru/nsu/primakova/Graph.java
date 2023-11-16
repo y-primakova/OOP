@@ -70,7 +70,7 @@ public abstract class Graph<T> {
     }
 
     public Graph<T> read(String filename) {
-        try(var scanner = new Scanner(new File(filename))) {
+        try (var scanner = new Scanner(new File(filename))) {
             int edgesAmount = scanner.nextInt();
 
             var listVertex = new ArrayList<Vertex<T>>();
