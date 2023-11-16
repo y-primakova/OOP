@@ -22,7 +22,7 @@ public class SubstringSearch {
         int c;
         int indexSub = 0;
         int indexAll = 0;
-        while((c = reader.read()) != -1) {
+        while ((c = reader.read()) != -1) {
             char character = (char) c;
             if (substr.charAt(indexSub) == character) {
                 if (indexSub == substr.length() - 1) {
