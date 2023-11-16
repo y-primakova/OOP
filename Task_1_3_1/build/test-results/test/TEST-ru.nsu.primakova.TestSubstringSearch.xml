@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ru.nsu.primakova.TestSubstringSearch" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-11-16T05:23:46" hostname="LAPTOP-T5M5ENBH" time="0.076">
+<testsuite name="ru.nsu.primakova.TestSubstringSearch" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-11-16T06:08:51" hostname="LAPTOP-T5M5ENBH" time="0.063">
   <properties/>
-  <testcase name="test_eng()" classname="ru.nsu.primakova.TestSubstringSearch" time="0.067"/>
-  <testcase name="test_rus()" classname="ru.nsu.primakova.TestSubstringSearch" time="0.005"/>
+  <testcase name="test_eng()" classname="ru.nsu.primakova.TestSubstringSearch" time="0.055"/>
+  <testcase name="test_rus()" classname="ru.nsu.primakova.TestSubstringSearch" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

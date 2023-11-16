@@ -17,8 +17,8 @@ public class SubstringSearch {
         if (subString == null) {
             return res;
         }
-        String substr = new String(subString.getBytes(), StandardCharsets.UTF_8);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(filename), StandardCharsets.UTF_8));
+        var substr = new String(subString.getBytes(), StandardCharsets.UTF_8);
+        var reader = new BufferedReader(new InputStreamReader(new FileInputStream(filename), StandardCharsets.UTF_8));
         int c;
         int indexSub = 0;
         int indexAll = 0;
@@ -35,6 +35,7 @@ public class SubstringSearch {
             indexSub++;
             indexAll++;
         }
+        reader.close();
         return res;
     }
 }
