@@ -1,13 +1,12 @@
 package ru.nsu.primakova;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 /**
  * Class TestSubstringSearch.
@@ -49,7 +48,7 @@ public class TestSubstringSearch {
 
     public void testBigFile() {
         var file = new File("file");
-        try(var f = new RandomAccessFile(file, "rw")) {
+        try (var f = new RandomAccessFile(file, "rw")) {
             f.setLength(1024L * 1024L * 1024L * 15L);
             f.seek(1024L * 1024L * 1024L * 15L);
             f.writeBytes("hi");
