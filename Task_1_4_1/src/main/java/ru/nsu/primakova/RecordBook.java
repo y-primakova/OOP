@@ -57,7 +57,7 @@ public class RecordBook {
         this.semester += 1;
         this.grades.put(this.semester, new HashMap<>());
     }
-    
+
     public ArrayList<Integer> lastGrades() {
         var sumGrades = new HashMap<String, Integer>();
         var amount = new HashMap<String, Integer>();
@@ -116,14 +116,14 @@ public class RecordBook {
             }
         }
 
-        int nFive = 0;
+        int numberOfFive = 0;
         var lastGrades = this.lastGrades();
         for (var grade : lastGrades) {
             if (grade == 5) {
-                nFive++;
+                numberOfFive++;
             }
         }
-        if (nFive < 0.75 * lastGrades.size()) {
+        if (numberOfFive < 0.75 * lastGrades.size()) {
             return false;
         }
         return true;

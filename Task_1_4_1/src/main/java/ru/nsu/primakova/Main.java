@@ -4,6 +4,10 @@ package ru.nsu.primakova;
  * Class Main.
  */
 public class Main {
+    
+    /**
+     * main.
+     */
     public static void main(String[] args) throws WrongValueException {
         var book = new RecordBook("Julia", "Primakova", 22216);
         book.addGrade("A", 5);
