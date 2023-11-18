@@ -15,7 +15,7 @@ public class TestRecordBook {
     public void testAddGrade() throws WrongValueException {
         var book = new RecordBook("name", "surname", 1);
         book.addGrade("A", 5);
-        var actual = new HashMap<Integer, HashMap<String,Integer>>();
+        var actual = new HashMap<Integer, HashMap<String, Integer>>();
         actual.put(1, new HashMap<>());
         actual.get(1).put("A", 5);
 

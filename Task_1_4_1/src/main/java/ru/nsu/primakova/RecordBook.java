@@ -6,18 +6,12 @@ import java.util.HashMap;
 /**
  * Class RecordBook.
  */
-//        ● текущего среднего балла за все время обучения;
-//        ● возможности получения «красного» диплома с отличием;
-//        ● возможности получения повышенной стипендии в этом семестре.
-//        Требования для диплома с отличием: 75% оценок в приложении к диплому
-//        (последняя оценка) – “отлично”, отсутствие итоговых оценок “удовлетворительно” и
-//        квалификационная работа на “отлично”.
 public class RecordBook {
     private String name;
     private String surname;
     private int group;
     private int semester;
-    private HashMap<Integer, HashMap<String,Integer>> grades;
+    private HashMap<Integer, HashMap<String, Integer>> grades;
     private int gradeCoursework;
 
     public RecordBook(String name, String surname, int group) {
@@ -34,7 +28,7 @@ public class RecordBook {
         return this.gradeCoursework;
     }
 
-    public HashMap<Integer, HashMap<String,Integer>> get_grades() {
+    public HashMap<Integer, HashMap<String, Integer>> get_grades() {
         return this.grades;
     }
 
@@ -63,7 +57,7 @@ public class RecordBook {
         this.semester += 1;
         this.grades.put(this.semester, new HashMap<>());
     }
-
+    
     public ArrayList<Integer> lastGrades() {
         var sumGrades = new HashMap<String, Integer>();
         var amount = new HashMap<String, Integer>();
@@ -82,7 +76,7 @@ public class RecordBook {
         }
         var res = new ArrayList<Integer>();
         for (var subj : sumGrades.keySet()) {
-            res.add((int) Math.round((double)sumGrades.get(subj)/amount.get(subj)));
+            res.add((int) Math.round((double) sumGrades.get(subj) / amount.get(subj)));
         }
         return res;
     }
@@ -104,7 +98,7 @@ public class RecordBook {
             sum += grade;
             amountGrades += 1;
         }
-        return Math.round((double) sum /amountGrades * Math.pow(10,2)) / Math.pow(10,2);
+        return Math.round((double) sum / amountGrades * Math.pow(10, 2)) / Math.pow(10, 2);
     }
 
     public boolean redDiploma() {
@@ -112,7 +106,7 @@ public class RecordBook {
             return false;
         }
 
-        for (int sem = 1; sem < 9; sem++){
+        for (int sem = 1; sem < 9; sem++) {
             if (this.grades.containsKey(sem)) {
                 for (var grade : this.grades.get(sem).values()) {
                     if (grade <= 3) {
@@ -141,15 +135,15 @@ public class RecordBook {
         str.append("Student : ").append(this.name).append(" ").append(this.surname);
         str.append("\nGroup   : ").append(this.group);
 
-        for (int sem = 1; sem < 9; sem++){
+        for (int sem = 1; sem < 9; sem++) {
             str.append("\nSemester ").append(sem);
             if (this.grades.containsKey(sem)) {
                 if (this.grades.get(sem).isEmpty()) {
                     str.append("\n\t-");
                 }
                 for (var subj : this.grades.get(sem).keySet()) {
-                str.append("\n\t").append(this.grades.get(sem).get(subj));
-                str.append("\t").append(subj);
+                    str.append("\n\t").append(this.grades.get(sem).get(subj));
+                    str.append("\t").append(subj);
                 }
             } else {
                 str.append("\n\t-");
