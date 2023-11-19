@@ -1,7 +1,6 @@
 package ru.nsu.primakova;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -17,7 +16,8 @@ public class SubstringSearch {
             return res;
         }
         var substr = new String(subString.getBytes(), StandardCharsets.UTF_8);
-        try (var reader = new BufferedReader(new InputStreamReader(new FileInputStream(filename), StandardCharsets.UTF_8))) {
+        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+        try (var reader = new BufferedReader(new InputStreamReader(classloader.getResourceAsStream(filename), StandardCharsets.UTF_8))) {
             int c;
             long indexSub = 0;
             long indexAll = 0;

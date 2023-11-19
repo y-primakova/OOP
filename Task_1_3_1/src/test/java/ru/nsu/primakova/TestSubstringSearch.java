@@ -15,7 +15,7 @@ public class TestSubstringSearch {
     @Test
     public void test_rus() {
         var list = new ArrayList<Long>();
-        list = SubstringSearch.read("src/main/resources/input_rus.txt", "бра");
+        list = SubstringSearch.read("input_rus.txt", "бра");
         var actual = new ArrayList<Long>();
         actual.add(1L);
         actual.add(8L);
@@ -26,7 +26,7 @@ public class TestSubstringSearch {
     @Test
     public void test_eng() {
         var list = new ArrayList<Long>();
-        list = SubstringSearch.read("src/main/resources/input_eng.txt", "bra");
+        list = SubstringSearch.read("input_eng.txt", "bra");
         var actual = new ArrayList<Long>();
         actual.add(1L);
         actual.add(8L);
@@ -37,7 +37,7 @@ public class TestSubstringSearch {
     @Test
     public void test() {
         var list = new ArrayList<Long>();
-        list = SubstringSearch.read("src/test/resources/test.txt", "⻃⻌");
+        list = SubstringSearch.read("test.txt", "⻃⻌");
         var actual = new ArrayList<Long>();
         actual.add(1L);
         actual.add(3L);
