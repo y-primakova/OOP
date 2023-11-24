@@ -14,7 +14,7 @@ public class Calculator {
         double res = 0;
         var haveDigit = false;
         var stack = new Stack<String>();
-        if(scanner.hasNextLine()) {
+        if (scanner.hasNextLine()) {
             var str = scanner.nextLine();
             scanner.close();
             var line = str.split(" ");
@@ -23,7 +23,7 @@ public class Calculator {
                     if (stack.isEmpty()) {
                         throw new IncorrectInputException("Incorrect number of operations.");
                     }
-                    if(!haveDigit) {
+                    if (!haveDigit) {
                         haveDigit = true;
                         res = Double.parseDouble(elem);
                         if (!Objects.equals(stack.peek(), "sin") && !Objects.equals(stack.peek(), "cos")
@@ -35,7 +35,7 @@ public class Calculator {
                             && !Objects.equals(stack.peek(), "sqrt") && !Objects.equals(stack.peek(), "log")) {
                         res = operation(res, Double.parseDouble(elem), stack.pop());
                     }
-                    while(!stack.isEmpty()) {
+                    while (!stack.isEmpty()) {
                         if (Objects.equals(stack.peek(), "sin") || Objects.equals(stack.peek(), "cos")
                                 || Objects.equals(stack.peek(), "sqrt") || Objects.equals(stack.peek(), "log")) {
                             res = operation(res, stack.pop());
@@ -75,8 +75,7 @@ public class Calculator {
         }
         if (Objects.equals(oper, "pow")) {
             return Math.pow(number1, number2);
-        }
-        else {
+        } else {
             throw new IncorrectInputException("Incorrect operation name(" + oper + ").");
         }
     }
@@ -99,8 +98,7 @@ public class Calculator {
         }
         if (Objects.equals(oper, "cos")) {
             return Math.cos(Math.toRadians(number));
-        }
-        else {
+        } else {
             throw new IncorrectInputException("Incorrect operation name(" + oper + ").");
         }
     }
