@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"ru.nsu.primakova","l":"Calculator"},{"p":"ru.nsu.primakova","l":"IncorrectInputException"},{"p":"ru.nsu.primakova","l":"Main"}]
