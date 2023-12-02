@@ -38,7 +38,7 @@ public class Calculator {
                     if (!haveDigit) {
                         haveDigit = true;
                         res = Double.parseDouble(elem);
-                        if(stack.isEmpty()) {
+                        if (stack.isEmpty()) {
                             continue;
                         }
                         if (!Objects.equals(stack.peek(), "sin") && !Objects.equals(stack.peek(), "cos")

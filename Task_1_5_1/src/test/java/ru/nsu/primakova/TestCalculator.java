@@ -7,7 +7,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
-
 import org.junit.jupiter.api.Test;
 
 /**
@@ -23,7 +22,7 @@ public class TestCalculator {
         var out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         calculator();
-        assertEquals(" = -4.567\r\n", out.toString());
+        assertEquals(" = -4.567\n", out.toString());
     }
 
     @Test
@@ -34,7 +33,7 @@ public class TestCalculator {
         var out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         calculator();
-        assertEquals(" = 7.0\r\n", out.toString());
+        assertEquals(" = 7.0\n", out.toString());
     }
 
     @Test
@@ -45,7 +44,7 @@ public class TestCalculator {
         var out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         calculator();
-        assertEquals(" = -2.24\r\n", out.toString());
+        assertEquals(" = -2.24\n", out.toString());
     }
 
     @Test
@@ -56,7 +55,7 @@ public class TestCalculator {
         var out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         calculator();
-        assertEquals(" = 3.51\r\n", out.toString());
+        assertEquals(" = 3.51\n", out.toString());
     }
 
     @Test
@@ -67,7 +66,7 @@ public class TestCalculator {
         var out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         calculator();
-        assertEquals(" = -20.0\r\n", out.toString());
+        assertEquals(" = -20.0\n", out.toString());
     }
 
     @Test
@@ -78,7 +77,7 @@ public class TestCalculator {
         var out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         calculator();
-        assertEquals(" = 3.24\r\n", out.toString());
+        assertEquals(" = 3.24\n", out.toString());
     }
 
     @Test
@@ -89,7 +88,7 @@ public class TestCalculator {
         var out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         calculator();
-        assertEquals(" = 27.0\r\n", out.toString());
+        assertEquals(" = 27.0\n", out.toString());
     }
 
     @Test
@@ -100,7 +99,7 @@ public class TestCalculator {
         var out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         calculator();
-        assertEquals(" = 0.0\r\n", out.toString());
+        assertEquals(" = 0.0\n", out.toString());
     }
 
     @Test
@@ -111,7 +110,7 @@ public class TestCalculator {
         var out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         calculator();
-        assertEquals(" = 1.2\r\n", out.toString());
+        assertEquals(" = 1.2\n", out.toString());
     }
 
     @Test
@@ -122,7 +121,7 @@ public class TestCalculator {
         var out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         calculator();
-        assertEquals(" = 0.0\r\n", out.toString());
+        assertEquals(" = 0.0\n", out.toString());
     }
 
     @Test
@@ -133,7 +132,7 @@ public class TestCalculator {
         var out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         calculator();
-        assertEquals(" = -1.0\r\n", out.toString());
+        assertEquals(" = -1.0\n", out.toString());
     }
 
     @Test
@@ -144,7 +143,7 @@ public class TestCalculator {
         var out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         calculator();
-        assertEquals(" = 0.0\r\n", out.toString());
+        assertEquals(" = 0.0\n", out.toString());
     }
 
     @Test
@@ -155,7 +154,7 @@ public class TestCalculator {
         var out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         calculator();
-        assertEquals(" = 1.0\r\n", out.toString());
+        assertEquals(" = 1.0\n", out.toString());
     }
 
     @Test
@@ -166,7 +165,7 @@ public class TestCalculator {
         var out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         calculator();
-        assertEquals(" = 49.99\r\n", out.toString());
+        assertEquals(" = 49.99\n", out.toString());
     }
 
     @Test
@@ -177,6 +176,6 @@ public class TestCalculator {
         var out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         calculator();
-        assertEquals(" = 11.8\r\n", out.toString());
+        assertEquals(" = 11.8\n", out.toString());
     }
 }
