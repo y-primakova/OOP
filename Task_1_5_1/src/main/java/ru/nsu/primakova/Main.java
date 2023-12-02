@@ -8,7 +8,7 @@ public class Main {
     /**
      * main.
      */
-    public static void main(String[] args) throws IncorrectInputException {
-        System.out.println(Calculator.calculator());
+    public static void main(String[] args) {
+        Calculator.calculator();
     }
 }
