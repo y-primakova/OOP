@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.nsu.primakova.TestRecordBook" tests="7" skipped="0" failures="0" errors="0" timestamp="2023-11-18T17:43:57" hostname="LAPTOP-T5M5ENBH" time="0.122">
+  <properties/>
+  <testcase name="testRedDiplomaTrue()" classname="ru.nsu.primakova.TestRecordBook" time="0.072"/>
+  <testcase name="testAverageGrade()" classname="ru.nsu.primakova.TestRecordBook" time="0.011"/>
+  <testcase name="testIncreasedStipend()" classname="ru.nsu.primakova.TestRecordBook" time="0.005"/>
+  <testcase name="testAddGrade()" classname="ru.nsu.primakova.TestRecordBook" time="0.003"/>
+  <testcase name="testRedDiplomaFalse()" classname="ru.nsu.primakova.TestRecordBook" time="0.003"/>
+  <testcase name="testNextSemester()" classname="ru.nsu.primakova.TestRecordBook" time="0.003"/>
+  <testcase name="testAddGradeCoursework()" classname="ru.nsu.primakova.TestRecordBook" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
