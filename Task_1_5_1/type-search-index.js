@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"ru.nsu.primakova","l":"Calculator"},{"p":"ru.nsu.primakova","l":"IncorrectInputException"},{"p":"ru.nsu.primakova","l":"Main"}]
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"ru.nsu.primakova","l":"Calculations"},{"p":"ru.nsu.primakova","l":"Calculator"},{"p":"ru.nsu.primakova","l":"IncorrectInputException"},{"p":"ru.nsu.primakova","l":"Main"},{"p":"ru.nsu.primakova","l":"Print"},{"p":"ru.nsu.primakova","l":"Read"}]
