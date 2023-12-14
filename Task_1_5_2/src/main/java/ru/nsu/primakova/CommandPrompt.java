@@ -62,21 +62,19 @@ public class CommandPrompt {
             parser.parseArgument(args);
             if (isWrongNumberOfCommands()) {
                 System.out.println("Wrong number of commands.");
-            }
-            if (add) {
+            } else if (add) {
                 addCommand();
             } else if (remove) {
                 rmCommand();
             } else if (show) {
                 showCommand();
             } else {
-                System.err.println("Wrong name of command.");
+                System.out.println("Wrong name of command.");
             }
         } catch (Exception e) {
             System.out.println("Wrong number of arguments.");
         }
     }
-
 
     private void addCommand() {
         if (arguments != null && arguments.length == 2 ) {

@@ -26,7 +26,7 @@ public class Json {
         try {
             objectMapper.writeValue(new File(filepath), notes);
         } catch (IOException e) {
-            System.err.print("Write failed.");
+            System.out.print("Write failed.");
         }
     }
 }
