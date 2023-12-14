@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.nsu.primakova.TestCalculator" tests="13" skipped="0" failures="0" errors="0" timestamp="2023-11-24T05:32:23" hostname="LAPTOP-T5M5ENBH" time="0.128">
+  <properties/>
+  <testcase name="testCos()" classname="ru.nsu.primakova.TestCalculator" time="0.057"/>
+  <testcase name="testDiv()" classname="ru.nsu.primakova.TestCalculator" time="0.003"/>
+  <testcase name="testLog()" classname="ru.nsu.primakova.TestCalculator" time="0.003"/>
+  <testcase name="testPow()" classname="ru.nsu.primakova.TestCalculator" time="0.003"/>
+  <testcase name="testSin()" classname="ru.nsu.primakova.TestCalculator" time="0.002"/>
+  <testcase name="testMinus()" classname="ru.nsu.primakova.TestCalculator" time="0.003"/>
+  <testcase name="testPlus()" classname="ru.nsu.primakova.TestCalculator" time="0.003"/>
+  <testcase name="testSqrt()" classname="ru.nsu.primakova.TestCalculator" time="0.003"/>
+  <testcase name="test1()" classname="ru.nsu.primakova.TestCalculator" time="0.004"/>
+  <testcase name="test2()" classname="ru.nsu.primakova.TestCalculator" time="0.004"/>
+  <testcase name="test3()" classname="ru.nsu.primakova.TestCalculator" time="0.003"/>
+  <testcase name="test4()" classname="ru.nsu.primakova.TestCalculator" time="0.002"/>
+  <testcase name="testMultiply()" classname="ru.nsu.primakova.TestCalculator" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
