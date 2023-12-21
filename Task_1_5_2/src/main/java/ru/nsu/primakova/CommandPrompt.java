@@ -1,7 +1,7 @@
 package ru.nsu.primakova;
 
-import static ru.nsu.primakova.Json.read;
-import static ru.nsu.primakova.Json.write;
+import static ru.nsu.primakova.Json.readJson;
+import static ru.nsu.primakova.Json.writeJson;
 
 import org.kohsuke.args4j.Argument;
 import org.kohsuke.args4j.CmdLineParser;
@@ -81,12 +81,12 @@ public class CommandPrompt {
             String title = arguments[0];
             String text = arguments[1];
             var note = new Note(title, text);
-            var notes = read(this.filepath);
+            var notes = readJson(this.filepath);
             if (notes == null) {
                 notes = new ArrayList<>();
             }
             notes.add(note);
-            write(notes, this.filepath);
+            writeJson(notes, this.filepath);
         } else {
             System.out.println("Wrong number of arguments.");
         }
@@ -95,14 +95,14 @@ public class CommandPrompt {
     private void rmCommand() {
         if (arguments != null && arguments.length == 1) {
             var title = arguments[0];
-            var notes = read(this.filepath);
+            var notes = readJson(this.filepath);
             if(notes != null) {
                 for (var note : notes) {
                     if (note.get_title().equals(title)) {
                         notes.remove(note);
                     }
                 }
-                write(notes, this.filepath);
+                writeJson(notes, this.filepath);
             }
         } else {
             System.out.println("Wrong number of arguments.");
@@ -110,7 +110,7 @@ public class CommandPrompt {
     }
 
     private void showCommand() {
-        var notes = read(this.filepath);
+        var notes = readJson(this.filepath);
         if (notes == null) {
             System.out.println("Notebook is empty.");
             return;

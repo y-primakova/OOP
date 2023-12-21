@@ -5,24 +5,24 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Json.
  */
 public class Json {
-    public static ArrayList<Note> read(String filepath) {
-        ObjectMapper objectMapper = new ObjectMapper();
+    public static List<Note> readJson(String filepath) {
+        var objectMapper = new ObjectMapper();
         try {
-            return objectMapper.readValue(new File(filepath), new TypeReference<ArrayList<Note>>() {});
+            return objectMapper.readValue(new File(filepath), new TypeReference<List<Note>>() {});
         } catch (IOException e) {
-            System.out.println("Read failed.");
+            System.out.println("Read failed."+filepath);
             return null;
         }
     }
 
-    public static void write(ArrayList<Note> notes, String filepath) {
-        ObjectMapper objectMapper = new ObjectMapper();
+    public static void writeJson(List<Note> notes, String filepath) {
+        var objectMapper = new ObjectMapper();
         try {
             objectMapper.writeValue(new File(filepath), notes);
         } catch (IOException e) {

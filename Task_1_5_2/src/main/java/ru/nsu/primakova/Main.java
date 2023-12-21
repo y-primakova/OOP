@@ -1,5 +1,12 @@
 package ru.nsu.primakova;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+
+import static ru.nsu.primakova.Json.writeJson;
+
 /**
  * Main.
  */
@@ -8,13 +15,14 @@ public class Main {
      * main.
      */
     public static void main(String[] args) {
-        String filepath = "notebook.json";
-        CommandPrompt commandParser = new CommandPrompt(filepath);
-        String[] command1 = new String[]{"-add", "title1", "text1"};
-        commandParser.parse(command1);
-//        var notes = read(filepath);
-//        for(var note:notes){
-//            System.out.println(note.get_title() + "\t" + note.get_text() + "\t" + note.get_date());
-//        }
+        //String filepath = "notebook.json";
+        String filepath = "src/main/resources/notebook.json";
+        if (!Files.exists(Path.of(filepath))) {
+            List<Note> notes = new ArrayList<>();
+            writeJson(notes, filepath);
+        }
+        var commandPrompt = new CommandPrompt(filepath);
+        var command1 = new String[]{"-add", "title1", "text1"};
+        commandPrompt.parse(command1);
     }
 }
