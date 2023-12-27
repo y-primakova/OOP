@@ -4,9 +4,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Note {
-    private final String text;
-    private final String title;
-    private final String date;
+    private String text;
+    private String title;
+    private String date;
+
+    public Note(){
+
+    }
 
     public Note(String title, String text){
         this.text = text;
@@ -14,15 +18,27 @@ public class Note {
         this.date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
     }
 
-    public String get_text(){
+    public String gettext(){
         return this.text;
     }
 
-    public String get_title(){
+    public String gettitle(){
         return this.title;
     }
 
-    public String get_date(){
+    public String getdate(){
         return this.date;
+    }
+
+    public void settext(String text){
+        this.text = text;
+    }
+
+    public void settitle(String title){
+        this.title = title;
+    }
+
+    public void setdate(String date){
+        this.date = date;
     }
 }

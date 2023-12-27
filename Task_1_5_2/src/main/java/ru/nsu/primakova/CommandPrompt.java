@@ -6,9 +6,6 @@ import static ru.nsu.primakova.Json.writeJson;
 import org.kohsuke.args4j.Argument;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 /**
  * CommandPrompt.
@@ -20,14 +17,17 @@ public class CommandPrompt {
     private boolean add;
 
     @Option(name = "-rm", usage = "remove note")
-    private boolean remove;
+    private boolean rm;
 
     @Option(name = "-show", usage = "show notes")
     private boolean show;
 
+    @Option(name = "-help", usage = "show all commands")
+    private boolean help;
+
     @Argument(metaVar = "arguments", usage = "arguments for command")
     private String[] arguments;
-
+//set_new_path   config
     public CommandPrompt(String filepath) {
         this.filepath = filepath;
     }
@@ -37,10 +37,13 @@ public class CommandPrompt {
         if (add) {
             count++;
         }
-        if (remove) {
+        if (rm) {
             count++;
         }
         if (show) {
+            count++;
+        }
+        if (help) {
             count++;
         }
         if (count > 1) {
@@ -51,8 +54,9 @@ public class CommandPrompt {
 
     private void setAllFalse() {
         this.add = false;
-        this.remove = false;
+        this.rm = false;
         this.show = false;
+        this.help = false;
     }
 
     public void parse(String[] args) {
@@ -64,89 +68,39 @@ public class CommandPrompt {
                 System.out.println("Wrong number of commands.");
             } else if (add) {
                 addCommand();
-            } else if (remove) {
+            } else if (rm) {
                 rmCommand();
             } else if (show) {
                 showCommand();
             } else {
-                System.out.println("Wrong name of command.");
+                helpCommand();
             }
         } catch (Exception e) {
-            System.out.println("Wrong number of arguments.");
+            System.out.println("Wrong number of arguments.WWWWw");
         }
     }
 
     private void addCommand() {
-        if (arguments != null && arguments.length == 2 ) {
-            String title = arguments[0];
-            String text = arguments[1];
-            var note = new Note(title, text);
-            var notes = readJson(this.filepath);
-            if (notes == null) {
-                notes = new ArrayList<>();
-            }
-            notes.add(note);
-            writeJson(notes, this.filepath);
-        } else {
-            System.out.println("Wrong number of arguments.");
-        }
+        var notes = new Notebook(readJson(filepath));
+        notes.add(arguments);
+        writeJson(notes.get_notes(), filepath);
     }
 
     private void rmCommand() {
-        if (arguments != null && arguments.length == 1) {
-            var title = arguments[0];
-            var notes = readJson(this.filepath);
-            if(notes != null) {
-                for (var note : notes) {
-                    if (note.get_title().equals(title)) {
-                        notes.remove(note);
-                    }
-                }
-                writeJson(notes, this.filepath);
-            }
-        } else {
-            System.out.println("Wrong number of arguments.");
-        }
+        var notes = new Notebook(readJson(filepath));
+        notes.rm(arguments);
+        writeJson(notes.get_notes(), filepath);
     }
 
     private void showCommand() {
-        var notes = readJson(this.filepath);
-        if (notes == null) {
-            System.out.println("Notebook is empty.");
-            return;
-        }
-        if (arguments == null || arguments.length == 0) {
-            for (var note : notes) {
-                System.out.println(note);
-            }
-            return;
-        }
-        if (arguments.length == 1) {
-            System.out.println("Wrong number of arguments.");
-        }
-        if (arguments.length >= 2) {
-            var from = LocalDateTime.parse(arguments[0], DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
-            var to = LocalDateTime.parse(arguments[1], DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
-            for (var note : notes) {
-                if (LocalDateTime.parse(note.get_date(), DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")).isAfter(from)
-                        && LocalDateTime.parse(note.get_date(), DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")).isBefore(to)) {
-                    if (arguments.length >= 3) {
-                        boolean containsAll = true;
-                        for (int i = 2; i < arguments.length; i++) {
-                            if (note.get_title().contains(arguments[i])) {
-                                continue;
-                            }
-                            containsAll = false;
-                            break;
-                        }
-                        if (containsAll) {
-                            System.out.println(note.get_title() + "\t" + note.get_text() + "\t" + note.get_date());
-                        }
-                    } else {
-                        System.out.println(note.get_title() + "\t" + note.get_text() + "\t" + note.get_date());
-                    }
-                }
-            }
-        }
+        var notes = new Notebook(readJson(filepath));
+        notes.show(arguments);
+        System.out.println(notes.toString());
+    }
+
+    private void helpCommand() {
+        System.out.println("-add: add note to list");
+        System.out.println("-rm: remove note from list");
+        System.out.println("-show: show notes from list");
     }
 }

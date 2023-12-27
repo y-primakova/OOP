@@ -16,7 +16,7 @@ public class Json {
         try {
             return objectMapper.readValue(new File(filepath), new TypeReference<List<Note>>() {});
         } catch (IOException e) {
-            System.out.println("Read failed."+filepath);
+            System.out.println("Read failed.");
             return null;
         }
     }

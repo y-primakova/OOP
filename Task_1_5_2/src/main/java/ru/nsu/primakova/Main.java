@@ -15,14 +15,17 @@ public class Main {
      * main.
      */
     public static void main(String[] args) {
-        //String filepath = "notebook.json";
-        String filepath = "src/main/resources/notebook.json";
+        var filepath = "notebook.json";
         if (!Files.exists(Path.of(filepath))) {
             List<Note> notes = new ArrayList<>();
             writeJson(notes, filepath);
         }
         var commandPrompt = new CommandPrompt(filepath);
-        var command1 = new String[]{"-add", "title1", "text1"};
+        var command1 = new String[]{"-show"};
         commandPrompt.parse(command1);
     }
 }
+
+
+
+
