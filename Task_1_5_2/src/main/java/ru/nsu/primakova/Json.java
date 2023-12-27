@@ -12,7 +12,8 @@ import java.util.List;
 public class Json {
     /**
      * read .json file.
-     * @param filepath
+     *
+     * @param filepath - path to the file
      * @return list of notes
      */
     public static List<Note> readJson(String filepath) {
@@ -27,8 +28,9 @@ public class Json {
 
     /**
      * write .json file.
+     * 
      * @param notes - list of notes
-     * @param filepath
+     * @param filepath - path to the file
      */
     public static void writeJson(List<Note> notes, String filepath) {
         var objectMapper = new ObjectMapper();
