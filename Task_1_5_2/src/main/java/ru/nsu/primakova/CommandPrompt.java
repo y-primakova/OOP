@@ -27,7 +27,7 @@ public class CommandPrompt {
 
     @Argument(metaVar = "arguments", usage = "arguments for command")
     private String[] arguments;
-//set_new_path   config
+
     public CommandPrompt(String filepath) {
         this.filepath = filepath;
     }
@@ -76,7 +76,7 @@ public class CommandPrompt {
                 helpCommand();
             }
         } catch (Exception e) {
-            System.out.println("Wrong number of arguments.WWWWw");
+            System.out.println(e);
         }
     }
 

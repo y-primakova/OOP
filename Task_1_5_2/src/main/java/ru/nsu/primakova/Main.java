@@ -1,11 +1,11 @@
 package ru.nsu.primakova;
 
+import static ru.nsu.primakova.Json.writeJson;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-
-import static ru.nsu.primakova.Json.writeJson;
 
 /**
  * Main.

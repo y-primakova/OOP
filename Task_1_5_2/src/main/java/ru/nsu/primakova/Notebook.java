@@ -1,6 +1,8 @@
 package ru.nsu.primakova;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,21 +20,35 @@ public class Notebook {
     public Notebook(Note note) {
         this.notes = new ArrayList<>();
         this.notes.add(note);
+        changeTime();
     }
 
     public Notebook(List<Note> note) {
         this.notes = note;
+        changeTime();
     }
 
-    public List<Note> get_notes(){
+    public List<Note> get_notes() {
         return this.notes;
+    }
+
+    private void changeTime() {
+        for (var note : this.notes) {
+            var format = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm").withZone(ZoneId.systemDefault());
+            var newTime = ZonedDateTime.parse(note.getdate(), format).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime().format(format);
+            note.setdate(newTime);
+        }
     }
 
     public void addNote(Note note) {
         this.notes.add(note);
+        changeTime();
     }
 
-    public void add(String[] arguments){
+    /**
+     * add note.
+     */
+    public void add(String[] arguments) {
         if (arguments != null && arguments.length == 2) {
             String title = arguments[0];
             String text = arguments[1];
@@ -41,29 +57,37 @@ public class Notebook {
         } else {
             System.out.println("Wrong number of arguments.");
         }
+        changeTime();
     }
 
+    /**
+     * remove note.
+     */
     public void rm(String[] arguments) {
         if (arguments != null && arguments.length == 1) {
-            var new_notes = new ArrayList<>(this.notes);
+            var res = new ArrayList<>(this.notes);
             var title = arguments[0];
             for (var note : this.notes) {
                 if (note.gettitle().equals(title)) {
-                    new_notes.remove(note);
+                    res.remove(note);
                 }
             }
-            this.notes = new_notes;
+            this.notes = res;
         } else {
             System.out.println("Wrong number of arguments.");
         }
+        changeTime();
     }
 
+    /**
+     * show notes.
+     */
     public void show(String[] arguments) {
         if (this.notes == null) {
             System.out.println("Notebook is empty.");
-        } else if (arguments!=null && arguments.length == 1) {
+        } else if (arguments != null && arguments.length == 1) {
             System.out.println("Wrong number of arguments.");
-        } else if (arguments!=null && arguments.length >= 2) {
+        } else if (arguments != null && arguments.length >= 2) {
             var res = new Notebook();
             var from = LocalDateTime.parse(arguments[0], DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
             var to = LocalDateTime.parse(arguments[1], DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
@@ -89,13 +113,15 @@ public class Notebook {
             }
             this.notes = res.get_notes();
         }
+        changeTime();
     }
 
     @Override
-    public String toString(){
+    public String toString() {
+        changeTime();
         var str = new StringBuilder();
         str.append("Title\tText\tDate");
-        for(var note : this.notes) {
+        for (var note : this.notes) {
             str.append("\n");
             str.append(note.gettitle());
             str.append("\t");

@@ -1,6 +1,7 @@
 package ru.nsu.primakova;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 public class Note {
@@ -8,37 +9,47 @@ public class Note {
     private String title;
     private String date;
 
-    public Note(){
+    /**
+     * Class constructor.
+     */
+    public Note() {
 
     }
 
-    public Note(String title, String text){
+    /**
+     * Class constructor.
+     *
+     * @param title - title of the new note
+     * @param text - title of the new note
+     */
+    public Note(String title, String text) {
         this.text = text;
         this.title = title;
-        this.date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
+        var format = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm").withZone(ZoneId.systemDefault());
+        this.date = LocalDateTime.now().format(format);
     }
 
-    public String gettext(){
+    public String gettext() {
         return this.text;
     }
 
-    public String gettitle(){
+    public String gettitle() {
         return this.title;
     }
 
-    public String getdate(){
+    public String getdate() {
         return this.date;
     }
 
-    public void settext(String text){
+    public void settext(String text) {
         this.text = text;
     }
 
-    public void settitle(String title){
+    public void settitle(String title) {
         this.title = title;
     }
 
-    public void setdate(String date){
+    public void setdate(String date) {
         this.date = date;
     }
 }
