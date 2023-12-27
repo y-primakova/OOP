@@ -10,6 +10,11 @@ import java.util.List;
  * Json.
  */
 public class Json {
+    /**
+     * read .json file.
+     * @param filepath
+     * @return list of notes
+     */
     public static List<Note> readJson(String filepath) {
         var objectMapper = new ObjectMapper();
         try {
@@ -20,6 +25,11 @@ public class Json {
         }
     }
 
+    /**
+     * write .json file.
+     * @param notes - list of notes
+     * @param filepath
+     */
     public static void writeJson(List<Note> notes, String filepath) {
         var objectMapper = new ObjectMapper();
         try {
