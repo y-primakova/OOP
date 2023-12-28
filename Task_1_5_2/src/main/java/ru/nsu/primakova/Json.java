@@ -30,7 +30,7 @@ public class Json {
      * write .json file.
      *
      * @param notes - list of notes
-     *              
+     *
      * @param filepath - path to the file
      */
     public static void writeJson(List<Note> notes, String filepath) {

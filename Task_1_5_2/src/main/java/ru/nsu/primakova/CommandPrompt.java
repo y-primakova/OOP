@@ -3,9 +3,15 @@ package ru.nsu.primakova;
 import static ru.nsu.primakova.Json.readJson;
 import static ru.nsu.primakova.Json.writeJson;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.kohsuke.args4j.Argument;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * CommandPrompt.
@@ -22,14 +28,29 @@ public class CommandPrompt {
     @Option(name = "-show", usage = "show notes")
     private boolean show;
 
+    @Option(name = "-path", usage = "set new path")
+    private boolean path;
+
     @Option(name = "-help", usage = "show all commands")
     private boolean help;
 
     @Argument(metaVar = "arguments", usage = "arguments for command")
     private String[] arguments;
 
-    public CommandPrompt(String filepath) {
-        this.filepath = filepath;
+    public CommandPrompt() {
+        Path filepath1;
+        var objectMapper = new ObjectMapper();
+        try {
+            filepath1 = objectMapper.readValue(new File("config.json"), Path.class);
+        } catch (IOException e) {
+            System.err.println("Read path failed.");
+            filepath1 = null;
+        }
+        this.filepath = filepath1.getpath();
+    }
+
+    public String getpath() {
+        return this.filepath;
     }
 
     private boolean isWrongNumberOfCommands() {
@@ -41,6 +62,9 @@ public class CommandPrompt {
             count++;
         }
         if (show) {
+            count++;
+        }
+        if (path) {
             count++;
         }
         if (help) {
@@ -56,6 +80,7 @@ public class CommandPrompt {
         this.add = false;
         this.rm = false;
         this.show = false;
+        this.path = false;
         this.help = false;
     }
 
@@ -72,6 +97,8 @@ public class CommandPrompt {
                 rmCommand();
             } else if (show) {
                 showCommand();
+            } else if (path) {
+                pathCommand();
             } else {
                 helpCommand();
             }
@@ -96,6 +123,19 @@ public class CommandPrompt {
         var notes = new Notebook(readJson(filepath));
         notes.show(arguments);
         System.out.println(notes.toString());
+    }
+
+    private void pathCommand() {
+        if(arguments.length == 1) {
+            var objectMapper = new ObjectMapper();
+            try {
+                objectMapper.writeValue(new File("config.json"), arguments[0]);
+            } catch (IOException e) {
+                System.out.print("Write failed.");
+            }
+        } else {
+            System.out.println("Wrong number of arguments.");
+        }
     }
 
     private void helpCommand() {

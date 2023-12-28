@@ -112,9 +112,25 @@ public class Notebook {
                 }
             }
             this.notes = res.get_notes();
+            for (var note1 : this.notes) {
+                for (var note2 : this.notes) {
+                    var date2 = LocalDateTime.parse(note2.getdate(), DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
+                    if (LocalDateTime.parse(note1.getdate(), DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")).isAfter(date2)) {
+                        var temp = note1;
+                        note1.settext(note2.gettext());
+                        note1.settext(note2.gettitle());
+                        note1.settext(note2.getdate());
+                        note1.settext(temp.gettext());
+                        note1.settext(temp.gettitle());
+                        note1.settext(temp.getdate());
+                    }
+                }
+            }
         }
         changeTime();
     }
+
+
 
     @Override
     public String toString() {
