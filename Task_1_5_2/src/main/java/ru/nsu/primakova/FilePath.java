@@ -1,5 +1,8 @@
 package ru.nsu.primakova;
 
+/**
+ * FilePath.
+ */
 public class FilePath {
     private String path;
 
@@ -11,11 +14,11 @@ public class FilePath {
         this.path = path;
     }
 
-    public void setpath(String path){
+    public void setpath(String path) {
         this.path = path;
     }
 
-    public String getpath(){
+    public String getpath() {
         return this.path;
     }
 }

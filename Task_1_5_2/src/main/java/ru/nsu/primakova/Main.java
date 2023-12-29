@@ -1,12 +1,7 @@
 package ru.nsu.primakova;
 
-import com.fasterxml.jackson.core.ObjectCodec;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import static ru.nsu.primakova.Json.writeJson;
 
-import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;

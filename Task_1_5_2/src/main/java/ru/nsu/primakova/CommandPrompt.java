@@ -3,13 +3,12 @@ package ru.nsu.primakova;
 import static ru.nsu.primakova.Json.readJson;
 import static ru.nsu.primakova.Json.writeJson;
 
+import java.io.File;
+import java.io.IOException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.kohsuke.args4j.Argument;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
-
-import java.io.File;
-import java.io.IOException;
 
 /**
  * CommandPrompt.
@@ -122,7 +121,7 @@ public class CommandPrompt {
     }
 
     private void pathCommand() {
-        if(arguments.length == 1) {
+        if (arguments.length == 1) {
             var objectMapper = new ObjectMapper();
             try {
                 objectMapper.writeValue(new File("config.json"), new FilePath(arguments[0]));

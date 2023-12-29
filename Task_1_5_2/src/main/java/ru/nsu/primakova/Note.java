@@ -1,13 +1,8 @@
 package ru.nsu.primakova;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
-
-import static com.fasterxml.jackson.databind.type.LogicalType.DateTime;
 
 /**
  * Note.
