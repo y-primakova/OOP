@@ -3,9 +3,9 @@ package ru.nsu.primakova;
 import static ru.nsu.primakova.Json.readJson;
 import static ru.nsu.primakova.Json.writeJson;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.kohsuke.args4j.Argument;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
