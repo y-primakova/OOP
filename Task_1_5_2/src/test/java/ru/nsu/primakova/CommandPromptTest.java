@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 public class CommandPromptTest {
     @Test
     public void testAdd() {
-//        var filepath = "src/test/resources/testCommandPrompt.json";
         var commandPrompt = new CommandPrompt();
         var command = new String[]{"-path", "src/test/resources/testCommandPrompt.json"};
         commandPrompt.parse(command);
@@ -32,7 +31,6 @@ public class CommandPromptTest {
         var command = new String[]{"-path", "src/test/resources/testCommandPrompt.json"};
         var commandPrompt = new CommandPrompt();
         commandPrompt.parse(command);
-//        var filepath = "src/test/resources/testCommandPrompt.json";
         List<Note> notes = new ArrayList<>();
         writeJson(notes, commandPrompt.getpath());
         var command1 = new String[]{"-add", "title1", "text1"};

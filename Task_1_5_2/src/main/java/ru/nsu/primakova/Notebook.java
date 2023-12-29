@@ -2,6 +2,7 @@ package ru.nsu.primakova;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -20,29 +21,18 @@ public class Notebook {
     public Notebook(Note note) {
         this.notes = new ArrayList<>();
         this.notes.add(note);
-        changeTime();
     }
 
     public Notebook(List<Note> note) {
         this.notes = note;
-        changeTime();
     }
 
     public List<Note> get_notes() {
         return this.notes;
     }
 
-    private void changeTime() {
-        for (var note : this.notes) {
-            var format = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm").withZone(ZoneId.systemDefault());
-            var newTime = ZonedDateTime.parse(note.getdate(), format).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime().format(format);
-            note.setdate(newTime);
-        }
-    }
-
     public void addNote(Note note) {
         this.notes.add(note);
-        changeTime();
     }
 
     /**
@@ -57,7 +47,6 @@ public class Notebook {
         } else {
             System.out.println("Wrong number of arguments.");
         }
-        changeTime();
     }
 
     /**
@@ -76,7 +65,6 @@ public class Notebook {
         } else {
             System.out.println("Wrong number of arguments.");
         }
-        changeTime();
     }
 
     /**
@@ -85,8 +73,6 @@ public class Notebook {
     public void show(String[] arguments) {
         if (this.notes == null) {
             System.out.println("Notebook is empty.");
-        } else if (arguments != null && arguments.length == 1) {
-            System.out.println("Wrong number of arguments.");
         } else if (arguments != null && arguments.length >= 2) {
             var res = new Notebook();
             var from = LocalDateTime.parse(arguments[0], DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
@@ -112,29 +98,30 @@ public class Notebook {
                 }
             }
             this.notes = res.get_notes();
-            for (var note1 : this.notes) {
-                for (var note2 : this.notes) {
-                    var date2 = LocalDateTime.parse(note2.getdate(), DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
-                    if (LocalDateTime.parse(note1.getdate(), DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")).isAfter(date2)) {
-                        var temp = note1;
-                        note1.settext(note2.gettext());
-                        note1.settext(note2.gettitle());
-                        note1.settext(note2.getdate());
-                        note1.settext(temp.gettext());
-                        note1.settext(temp.gettitle());
-                        note1.settext(temp.getdate());
-                    }
+        }
+        sortDate();
+    }
+
+    private void sortDate() {
+        for (var note1 : this.notes) {
+            for (var note2 : this.notes) {
+                var date2 = LocalDateTime.parse(note2.getdate(), DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
+                if (LocalDateTime.parse(note1.getdate(), DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")).isBefore(date2)) {
+                    var temp = new Note(note1.gettitle(), note1.gettext());
+                    temp.setdate(note1.getdate());
+                    note1.settext(note2.gettext());
+                    note1.settitle(note2.gettitle());
+                    note1.setdate(note2.getdate());
+                    note2.settext(temp.gettext());
+                    note2.settitle(temp.gettitle());
+                    note2.setdate(temp.getdate());
                 }
             }
         }
-        changeTime();
     }
-
-
 
     @Override
     public String toString() {
-        changeTime();
         var str = new StringBuilder();
         str.append("Title\tText\tDate");
         for (var note : this.notes) {
@@ -143,7 +130,9 @@ public class Notebook {
             str.append("\t");
             str.append(note.gettext());
             str.append("\t");
-            str.append(note.getdate());
+            var format = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm").withZone(ZoneOffset.UTC);
+            var date = ZonedDateTime.parse(note.getdate(), format).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime().format(format);
+            str.append(date);
         }
         return str.toString();
     }

@@ -3,7 +3,6 @@ package ru.nsu.primakova;
 import static ru.nsu.primakova.Json.readJson;
 import static ru.nsu.primakova.Json.writeJson;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.kohsuke.args4j.Argument;
 import org.kohsuke.args4j.CmdLineParser;
@@ -11,13 +10,12 @@ import org.kohsuke.args4j.Option;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * CommandPrompt.
  */
 public class CommandPrompt {
-    private final String filepath;
+    private String filepath;
 
     @Option(name = "-add", usage = "add note")
     private boolean add;
@@ -38,15 +36,13 @@ public class CommandPrompt {
     private String[] arguments;
 
     public CommandPrompt() {
-        Path filepath1;
         var objectMapper = new ObjectMapper();
         try {
-            filepath1 = objectMapper.readValue(new File("config.json"), Path.class);
+            var filepath1 = objectMapper.readValue(new File("config.json"), FilePath.class);
+            this.filepath = filepath1.getpath();
         } catch (IOException e) {
             System.err.println("Read path failed.");
-            filepath1 = null;
         }
-        this.filepath = filepath1.getpath();
     }
 
     public String getpath() {
@@ -129,18 +125,20 @@ public class CommandPrompt {
         if(arguments.length == 1) {
             var objectMapper = new ObjectMapper();
             try {
-                objectMapper.writeValue(new File("config.json"), arguments[0]);
+                objectMapper.writeValue(new File("config.json"), new FilePath(arguments[0]));
             } catch (IOException e) {
                 System.out.print("Write failed.");
             }
         } else {
             System.out.println("Wrong number of arguments.");
         }
+        this.filepath = arguments[0];
     }
 
     private void helpCommand() {
         System.out.println("-add: add note to list");
         System.out.println("-rm: remove note from list");
         System.out.println("-show: show notes from list");
+        System.out.println("-path: set new path");
     }
 }
