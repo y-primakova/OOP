@@ -14,11 +14,11 @@ public class Parallel {
         var thread = new MyThread[numberThread];
         int indThread = 0;
         for (int i = 0; i < numberThread - 1; i++) {
-            thread[indThread] = new MyThread(Arrays.copyOfRange(arr,i * x, (i + 1) * x));
+            thread[indThread] = new MyThread(Arrays.copyOfRange(arr, i * x, (i + 1) * x));
             thread[indThread].start();
             indThread++;
         }
-        thread[indThread] = new MyThread(Arrays.copyOfRange(arr,(numberThread - 1) * x, arr.length));
+        thread[indThread] = new MyThread(Arrays.copyOfRange(arr, (numberThread - 1) * x, arr.length));
         thread[indThread].start();
 
         for (int i = 0; i < numberThread; i++) {
