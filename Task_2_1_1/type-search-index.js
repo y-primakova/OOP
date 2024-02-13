@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"ru.nsu.primakova","l":"CompositeNumbers"},{"p":"ru.nsu.primakova","l":"Consistent"},{"p":"ru.nsu.primakova","l":"Main"},{"p":"ru.nsu.primakova","l":"Parallel.MyThread"},{"p":"ru.nsu.primakova","l":"Parallel"},{"p":"ru.nsu.primakova","l":"ParallelStream"},{"p":"ru.nsu.primakova","l":"WrongNumberException"}]
