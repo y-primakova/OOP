@@ -3,7 +3,7 @@ plugins {
     id 'jacoco'
 }
 
-group = 'ru.nsu.primakova'
+group = 'ru.nsu.primakova.hascompositecheck'
 version = '1.0-SNAPSHOT'
 
 repositories {
