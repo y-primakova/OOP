@@ -21,11 +21,11 @@ public class ForTests {
         var arr = new ArrayList<Integer>();
         int count = 0;
         for (int i = Integer.MAX_VALUE; i > 0; i -= 2) {
-            if (!isComposite(i)) {
+            if (count == n) {
+                break;
+            } else if (!isComposite(i)) {
                 arr.add(i);
                 count++;
-            } if (count == n) {
-               break;
             }
         }
         var writer = new BufferedWriter(new FileWriter("test"));

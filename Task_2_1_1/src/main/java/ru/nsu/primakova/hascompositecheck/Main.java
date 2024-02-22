@@ -29,17 +29,17 @@ public class Main {
         startTime = System.currentTimeMillis();
         System.out.print(a.isCompositeInArray(list) + " ");
         endTime = System.currentTimeMillis();
-        System.out.println(endTime-startTime);
+        System.out.println(endTime - startTime);
 
         var b = new ParallelStream();
         System.out.print("ParallelStream: ");
         startTime = System.currentTimeMillis();
         System.out.print(b.isCompositeInArray(list) + " ");
         endTime = System.currentTimeMillis();
-        System.out.println(endTime-startTime);
+        System.out.println(endTime - startTime);
 
         System.out.println("Parallel:");
-        for(int i = 0; i <= 1000; i += 100) {
+        for (int i = 0; i <= 1000; i += 100) {
             Parallel c;
             if (i == 0) {
                 c = new Parallel();
@@ -50,7 +50,7 @@ public class Main {
             startTime = System.currentTimeMillis();
             System.out.print(c.isCompositeInArray(list) + " ");
             endTime = System.currentTimeMillis();
-            System.out.println(endTime-startTime);
+            System.out.println(endTime - startTime);
         }
     }
 }
