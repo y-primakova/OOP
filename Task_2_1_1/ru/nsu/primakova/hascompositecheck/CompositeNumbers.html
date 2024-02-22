@@ -181,7 +181,9 @@ extends java.lang.Object</pre>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isComposite(int)">isComposite</a></span>&#8203;(int&nbsp;num)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Checks if the number is composite.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>abstract boolean</code></td>
@@ -238,6 +240,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>isComposite</h4>
 <pre class="methodSignature">public static&nbsp;boolean&nbsp;isComposite&#8203;(int&nbsp;num)</pre>
+<div class="block">Checks if the number is composite.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>num</code> - - number.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if number is composite.</dd>
+</dl>
 </li>
 </ul>
 <a id="isCompositeInArray(java.util.List)">
@@ -247,10 +256,12 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>isCompositeInArray</h4>
 <pre class="methodSignature">public abstract&nbsp;boolean&nbsp;isCompositeInArray&#8203;(java.util.List&lt;java.lang.Integer&gt;&nbsp;arr)
-                                    throws java.lang.InterruptedException</pre>
+                                    throws java.lang.InterruptedException,
+                                           java.util.concurrent.ExecutionException</pre>
 <dl>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.InterruptedException</code></dd>
+<dd><code>java.util.concurrent.ExecutionException</code></dd>
 </dl>
 </li>
 </ul>

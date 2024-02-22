@@ -163,7 +163,9 @@ extends <a href="CompositeNumbers.html" title="class in ru.nsu.primakova.hascomp
 </tr>
 <tr class="rowColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(int)">ParallelStream</a></span>&#8203;(int&nbsp;numberThread)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Constructor.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -235,6 +237,11 @@ extends <a href="CompositeNumbers.html" title="class in ru.nsu.primakova.hascomp
 <li class="blockList">
 <h4>ParallelStream</h4>
 <pre>public&nbsp;ParallelStream&#8203;(int&nbsp;numberThread)</pre>
+<div class="block">Constructor.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>numberThread</code> - - number of threads.</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -253,10 +260,15 @@ extends <a href="CompositeNumbers.html" title="class in ru.nsu.primakova.hascomp
 <ul class="blockListLast">
 <li class="blockList">
 <h4>isCompositeInArray</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;isCompositeInArray&#8203;(java.util.List&lt;java.lang.Integer&gt;&nbsp;arr)</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isCompositeInArray&#8203;(java.util.List&lt;java.lang.Integer&gt;&nbsp;arr)
+                           throws java.util.concurrent.ExecutionException,
+                                  java.lang.InterruptedException</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="CompositeNumbers.html#isCompositeInArray(java.util.List)">isCompositeInArray</a></code>&nbsp;in class&nbsp;<code><a href="CompositeNumbers.html" title="class in ru.nsu.primakova.hascompositecheck">CompositeNumbers</a></code></dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.util.concurrent.ExecutionException</code></dd>
+<dd><code>java.lang.InterruptedException</code></dd>
 </dl>
 </li>
 </ul>
