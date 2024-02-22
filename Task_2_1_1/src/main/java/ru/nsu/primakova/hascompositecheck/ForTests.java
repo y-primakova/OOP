@@ -15,7 +15,7 @@ public class ForTests {
      * Creates a list of prime numbers.
      *
      * @param n - number of numbers in list.
-     * @throws IOException
+     * @throws IOException - .
      */
     public static void testFile(int n) throws IOException {
         var arr = new ArrayList<Integer>();
