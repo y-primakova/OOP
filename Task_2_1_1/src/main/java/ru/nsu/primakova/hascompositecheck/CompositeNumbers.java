@@ -1,11 +1,18 @@
 package ru.nsu.primakova.hascompositecheck;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Class CompositeNumbers.
  */
 public abstract class CompositeNumbers {
+    /**
+     * Checks if the number is composite.
+     *
+     * @param num - number.
+     * @return true if number is composite.
+     */
     public static boolean isComposite(int num) {
         if (num == 1) {
             return true;
@@ -18,5 +25,5 @@ public abstract class CompositeNumbers {
         return false;
     }
 
-    public abstract boolean isCompositeInArray(List<Integer> arr) throws InterruptedException;
+    public abstract boolean isCompositeInArray(List<Integer> arr) throws InterruptedException, ExecutionException;
 }

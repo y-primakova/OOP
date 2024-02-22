@@ -11,15 +11,20 @@ import java.util.ArrayList;
  * Class ForTests.
  */
 public class ForTests {
+    /**
+     * Creates a list of prime numbers.
+     *
+     * @param n - number of numbers in list.
+     * @throws IOException
+     */
     public static void testFile(int n) throws IOException {
         var arr = new ArrayList<Integer>();
         int count = 0;
-        for (int i = Integer.MAX_VALUE; i > 0; i--) {
+        for (int i = Integer.MAX_VALUE; i > 0; i -= 2) {
             if (!isComposite(i)) {
                 arr.add(i);
                 count++;
-            }
-            if (count == n) {
+            } if (count == n) {
                break;
             }
         }

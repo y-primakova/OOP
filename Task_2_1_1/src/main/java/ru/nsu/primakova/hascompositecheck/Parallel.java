@@ -5,12 +5,18 @@ import java.util.List;
 /**
  * Class Parallel.
  */
-public class Parallel extends CompositeNumbers{
+public class Parallel extends CompositeNumbers {
     private final int numberThread;
+
     public Parallel() {
         this.numberThread = 1;
     }
 
+    /**
+     * Constructor.
+     *
+     * @param numberThread - number of threads.
+     */
     public Parallel(int numberThread) {
         if (numberThread < 1) {
             this.numberThread = 1;
