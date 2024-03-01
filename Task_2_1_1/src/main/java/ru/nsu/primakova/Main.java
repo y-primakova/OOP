@@ -42,7 +42,7 @@ public class Main {
         System.out.println(endTime - startTime);
 
         System.out.println("Parallel:");
-        for (int i = 1; i <= 64; i *=2 ) {
+        for (int i = 1; i <= 64; i *= 2) {
             Parallel c;
             c = new Parallel(i);
             System.out.print(i + " ");
