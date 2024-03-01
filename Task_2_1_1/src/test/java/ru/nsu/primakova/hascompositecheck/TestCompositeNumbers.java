@@ -21,7 +21,7 @@ public class TestCompositeNumbers {
 
     @Test
     public void test3() {
-        assertTrue(CompositeNumbers.isComposite(27));
+        assertTrue(CompositeNumbers.isComposite(1));
     }
 
     @Test
