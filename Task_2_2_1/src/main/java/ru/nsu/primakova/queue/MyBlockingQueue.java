@@ -31,7 +31,7 @@ public class MyBlockingQueue<T> {
         return this.queue.poll();
     }
 
-    public synchronized void add(T t) {
+    public synchronized void add(T t) throws InterruptedException {
         this.queue.add(t);
     }
 }

@@ -1,16 +1,14 @@
 package ru.nsu.primakova.pizzeria;
 
-import ru.nsu.primakova.queue.MyBlockingQueue;
-
 /**
  * Class Delivery.
  */
 public class Delivery implements Runnable {
-    private final MyBlockingQueue<Integer> storage;
+    private Storage storage;
     private final int capacity;
-    private final int deliveryTime = 100;
+    private final int deliveryTime = 1;
 
-    public Delivery(int capacity, MyBlockingQueue<Integer> storage) {
+    public Delivery(int capacity, Storage storage) {
         if (capacity <= 0) {
             this.capacity = 1;
         } else {

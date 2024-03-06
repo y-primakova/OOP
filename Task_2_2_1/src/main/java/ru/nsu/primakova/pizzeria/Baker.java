@@ -7,10 +7,10 @@ import ru.nsu.primakova.queue.MyBlockingQueue;
  */
 public class Baker implements Runnable {
     private final MyBlockingQueue<Integer> orders;
-    private final MyBlockingQueue<Integer> storage;
+    private final Storage storage;
     private final int cookingTime;
 
-    public Baker(int cookingTime, MyBlockingQueue<Integer> orders, MyBlockingQueue<Integer> storage) {
+    public Baker(int cookingTime, MyBlockingQueue<Integer> orders, Storage storage) {
         if (cookingTime <= 0) {
             this.cookingTime = 1;
         } else {
@@ -30,10 +30,10 @@ public class Baker implements Runnable {
                 } catch (NullPointerException e) {
                     continue;
                 }
-                System.out.println(order + "\tготовится");
+                System.out.println(order + "\tзаказ готовится");
                 Thread.sleep(cookingTime);
                 storage.add(order);
-                System.out.println(order + "\tперемещен на складе");
+                System.out.println(order + "\tзаказ ожидает курьера");
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
