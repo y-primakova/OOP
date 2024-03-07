@@ -2,34 +2,37 @@ package ru.nsu.primakova.pizzeria;
 
 import ru.nsu.primakova.queue.MyBlockingQueue;
 
+import static ru.nsu.primakova.Json.readJson;
+
 /**
  * Class Pizzeria.
  */
 public class Pizzeria {
+    public static Storage storage;
     public static void pizzeria() throws InterruptedException {
-        int nBakers = 1;
-        int nDilivery = 1;
-        int[] cookingTime = {1};
-        int[] capacity = {1};
-        int storageCapacity = 1;
+        var config = readJson("test");
+
+        var cookingTime = config.getcookingTime();
+        var courierCapacity = config.getcourierCapacity();
+        int storageCapacity = config.getstorageCapacity();
+        int nBakers = cookingTime.size();
+        int nDelivery = courierCapacity.size();
+
         var orders = new MyBlockingQueue<Integer>();
         orders.add(1);
         orders.add(2);
         orders.add(3);
-        var storage = new Storage(storageCapacity);
+        storage = new Storage(storageCapacity);
 
         var threadsBaker = new Thread[1];
         var threadsDelivery = new Thread[1];
-
-        for (int i = 0; i < nDilivery; i++) {
-            threadsDelivery[i] = new Thread(new Delivery(capacity[i], storage));
-            threadsDelivery[i].start();
-        }
-
         for (int i = 0; i < nBakers; i++) {
-            threadsBaker[i] = new Thread(new Baker(cookingTime[i], orders, storage));
+            threadsBaker[i] = new Thread(new Baker(cookingTime.get(i), orders, storage));
             threadsBaker[i].start();
         }
-
+        for (int i = 0; i < nDelivery; i++) {
+            threadsDelivery[i] = new Thread(new Delivery(courierCapacity.get(i), storage));
+            threadsDelivery[i].start();
+        }
     }
 }

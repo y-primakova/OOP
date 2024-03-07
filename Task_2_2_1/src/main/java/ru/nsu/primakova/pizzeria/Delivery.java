@@ -4,7 +4,7 @@ package ru.nsu.primakova.pizzeria;
  * Class Delivery.
  */
 public class Delivery implements Runnable {
-    private Storage storage;
+    public Storage storage;
     private final int capacity;
     private final int deliveryTime = 1;
 

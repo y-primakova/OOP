@@ -7,7 +7,7 @@ import ru.nsu.primakova.queue.MyBlockingQueue;
  */
 public class Baker implements Runnable {
     private final MyBlockingQueue<Integer> orders;
-    private final Storage storage;
+    public Storage storage;
     private final int cookingTime;
 
     public Baker(int cookingTime, MyBlockingQueue<Integer> orders, Storage storage) {
@@ -18,6 +18,10 @@ public class Baker implements Runnable {
         }
         this.orders = orders;
         this.storage = storage;
+    }
+
+    public Storage getStorage() {
+        return this.storage;
     }
 
     @Override
@@ -33,6 +37,7 @@ public class Baker implements Runnable {
                 System.out.println(order + "\tзаказ готовится");
                 Thread.sleep(cookingTime);
                 storage.add(order);
+//                System.out.println(storage.size());
                 System.out.println(order + "\tзаказ ожидает курьера");
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);

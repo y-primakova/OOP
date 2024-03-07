@@ -6,7 +6,7 @@ import ru.nsu.primakova.queue.MyBlockingQueue;
  * Class Storage.
  */
 public class Storage extends MyBlockingQueue<Integer>{
-    private final MyBlockingQueue<Integer> storage;
+    public MyBlockingQueue<Integer> storage;
     private final int capacity;
 
     public Storage(int capacity) {
