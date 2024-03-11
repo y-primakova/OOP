@@ -7,10 +7,11 @@ import ru.nsu.primakova.queue.MyBlockingQueue;
  */
 public class Baker implements Runnable {
     private final MyBlockingQueue<Integer> orders;
-    public Storage storage;
+    private final Storage storage;
     private final int cookingTime;
+    private boolean isEnd;
 
-    public Baker(int cookingTime, MyBlockingQueue<Integer> orders, Storage storage) {
+    public Baker(int cookingTime, MyBlockingQueue<Integer> orders, Storage storage, boolean isEnd) {
         if (cookingTime <= 0) {
             this.cookingTime = 1;
         } else {
@@ -18,27 +19,22 @@ public class Baker implements Runnable {
         }
         this.orders = orders;
         this.storage = storage;
-    }
-
-    public Storage getStorage() {
-        return this.storage;
+        this.isEnd = isEnd;
     }
 
     @Override
     public void run() {
-        while (true) {
+        while (!this.orders.isEmpty()) {
             try {
-                int order;
-                try {
-                    order = this.orders.poll();
-                } catch (NullPointerException e) {
-                    continue;
-                }
+                var order = this.orders.poll();
                 System.out.println(order + "\tзаказ готовится");
-                Thread.sleep(cookingTime);
-                storage.add(order);
-//                System.out.println(storage.size());
+                Thread.sleep(this.cookingTime);
+                System.out.println(order + "\tзаказ ожидает освобождения склада");
+                this.storage.add(order);
                 System.out.println(order + "\tзаказ ожидает курьера");
+//                if (this.orders.isEmpty()) {
+//                    this.isEnd = true;
+//                }
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

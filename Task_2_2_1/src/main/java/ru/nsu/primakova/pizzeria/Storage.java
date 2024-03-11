@@ -6,7 +6,7 @@ import ru.nsu.primakova.queue.MyBlockingQueue;
  * Class Storage.
  */
 public class Storage extends MyBlockingQueue<Integer>{
-    public MyBlockingQueue<Integer> storage;
+    private final MyBlockingQueue<Integer> storage;
     private final int capacity;
 
     public Storage(int capacity) {
@@ -14,12 +14,8 @@ public class Storage extends MyBlockingQueue<Integer>{
         this.capacity = capacity;
     }
 
-    public MyBlockingQueue<Integer> getStorage() {
-        return this.storage;
-    }
-
     @Override
-    public boolean isEmpty() {
+    public synchronized boolean isEmpty() {
         if (this.storage.isEmpty()) {
             return true;
         }
@@ -27,7 +23,7 @@ public class Storage extends MyBlockingQueue<Integer>{
     }
 
     @Override
-    public int size() {
+    public synchronized int size() {
         return this.storage.size();
     }
 
@@ -36,6 +32,7 @@ public class Storage extends MyBlockingQueue<Integer>{
         while (this.storage.isEmpty()) {
             wait();
         }
+        notify();
         return this.storage.poll();
     }
 
@@ -45,5 +42,6 @@ public class Storage extends MyBlockingQueue<Integer>{
             wait();
         }
         this.storage.add(t);
+        notify();
     }
 }

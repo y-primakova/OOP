@@ -8,7 +8,9 @@ import static ru.nsu.primakova.Json.readJson;
  * Class Pizzeria.
  */
 public class Pizzeria {
-    public static Storage storage;
+    private static Storage storage;
+    private static MyBlockingQueue<Integer> orders;
+    private static boolean isEnd;
     public static void pizzeria() throws InterruptedException {
         var config = readJson("test");
 
@@ -18,20 +20,20 @@ public class Pizzeria {
         int nBakers = cookingTime.size();
         int nDelivery = courierCapacity.size();
 
-        var orders = new MyBlockingQueue<Integer>();
+        orders = new MyBlockingQueue<>();
         orders.add(1);
         orders.add(2);
         orders.add(3);
         storage = new Storage(storageCapacity);
 
-        var threadsBaker = new Thread[1];
-        var threadsDelivery = new Thread[1];
+        var threadsBaker = new Thread[nBakers];
+        var threadsDelivery = new Thread[nDelivery];
         for (int i = 0; i < nBakers; i++) {
-            threadsBaker[i] = new Thread(new Baker(cookingTime.get(i), orders, storage));
+            threadsBaker[i] = new Thread(new Baker(cookingTime.get(i), orders, storage, isEnd));
             threadsBaker[i].start();
         }
         for (int i = 0; i < nDelivery; i++) {
-            threadsDelivery[i] = new Thread(new Delivery(courierCapacity.get(i), storage));
+            threadsDelivery[i] = new Thread(new Delivery(courierCapacity.get(i), orders, storage, isEnd));
             threadsDelivery[i].start();
         }
     }

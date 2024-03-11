@@ -2,6 +2,9 @@ package ru.nsu.primakova;
 
 import java.util.List;
 
+/**
+ * Class Config.
+ */
 public class Config {
     private List<Integer> cookingTime;
     private List<Integer> courierCapacity;
@@ -29,15 +32,15 @@ public class Config {
         return this.storageCapacity;
     }
 
-    public void settext(List<Integer> cookingTime) {
+    public void setcookingTime(List<Integer> cookingTime) {
         this.cookingTime = cookingTime;
     }
 
-    public void settitle(List<Integer> courierCapacity) {
+    public void setcourierCapacity(List<Integer> courierCapacity) {
         this.courierCapacity = courierCapacity;
     }
 
-    public void setdate(int storageCapacity) {
+    public void setstorageCapacity(int storageCapacity) {
         this.storageCapacity = storageCapacity;
     }
 }

@@ -13,14 +13,14 @@ public class MyBlockingQueue<T> {
         this.queue = new LinkedList<>();
     }
 
-    public boolean isEmpty() {
+    public synchronized boolean isEmpty() {
         if (this.queue.isEmpty()) {
             return true;
         }
         return false;
     }
 
-    public int size() {
+    public synchronized int size() {
         return this.queue.size();
     }
 
@@ -33,5 +33,6 @@ public class MyBlockingQueue<T> {
 
     public synchronized void add(T t) throws InterruptedException {
         this.queue.add(t);
+        notify();
     }
 }

@@ -1,12 +1,10 @@
 package ru.nsu.primakova;
 
-import ru.nsu.primakova.pizzeria.Pizzeria;
+import static ru.nsu.primakova.Json.writeJson;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static ru.nsu.primakova.Json.readJson;
-import static ru.nsu.primakova.Json.writeJson;
+import ru.nsu.primakova.pizzeria.Pizzeria;
 
 /**
  * Class Main.
@@ -16,11 +14,13 @@ public class Main {
      * main.
      */
     public static void main(String[] args) throws InterruptedException {
+        List<Integer> cookingTime = new ArrayList<>();
+        cookingTime.add(1000);
+        cookingTime.add(1000);
+        List<Integer> courierCapacity = new ArrayList<>();
+        courierCapacity.add(1);
+        Config config = new Config(cookingTime,courierCapacity,1);
+        writeJson(config,"test");
         Pizzeria.pizzeria();
-//        List<Integer> a = new ArrayList<>();
-//        a.add(1);
-//        Config config = new Config(a,a,10);
-//        writeJson(config,"test");
-//        readJson("test");
     }
 }

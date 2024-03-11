@@ -1,19 +1,19 @@
 package ru.nsu.primakova;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 /**
- * Json.
+ * Class Json.
  */
 public class Json {
     /**
      * read .json file.
      *
      * @param filepath - path to the file
-     * @return list of notes
+     * @return Config
      */
     public static Config readJson(String filepath) {
         var objectMapper = new ObjectMapper();
@@ -28,7 +28,7 @@ public class Json {
     /**
      * write .json file.
      *
-     * @param notes - list of notes
+     * @param notes - Config
      *
      * @param filepath - path to the file
      */
