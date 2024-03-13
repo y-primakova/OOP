@@ -191,18 +191,18 @@ extends <a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isEmpty()">isEmpty</a></span>()</code></th>
+<td class="colFirst"><code>java.util.Deque&lt;java.lang.Integer&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getStorage()">getStorage</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isFull()">isFull</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isEmpty()">isEmpty</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code>java.lang.Integer</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#poll()">poll</a></span>()</code></th>
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isFull()">isFull</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i5" class="rowColor">
@@ -221,7 +221,7 @@ extends <a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;ru.nsu.primakova.queue.<a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova.queue">MyBlockingQueue</a></h3>
-<code><a href="../queue/MyBlockingQueue.html#addAll(java.util.List)">addAll</a>, <a href="../queue/MyBlockingQueue.html#changeIsEnd()">changeIsEnd</a>, <a href="../queue/MyBlockingQueue.html#isEnd()">isEnd</a></code></li>
+<code><a href="../queue/MyBlockingQueue.html#addAll(java.util.List)">addAll</a>, <a href="../queue/MyBlockingQueue.html#changeIsEnd()">changeIsEnd</a>, <a href="../queue/MyBlockingQueue.html#getQueue()">getQueue</a>, <a href="../queue/MyBlockingQueue.html#isEnd()">isEnd</a>, <a href="../queue/MyBlockingQueue.html#poll()">poll</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
@@ -265,6 +265,15 @@ extends <a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a id="getStorage()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getStorage</h4>
+<pre class="methodSignature">public&nbsp;java.util.Deque&lt;java.lang.Integer&gt;&nbsp;getStorage()</pre>
+</li>
+</ul>
 <a id="isFull()">
 <!--   -->
 </a>
@@ -297,22 +306,6 @@ extends <a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../queue/MyBlockingQueue.html#size()">size</a></code>&nbsp;in class&nbsp;<code><a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova.queue">MyBlockingQueue</a>&lt;java.lang.Integer&gt;</code></dd>
-</dl>
-</li>
-</ul>
-<a id="poll()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>poll</h4>
-<pre class="methodSignature">public&nbsp;java.lang.Integer&nbsp;poll()
-                       throws java.lang.InterruptedException</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../queue/MyBlockingQueue.html#poll()">poll</a></code>&nbsp;in class&nbsp;<code><a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova.queue">MyBlockingQueue</a>&lt;java.lang.Integer&gt;</code></dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.InterruptedException</code></dd>
 </dl>
 </li>
 </ul>
