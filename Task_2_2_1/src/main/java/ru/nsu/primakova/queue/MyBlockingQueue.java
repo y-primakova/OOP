@@ -16,6 +16,10 @@ public class MyBlockingQueue<T> {
         this.isEnd = false;
     }
 
+    public Deque<T> getQueue() {
+        return this.queue;
+    }
+
     public synchronized boolean isEmpty() {
         if (this.queue.isEmpty()) {
             return true;
@@ -24,10 +28,7 @@ public class MyBlockingQueue<T> {
     }
 
     public synchronized boolean isEnd() {
-        if (this.isEnd) {
-            return true;
-        }
-        return false;
+        return this.isEnd;
     }
 
     public synchronized int size() {
@@ -58,7 +59,7 @@ public class MyBlockingQueue<T> {
         notify();
     }
 
-    public synchronized void addAll(List<T> t) throws InterruptedException {
+    public synchronized void addAll(List<T> t) {
         this.queue.addAll(t);
         notify();
     }

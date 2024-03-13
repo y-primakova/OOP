@@ -2,6 +2,8 @@ package ru.nsu.primakova.pizzeria;
 
 import ru.nsu.primakova.queue.MyBlockingQueue;
 
+import java.util.Deque;
+
 /**
  * Class Storage.
  */
@@ -12,6 +14,10 @@ public class Storage extends MyBlockingQueue<Integer>{
     public Storage(int capacity) {
         this.storage = new MyBlockingQueue<>();
         this.capacity = capacity;
+    }
+
+    public Deque<Integer> getStorage() {
+        return this.storage.getQueue();
     }
 
     public synchronized boolean isFull() {
@@ -32,15 +38,6 @@ public class Storage extends MyBlockingQueue<Integer>{
     @Override
     public synchronized int size() {
         return this.storage.size();
-    }
-
-    @Override
-    public synchronized Integer poll() throws InterruptedException {
-        while (this.storage.isEmpty()) {
-            wait();
-        }
-        notify();
-        return this.storage.poll();
     }
 
     @Override

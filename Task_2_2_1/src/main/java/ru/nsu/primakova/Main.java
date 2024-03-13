@@ -26,10 +26,10 @@ public class Main {
         List<Integer> courierCapacity = new ArrayList<>();
         courierCapacity.add(10);
         Config config = new Config(cookingTime,courierCapacity,3, 4*1000, orders);
-        writeJson(config,"test");
-
-        var p = new Pizzeria("test");
-        p.pizzeria();
-        p.pizzeria();
+        writeJson(config,"src/test/resources/testJson");
+//
+//        var p = new Pizzeria("test");
+//        p.pizzeria();
+//        p.pizzeria();
     }
 }

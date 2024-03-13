@@ -1,8 +1,5 @@
 package ru.nsu.primakova;
 
-import ru.nsu.primakova.pizzeria.Storage;
-import ru.nsu.primakova.queue.MyBlockingQueue;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +18,7 @@ public class Config {
 
     }
 
-    public Config(List<Integer> cookingTime, List<Integer> courierCapacity, int storageCapacity, int workTime, List<Integer> orders) throws InterruptedException {
+    public Config(List<Integer> cookingTime, List<Integer> courierCapacity, int storageCapacity, int workTime, List<Integer> orders) {
         this.cookingTime = cookingTime;
         this.courierCapacity = courierCapacity;
         this.storageCapacity = storageCapacity;
