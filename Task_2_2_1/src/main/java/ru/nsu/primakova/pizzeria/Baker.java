@@ -9,9 +9,9 @@ public class Baker implements Runnable {
     private final MyBlockingQueue<Integer> orders;
     private final Storage storage;
     private final int cookingTime;
-    private boolean isEnd;
+    private final int indThread;
 
-    public Baker(int cookingTime, MyBlockingQueue<Integer> orders, Storage storage, boolean isEnd) {
+    public Baker(int cookingTime, MyBlockingQueue<Integer> orders, Storage storage, int indThread) {
         if (cookingTime <= 0) {
             this.cookingTime = 1;
         } else {
@@ -19,24 +19,30 @@ public class Baker implements Runnable {
         }
         this.orders = orders;
         this.storage = storage;
-        this.isEnd = isEnd;
+        this.indThread = indThread;
     }
 
     @Override
     public void run() {
-        while (!this.orders.isEmpty()) {
+        while (!this.orders.isEmpty() && !Thread.currentThread().isInterrupted()) {
+            int order = 0;
             try {
-                var order = this.orders.poll();
-                System.out.println(order + "\tзаказ готовится");
+                order = this.orders.poll();
+                System.out.println(order + "\t\t" + indThread + "\t\tзаказ готовится");
                 Thread.sleep(this.cookingTime);
-                System.out.println(order + "\tзаказ ожидает освобождения склада");
+                System.out.println(order + "\t\t" + indThread + "\t\tзаказ ожидает освобождения склада");
                 this.storage.add(order);
-                System.out.println(order + "\tзаказ ожидает курьера");
-//                if (this.orders.isEmpty()) {
-//                    this.isEnd = true;
-//                }
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                try {
+                    this.orders.addFirst(order);
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
+                break;
+            }
+            System.out.println(order + "\t\t" + indThread + "\t\tзаказ ожидает курьера");
+            if (this.orders.isEmpty()) {
+                orders.changeIsEnd();
             }
         }
     }

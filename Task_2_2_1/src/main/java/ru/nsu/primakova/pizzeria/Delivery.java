@@ -1,5 +1,6 @@
 package ru.nsu.primakova.pizzeria;
 
+import java.util.ArrayList;
 import ru.nsu.primakova.queue.MyBlockingQueue;
 
 /**
@@ -9,10 +10,10 @@ public class Delivery implements Runnable {
     private final MyBlockingQueue<Integer> orders;
     private final Storage storage;
     private final int capacity;
-    private final int deliveryTime = 6000;
-    private final boolean isEnd;
+    private final int deliveryTime = 3000;
+    private final int indThread;
 
-    public Delivery(int capacity, MyBlockingQueue<Integer> orders, Storage storage, boolean isEnd) {
+    public Delivery(int capacity, MyBlockingQueue<Integer> orders, Storage storage, int indThread) {
         if (capacity <= 0) {
             this.capacity = 1;
         } else {
@@ -20,27 +21,58 @@ public class Delivery implements Runnable {
         }
         this.storage = storage;
         this.orders = orders;
-        this.isEnd = isEnd;
+        this.indThread = indThread;
     }
 
     @Override
     public void run() {
-        while (true) {
-//        while (isEnd || !this.storage.isEmpty()) {
-            try {
-                for (int i = this.capacity; i > 0; i--) {
-                    if (this.storage.isEmpty()) {
-                        break;
-                    }
-                    var order = this.storage.poll();
-                    System.out.println(order + "\tкурьер забрал заказ");
-                    if (i == this.capacity) {
-                        Thread.sleep(deliveryTime);
-                    }
-                    System.out.println(order + "\tзаказ доставлен");
+        while ((!orders.isEnd() || !this.storage.isEmpty()) && !Thread.currentThread().isInterrupted()) {
+            var currOrders = new ArrayList<Integer>();
+            for (int i = this.capacity; i > 0; i--) {
+                if (this.storage.isEmpty()) {
+                    break;
                 }
+                int order;
+                try {
+                    order = this.storage.poll();
+                } catch (InterruptedException e) {
+                    for (var o : currOrders) {
+                        try {
+                            if (storage.isFull()) {
+                                var x = storage.pollLast();
+                                orders.addFirst(x);
+                            } else {
+                                storage.addFirst(o);
+                            }
+                        } catch (InterruptedException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                    break;
+                }
+                currOrders.add(order);
+            }
+            for (var order : currOrders) {
+                System.out.println(order + "\t\t" + indThread + "\t\tкурьер забрал заказ");
+            }
+            try {
+                Thread.sleep(deliveryTime);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                for (var o : currOrders) {
+                    try {
+                        if (storage.isFull()) {
+                            var x = storage.pollLast();
+                            orders.addFirst(x);
+                        }
+                        storage.addFirst(o);
+                    } catch (InterruptedException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+                break;
+            }
+            for (var order : currOrders) {
+                System.out.println(order + "\t\t" + indThread + "\t\tзаказ доставлен");
             }
         }
     }

@@ -14,6 +14,13 @@ public class Storage extends MyBlockingQueue<Integer>{
         this.capacity = capacity;
     }
 
+    public synchronized boolean isFull() {
+        if (storage.size() == this.capacity) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public synchronized boolean isEmpty() {
         if (this.storage.isEmpty()) {
@@ -37,11 +44,29 @@ public class Storage extends MyBlockingQueue<Integer>{
     }
 
     @Override
+    public synchronized Integer pollLast() throws InterruptedException {
+        while (this.storage.isEmpty()) {
+            wait();
+        }
+        notify();
+        return this.storage.pollLast();
+    }
+
+    @Override
     public synchronized void add(Integer t) throws InterruptedException {
         while (storage.size() == this.capacity) {
             wait();
         }
         this.storage.add(t);
+        notify();
+    }
+
+    @Override
+    public synchronized void addFirst(Integer t) throws InterruptedException {
+        while (storage.size() == this.capacity) {
+            wait();
+        }
+        this.storage.addFirst(t);
         notify();
     }
 }

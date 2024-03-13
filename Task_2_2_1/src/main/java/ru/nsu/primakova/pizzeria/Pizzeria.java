@@ -1,40 +1,64 @@
 package ru.nsu.primakova.pizzeria;
 
+import static ru.nsu.primakova.Json.readJson;
+
 import ru.nsu.primakova.queue.MyBlockingQueue;
 
-import static ru.nsu.primakova.Json.readJson;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class Pizzeria.
  */
 public class Pizzeria {
-    private static Storage storage;
-    private static MyBlockingQueue<Integer> orders;
-    private static boolean isEnd;
-    public static void pizzeria() throws InterruptedException {
-        var config = readJson("test");
+    private final Storage storage;
+    private final MyBlockingQueue<Integer> orders;
+    private final List<Integer> cookingTime;
+    private final List<Integer> courierCapacity;
+    private final int workTime;
 
-        var cookingTime = config.getcookingTime();
-        var courierCapacity = config.getcourierCapacity();
-        int storageCapacity = config.getstorageCapacity();
-        int nBakers = cookingTime.size();
-        int nDelivery = courierCapacity.size();
+    public Pizzeria(String configPath) throws InterruptedException {
+        var config = readJson(configPath);
 
-        orders = new MyBlockingQueue<>();
-        orders.add(1);
-        orders.add(2);
-        orders.add(3);
-        storage = new Storage(storageCapacity);
+        assert config != null;
+        this.cookingTime = config.getcookingTime();
+        this.courierCapacity = config.getcourierCapacity();
+        this.workTime = config.getworkTime();
+        this.orders = new MyBlockingQueue<>();
+        this.orders.addAll(config.getorders());
+        this.storage = new Storage(config.getstorageCapacity());
+    }
 
-        var threadsBaker = new Thread[nBakers];
-        var threadsDelivery = new Thread[nDelivery];
-        for (int i = 0; i < nBakers; i++) {
-            threadsBaker[i] = new Thread(new Baker(cookingTime.get(i), orders, storage, isEnd));
+    public int getNBakers() {
+        return this.cookingTime.size();
+    }
+
+    public int getNDelivery() {
+        return this.courierCapacity.size();
+    }
+
+    public void pizzeria() throws InterruptedException {
+        System.out.println("order" + "\tthread" + "\tstate");
+
+        var threadsBaker = new Thread[this.getNBakers()];
+        var threadsDelivery = new Thread[this.getNDelivery()];
+        for (int i = 0; i < this.getNBakers(); i++) {
+            threadsBaker[i] = new Thread(new Baker(cookingTime.get(i), orders, storage, i));
             threadsBaker[i].start();
         }
-        for (int i = 0; i < nDelivery; i++) {
-            threadsDelivery[i] = new Thread(new Delivery(courierCapacity.get(i), orders, storage, isEnd));
+        for (int i = 0; i < this.getNDelivery(); i++) {
+            threadsDelivery[i] = new Thread(new Delivery(courierCapacity.get(i), orders, storage, i + this.getNBakers()));
             threadsDelivery[i].start();
         }
+
+        Thread.sleep(workTime);
+        for (int i = 0; i < this.getNBakers(); i++) {
+            threadsBaker[i].interrupt();
+        }
+        for (int i = 0; i < this.getNDelivery(); i++) {
+            threadsDelivery[i].interrupt();
+        }
+        System.out.println("Пиццерия закрыта");
+
     }
 }
