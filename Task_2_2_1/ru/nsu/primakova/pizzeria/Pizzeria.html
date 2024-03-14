@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -176,16 +176,26 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getNBakers()">getNBakers</a></span>()</code></th>
+<td class="colFirst"><code><a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova.queue">MyBlockingQueue</a>&lt;java.lang.Integer&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getOrders()">getOrders</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getNDelivery()">getNDelivery</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSizeBakers()">getSizeBakers</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSizeDelivery()">getSizeDelivery</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code><a href="Storage.html" title="class in ru.nsu.primakova.pizzeria">Storage</a>&lt;java.lang.Integer&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getStorage()">getStorage</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#pizzeria()">pizzeria</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
@@ -220,12 +230,7 @@ extends java.lang.Object</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>Pizzeria</h4>
-<pre>public&nbsp;Pizzeria&#8203;(java.lang.String&nbsp;configPath)
-         throws java.lang.InterruptedException</pre>
-<dl>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.InterruptedException</code></dd>
-</dl>
+<pre>public&nbsp;Pizzeria&#8203;(java.lang.String&nbsp;configPath)</pre>
 </li>
 </ul>
 </li>
@@ -238,28 +243,28 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="getNBakers()">
+<a id="getSizeBakers()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getNBakers</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;getNBakers()</pre>
+<h4>getSizeBakers</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getSizeBakers()</pre>
 </li>
 </ul>
-<a id="getNDelivery()">
+<a id="getSizeDelivery()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getNDelivery</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;getNDelivery()</pre>
+<h4>getSizeDelivery</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getSizeDelivery()</pre>
 </li>
 </ul>
 <a id="pizzeria()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>pizzeria</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;pizzeria()
@@ -268,6 +273,24 @@ extends java.lang.Object</pre>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.InterruptedException</code></dd>
 </dl>
+</li>
+</ul>
+<a id="getStorage()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getStorage</h4>
+<pre class="methodSignature">public&nbsp;<a href="Storage.html" title="class in ru.nsu.primakova.pizzeria">Storage</a>&lt;java.lang.Integer&gt;&nbsp;getStorage()</pre>
+</li>
+</ul>
+<a id="getOrders()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getOrders</h4>
+<pre class="methodSignature">public&nbsp;<a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova.queue">MyBlockingQueue</a>&lt;java.lang.Integer&gt;&nbsp;getOrders()</pre>
 </li>
 </ul>
 </li>
