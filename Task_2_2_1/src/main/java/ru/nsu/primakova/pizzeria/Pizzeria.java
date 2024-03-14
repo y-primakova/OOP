@@ -2,22 +2,20 @@ package ru.nsu.primakova.pizzeria;
 
 import static ru.nsu.primakova.Json.readJson;
 
-import ru.nsu.primakova.queue.MyBlockingQueue;
-
-import java.util.ArrayList;
 import java.util.List;
+import ru.nsu.primakova.queue.MyBlockingQueue;
 
 /**
  * Class Pizzeria.
  */
 public class Pizzeria {
-    private final Storage storage;
+    private final Storage<Integer> storage;
     private final MyBlockingQueue<Integer> orders;
     private final List<Integer> cookingTime;
     private final List<Integer> courierCapacity;
     private final int workTime;
 
-    public Pizzeria(String configPath) throws InterruptedException {
+    public Pizzeria(String configPath) {
         var config = readJson(configPath);
 
         assert config != null;
@@ -26,39 +24,58 @@ public class Pizzeria {
         this.workTime = config.getworkTime();
         this.orders = new MyBlockingQueue<>();
         this.orders.addAll(config.getorders());
-        this.storage = new Storage(config.getstorageCapacity());
+        this.storage = new Storage<>(config.getstorageCapacity());
     }
 
-    public int getNBakers() {
+    public int getSizeBakers() {
         return this.cookingTime.size();
     }
 
-    public int getNDelivery() {
+    public int getSizeDelivery() {
         return this.courierCapacity.size();
     }
 
     public void pizzeria() throws InterruptedException {
         System.out.println("order" + "\tthread" + "\tstate");
 
-        var threadsBaker = new Thread[this.getNBakers()];
-        var threadsDelivery = new Thread[this.getNDelivery()];
-        for (int i = 0; i < this.getNBakers(); i++) {
+        var threadsBaker = new Thread[this.getSizeBakers()];
+        var threadsDelivery = new Thread[this.getSizeDelivery()];
+        for (int i = 0; i < this.getSizeBakers(); i++) {
             threadsBaker[i] = new Thread(new Baker(cookingTime.get(i), orders, storage, i));
             threadsBaker[i].start();
         }
-        for (int i = 0; i < this.getNDelivery(); i++) {
-            threadsDelivery[i] = new Thread(new Delivery(courierCapacity.get(i), orders, storage, i + this.getNBakers()));
+        for (int i = 0; i < this.getSizeDelivery(); i++) {
+            threadsDelivery[i] = new Thread(new Delivery(courierCapacity.get(i), orders, storage, i + this.getSizeBakers()));
             threadsDelivery[i].start();
         }
 
-        Thread.sleep(workTime);
-        for (int i = 0; i < this.getNBakers(); i++) {
+        var time = workTime;
+        while (storage.getCurrSize() != 0 || orders.getCurrSize() != 0) {
+            if (time > 1000) {
+                Thread.sleep(1000);
+                time -= 1000;
+            } else {
+                Thread.sleep(time);
+                break;
+            }
+        }
+
+        for (int i = 0; i < this.getSizeBakers(); i++) {
             threadsBaker[i].interrupt();
         }
-        for (int i = 0; i < this.getNDelivery(); i++) {
+        for (int i = 0; i < this.getSizeDelivery(); i++) {
             threadsDelivery[i].interrupt();
         }
         System.out.println("Пиццерия закрыта");
+        orders.myNotify();
+        storage.myNotify();
+    }
 
+    public Storage<Integer> getStorage() {
+        return this.storage;
+    }
+
+    public MyBlockingQueue<Integer> getOrders() {
+        return this.orders;
     }
 }

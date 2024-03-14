@@ -28,9 +28,9 @@ public class TestMyBlockingQueue {
     }
 
     @Test
-    public void testIsEnd() throws InterruptedException {
-        var q = testQueue();
-        assertFalse(q.isEnd());
+    public void testCurrSize() throws InterruptedException {
+        var s = testQueue();
+        assertEquals(s.getCurrSize(), 3);
     }
 
     @Test
@@ -46,7 +46,7 @@ public class TestMyBlockingQueue {
         Deque<Integer> actual = new LinkedList<>();
         actual.add(2);
         actual.add(3);
-        assertEquals(q.getQueue(),actual);
+        assertEquals(q.getQueue(), actual);
     }
 
     @Test
@@ -56,7 +56,7 @@ public class TestMyBlockingQueue {
         Deque<Integer> actual = new LinkedList<>();
         actual.add(1);
         actual.add(2);
-        assertEquals(q.getQueue(),actual);
+        assertEquals(q.getQueue(), actual);
     }
 
     @Test
@@ -68,7 +68,7 @@ public class TestMyBlockingQueue {
         actual.add(2);
         actual.add(3);
         actual.add(4);
-        assertEquals(q.getQueue(),actual);
+        assertEquals(q.getQueue(), actual);
     }
 
     @Test
@@ -84,7 +84,7 @@ public class TestMyBlockingQueue {
         actual.add(3);
         actual.add(4);
         actual.add(5);
-        assertEquals(q.getQueue(),actual);
+        assertEquals(q.getQueue(), actual);
     }
 
     @Test
@@ -96,13 +96,6 @@ public class TestMyBlockingQueue {
         actual.add(1);
         actual.add(2);
         actual.add(3);
-        assertEquals(q.getQueue(),actual);
-    }
-
-    @Test
-    public void testChangeIsEnd() throws InterruptedException {
-        var q = testQueue();
-        q.changeIsEnd();
-        assertTrue(q.isEnd());
+        assertEquals(q.getQueue(), actual);
     }
 }

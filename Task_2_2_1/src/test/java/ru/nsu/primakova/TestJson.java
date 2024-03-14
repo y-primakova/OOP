@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 public class TestJson {
     @Test
     public void testWrite() {
-        var filepath = "src/test/resources/testJson";
         List<Integer> cookingTime = new ArrayList<>();
         cookingTime.add(1000);
         cookingTime.add(2000);
@@ -24,9 +23,9 @@ public class TestJson {
         }
         List<Integer> courierCapacity = new ArrayList<>();
         courierCapacity.add(10);
-        Config config = new Config(cookingTime,courierCapacity,2, 4000, orders);
-        writeJson(config, filepath);
-        var res = readJson(filepath);
+        Config config = new Config(cookingTime, courierCapacity, 2, 4000, orders);
+        writeJson(config, "src/test/resources/testJson");
+        var res = readJson("src/test/resources/testJson");
         assertEquals(config.getstorage(), res.getstorage());
         assertEquals(config.getorders(), res.getorders());
         assertEquals(config.getcookingTime(), res.getcookingTime());
@@ -37,9 +36,6 @@ public class TestJson {
 
     @Test
     public void testRead() {
-        var filepath = "src/test/resources/testJson";
-        var res = readJson(filepath);
-
         List<Integer> cookingTime = new ArrayList<>();
         cookingTime.add(1000);
         cookingTime.add(2000);
@@ -50,6 +46,7 @@ public class TestJson {
         List<Integer> courierCapacity = new ArrayList<>();
         courierCapacity.add(10);
 
+        var res = readJson("src/test/resources/testJson");
         assertEquals(new ArrayList<>(), res.getstorage());
         assertEquals(orders, res.getorders());
         assertEquals(cookingTime, res.getcookingTime());

@@ -15,21 +15,21 @@ public class Main {
      */
     public static void main(String[] args) throws InterruptedException {
         List<Integer> cookingTime = new ArrayList<>();
-        cookingTime.add(1000);
+        cookingTime.add(2000);
         cookingTime.add(2000);
         cookingTime.add(3000);
-        cookingTime.add(3000);
         List<Integer> orders = new ArrayList<>();
-        for (int i = 20; i < 30; i++) {
+        for (int i = 20; i < 29; i++) {
             orders.add(i);
         }
         List<Integer> courierCapacity = new ArrayList<>();
-        courierCapacity.add(10);
-        Config config = new Config(cookingTime,courierCapacity,3, 4*1000, orders);
-        writeJson(config,"src/test/resources/testJson");
-//
-//        var p = new Pizzeria("test");
-//        p.pizzeria();
-//        p.pizzeria();
+        courierCapacity.add(2);
+        courierCapacity.add(2);
+        Config config = new Config(cookingTime, courierCapacity, 2, 5000, orders);
+        writeJson(config, "src/main/resources/pizzeria");
+
+        var p = new Pizzeria("src/main/resources/pizzeria");
+        p.pizzeria();
+        p.pizzeria();
     }
 }

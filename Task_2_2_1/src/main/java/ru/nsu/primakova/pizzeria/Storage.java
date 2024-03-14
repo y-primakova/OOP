@@ -1,22 +1,23 @@
 package ru.nsu.primakova.pizzeria;
 
-import ru.nsu.primakova.queue.MyBlockingQueue;
-
 import java.util.Deque;
+import ru.nsu.primakova.queue.MyBlockingQueue;
 
 /**
  * Class Storage.
  */
-public class Storage extends MyBlockingQueue<Integer>{
-    private final MyBlockingQueue<Integer> storage;
+public class Storage<T> extends MyBlockingQueue<T> {
+    private final MyBlockingQueue<T> storage;
     private final int capacity;
+    private int currSize;
 
     public Storage(int capacity) {
         this.storage = new MyBlockingQueue<>();
         this.capacity = capacity;
+        this.currSize = 0;
     }
 
-    public Deque<Integer> getStorage() {
+    public Deque<T> getQueue() {
         return this.storage.getQueue();
     }
 
@@ -40,8 +41,25 @@ public class Storage extends MyBlockingQueue<Integer>{
         return this.storage.size();
     }
 
+    public synchronized int getCurrSize() {
+        return this.currSize;
+    }
+
+    public synchronized void setCurrSize(int size) {
+        this.currSize = size;
+    }
+
     @Override
-    public synchronized Integer pollLast() throws InterruptedException {
+    public synchronized T poll() throws InterruptedException {
+        while (this.storage.isEmpty()) {
+            wait();
+        }
+        notify();
+        return this.storage.poll();
+    }
+
+    @Override
+    public synchronized T pollLast() throws InterruptedException {
         while (this.storage.isEmpty()) {
             wait();
         }
@@ -50,20 +68,22 @@ public class Storage extends MyBlockingQueue<Integer>{
     }
 
     @Override
-    public synchronized void add(Integer t) throws InterruptedException {
+    public synchronized void add(T t) throws InterruptedException {
         while (storage.size() == this.capacity) {
             wait();
         }
         this.storage.add(t);
+        currSize ++;
         notify();
     }
 
     @Override
-    public synchronized void addFirst(Integer t) throws InterruptedException {
+    public synchronized void addFirst(T t) throws InterruptedException {
         while (storage.size() == this.capacity) {
             wait();
         }
         this.storage.addFirst(t);
+        currSize ++;
         notify();
     }
 }
