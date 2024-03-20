@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -158,12 +158,13 @@ extends java.lang.Object</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.util.List,java.util.List,int,int,java.util.List)">Config</a></span>&#8203;(java.util.List&lt;java.lang.Integer&gt;&nbsp;cookingTime,
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.util.List,java.util.List,int,int)">Config</a></span>&#8203;(java.util.List&lt;java.lang.Integer&gt;&nbsp;cookingTime,
       java.util.List&lt;java.lang.Integer&gt;&nbsp;courierCapacity,
       int&nbsp;storageCapacity,
-      int&nbsp;workTime,
-      java.util.List&lt;java.lang.Integer&gt;&nbsp;orders)</code></th>
-<td class="colLast">&nbsp;</td>
+      int&nbsp;workTime)</code></th>
+<td class="colLast">
+<div class="block">class constructor.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -194,51 +195,31 @@ extends java.lang.Object</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>java.util.List&lt;java.lang.Integer&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getorders()">getorders</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><code>java.util.List&lt;java.lang.Integer&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getstorage()">getstorage</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i4" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getstorageCapacity()">getstorageCapacity</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getworkTime()">getworkTime</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setcookingTime(java.util.List)">setcookingTime</a></span>&#8203;(java.util.List&lt;java.lang.Integer&gt;&nbsp;cookingTime)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setcourierCapacity(java.util.List)">setcourierCapacity</a></span>&#8203;(java.util.List&lt;java.lang.Integer&gt;&nbsp;courierCapacity)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i8" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setorders(java.util.List)">setorders</a></span>&#8203;(java.util.List&lt;java.lang.Integer&gt;&nbsp;orders)</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i9" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setstorage(java.util.List)">setstorage</a></span>&#8203;(java.util.List&lt;java.lang.Integer&gt;&nbsp;storage)</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i10" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setstorageCapacity(int)">setstorageCapacity</a></span>&#8203;(int&nbsp;storageCapacity)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setworkTime(int)">setworkTime</a></span>&#8203;(int&nbsp;workTime)</code></th>
 <td class="colLast">&nbsp;</td>
@@ -276,7 +257,7 @@ extends java.lang.Object</pre>
 <pre>public&nbsp;Config()</pre>
 </li>
 </ul>
-<a id="&lt;init&gt;(java.util.List,java.util.List,int,int,java.util.List)">
+<a id="&lt;init&gt;(java.util.List,java.util.List,int,int)">
 <!--   -->
 </a>
 <ul class="blockListLast">
@@ -285,8 +266,15 @@ extends java.lang.Object</pre>
 <pre>public&nbsp;Config&#8203;(java.util.List&lt;java.lang.Integer&gt;&nbsp;cookingTime,
               java.util.List&lt;java.lang.Integer&gt;&nbsp;courierCapacity,
               int&nbsp;storageCapacity,
-              int&nbsp;workTime,
-              java.util.List&lt;java.lang.Integer&gt;&nbsp;orders)</pre>
+              int&nbsp;workTime)</pre>
+<div class="block">class constructor.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>cookingTime</code> - cooking time</dd>
+<dd><code>courierCapacity</code> - courier capacity</dd>
+<dd><code>storageCapacity</code> - storage capacity</dd>
+<dd><code>workTime</code> - pizzeria work time</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -335,24 +323,6 @@ extends java.lang.Object</pre>
 <pre class="methodSignature">public&nbsp;int&nbsp;getworkTime()</pre>
 </li>
 </ul>
-<a id="getstorage()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getstorage</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;java.lang.Integer&gt;&nbsp;getstorage()</pre>
-</li>
-</ul>
-<a id="getorders()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getorders</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;java.lang.Integer&gt;&nbsp;getorders()</pre>
-</li>
-</ul>
 <a id="setcookingTime(java.util.List)">
 <!--   -->
 </a>
@@ -383,28 +353,10 @@ extends java.lang.Object</pre>
 <a id="setworkTime(int)">
 <!--   -->
 </a>
-<ul class="blockList">
+<ul class="blockListLast">
 <li class="blockList">
 <h4>setworkTime</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setworkTime&#8203;(int&nbsp;workTime)</pre>
-</li>
-</ul>
-<a id="setstorage(java.util.List)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setstorage</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setstorage&#8203;(java.util.List&lt;java.lang.Integer&gt;&nbsp;storage)</pre>
-</li>
-</ul>
-<a id="setorders(java.util.List)">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>setorders</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setorders&#8203;(java.util.List&lt;java.lang.Integer&gt;&nbsp;orders)</pre>
 </li>
 </ul>
 </li>

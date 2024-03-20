@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -162,6 +162,11 @@ extends <a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(int)">Storage</a></span>&#8203;(int&nbsp;capacity)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
+<tr class="rowColor">
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(int,java.util.Deque)">Storage</a></span>&#8203;(int&nbsp;capacity,
+       java.util.Deque&lt;<a href="Storage.html" title="type parameter in Storage">T</a>&gt;&nbsp;storage)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
 </table>
 </li>
 </ul>
@@ -183,49 +188,79 @@ extends <a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#add(T)">add</a></span>&#8203;(<a href="Storage.html" title="type parameter in Storage">T</a>&nbsp;t)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">add element to tail of queue.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addFirst(T)">addFirst</a></span>&#8203;(<a href="Storage.html" title="type parameter in Storage">T</a>&nbsp;t)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addAll(java.util.Deque)">addAll</a></span>&#8203;(java.util.Deque&lt;<a href="Storage.html" title="type parameter in Storage">T</a>&gt;&nbsp;t)</code></th>
+<td class="colLast">
+<div class="block">add list of elements to tail of queue.</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getCurrSize()">getCurrSize</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addFirst(T)">addFirst</a></span>&#8203;(<a href="Storage.html" title="type parameter in Storage">T</a>&nbsp;t)</code></th>
+<td class="colLast">
+<div class="block">add element to head of queue.</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#decActiveThreads()">decActiveThreads</a></span>()</code></th>
+<td class="colLast">
+<div class="block">decrement CountActiveThreads.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>java.util.Deque&lt;<a href="Storage.html" title="type parameter in Storage">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getQueue()">getQueue</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isEmpty()">isEmpty</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isFull()">isFull</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#incActiveThreads()">incActiveThreads</a></span>()</code></th>
+<td class="colLast">
+<div class="block">increment CountActiveThreads.</div>
+</td>
 </tr>
 <tr id="i6" class="altColor">
-<td class="colFirst"><code><a href="Storage.html" title="type parameter in Storage">T</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#poll()">poll</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isActiveThreads()">isActiveThreads</a></span>()</code></th>
+<td class="colLast">
+<div class="block">is end or not.</div>
+</td>
 </tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><code><a href="Storage.html" title="type parameter in Storage">T</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#pollLast()">pollLast</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isEmpty()">isEmpty</a></span>()</code></th>
+<td class="colLast">
+<div class="block">is empty or not.</div>
+</td>
 </tr>
 <tr id="i8" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setCurrSize(int)">setCurrSize</a></span>&#8203;(int&nbsp;size)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isFull()">isFull</a></span>()</code></th>
+<td class="colLast">
+<div class="block">is full or not.</div>
+</td>
 </tr>
 <tr id="i9" class="rowColor">
+<td class="colFirst"><code><a href="Storage.html" title="type parameter in Storage">T</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#poll()">poll</a></span>()</code></th>
+<td class="colLast">
+<div class="block">poll first element of queue.</div>
+</td>
+</tr>
+<tr id="i10" class="altColor">
+<td class="colFirst"><code><a href="Storage.html" title="type parameter in Storage">T</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#pollLast()">pollLast</a></span>()</code></th>
+<td class="colLast">
+<div class="block">poll last element of queue.</div>
+</td>
+</tr>
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#size()">size</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
@@ -236,7 +271,7 @@ extends <a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;ru.nsu.primakova.queue.<a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova.queue">MyBlockingQueue</a></h3>
-<code><a href="../queue/MyBlockingQueue.html#addAll(java.util.List)">addAll</a>, <a href="../queue/MyBlockingQueue.html#myNotify()">myNotify</a></code></li>
+<code><a href="../queue/MyBlockingQueue.html#getTime()">getTime</a>, <a href="../queue/MyBlockingQueue.html#getTime(int)">getTime</a>, <a href="../queue/MyBlockingQueue.html#myNotify()">myNotify</a>, <a href="../queue/MyBlockingQueue.html#removeTime(T)">removeTime</a>, <a href="../queue/MyBlockingQueue.html#setTime(T,double)">setTime</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
@@ -264,10 +299,32 @@ extends <a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova
 <a id="&lt;init&gt;(int)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>Storage</h4>
 <pre>public&nbsp;Storage&#8203;(int&nbsp;capacity)</pre>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>capacity</code> - storage capacity</dd>
+</dl>
+</li>
+</ul>
+<a id="&lt;init&gt;(int,java.util.Deque)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>Storage</h4>
+<pre>public&nbsp;Storage&#8203;(int&nbsp;capacity,
+               java.util.Deque&lt;<a href="Storage.html" title="type parameter in Storage">T</a>&gt;&nbsp;storage)
+        throws java.lang.InterruptedException</pre>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>capacity</code> - storage capacity</dd>
+<dd><code>storage</code> - storage</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.InterruptedException</code> - -</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -300,6 +357,55 @@ extends <a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova
 <li class="blockList">
 <h4>isFull</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;isFull()</pre>
+<div class="block">is full or not.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if storage is full</dd>
+</dl>
+</li>
+</ul>
+<a id="isActiveThreads()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isActiveThreads</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isActiveThreads()</pre>
+<div class="block">is end or not.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../queue/MyBlockingQueue.html#isActiveThreads()">isActiveThreads</a></code>&nbsp;in class&nbsp;<code><a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova.queue">MyBlockingQueue</a>&lt;<a href="Storage.html" title="type parameter in Storage">T</a>&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if queue is end</dd>
+</dl>
+</li>
+</ul>
+<a id="incActiveThreads()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>incActiveThreads</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;incActiveThreads()</pre>
+<div class="block">increment CountActiveThreads.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../queue/MyBlockingQueue.html#incActiveThreads()">incActiveThreads</a></code>&nbsp;in class&nbsp;<code><a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova.queue">MyBlockingQueue</a>&lt;<a href="Storage.html" title="type parameter in Storage">T</a>&gt;</code></dd>
+</dl>
+</li>
+</ul>
+<a id="decActiveThreads()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>decActiveThreads</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;decActiveThreads()</pre>
+<div class="block">decrement CountActiveThreads.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../queue/MyBlockingQueue.html#decActiveThreads()">decActiveThreads</a></code>&nbsp;in class&nbsp;<code><a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova.queue">MyBlockingQueue</a>&lt;<a href="Storage.html" title="type parameter in Storage">T</a>&gt;</code></dd>
+</dl>
 </li>
 </ul>
 <a id="isEmpty()">
@@ -309,9 +415,13 @@ extends <a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova
 <li class="blockList">
 <h4>isEmpty</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;isEmpty()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../queue/MyBlockingQueue.html#isEmpty()">MyBlockingQueue</a></code></span></div>
+<div class="block">is empty or not.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../queue/MyBlockingQueue.html#isEmpty()">isEmpty</a></code>&nbsp;in class&nbsp;<code><a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova.queue">MyBlockingQueue</a>&lt;<a href="Storage.html" title="type parameter in Storage">T</a>&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if queue is empty</dd>
 </dl>
 </li>
 </ul>
@@ -328,32 +438,6 @@ extends <a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova
 </dl>
 </li>
 </ul>
-<a id="getCurrSize()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getCurrSize</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;getCurrSize()</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../queue/MyBlockingQueue.html#getCurrSize()">getCurrSize</a></code>&nbsp;in class&nbsp;<code><a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova.queue">MyBlockingQueue</a>&lt;<a href="Storage.html" title="type parameter in Storage">T</a>&gt;</code></dd>
-</dl>
-</li>
-</ul>
-<a id="setCurrSize(int)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setCurrSize</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setCurrSize&#8203;(int&nbsp;size)</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../queue/MyBlockingQueue.html#setCurrSize(int)">setCurrSize</a></code>&nbsp;in class&nbsp;<code><a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova.queue">MyBlockingQueue</a>&lt;<a href="Storage.html" title="type parameter in Storage">T</a>&gt;</code></dd>
-</dl>
-</li>
-</ul>
 <a id="poll()">
 <!--   -->
 </a>
@@ -362,11 +446,15 @@ extends <a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova
 <h4>poll</h4>
 <pre class="methodSignature">public&nbsp;<a href="Storage.html" title="type parameter in Storage">T</a>&nbsp;poll()
        throws java.lang.InterruptedException</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../queue/MyBlockingQueue.html#poll()">MyBlockingQueue</a></code></span></div>
+<div class="block">poll first element of queue.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../queue/MyBlockingQueue.html#poll()">poll</a></code>&nbsp;in class&nbsp;<code><a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova.queue">MyBlockingQueue</a>&lt;<a href="Storage.html" title="type parameter in Storage">T</a>&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>first element in queue</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.InterruptedException</code></dd>
+<dd><code>java.lang.InterruptedException</code> - -</dd>
 </dl>
 </li>
 </ul>
@@ -378,11 +466,15 @@ extends <a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova
 <h4>pollLast</h4>
 <pre class="methodSignature">public&nbsp;<a href="Storage.html" title="type parameter in Storage">T</a>&nbsp;pollLast()
            throws java.lang.InterruptedException</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../queue/MyBlockingQueue.html#pollLast()">MyBlockingQueue</a></code></span></div>
+<div class="block">poll last element of queue.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../queue/MyBlockingQueue.html#pollLast()">pollLast</a></code>&nbsp;in class&nbsp;<code><a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova.queue">MyBlockingQueue</a>&lt;<a href="Storage.html" title="type parameter in Storage">T</a>&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>last element in queue</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.InterruptedException</code></dd>
+<dd><code>java.lang.InterruptedException</code> - -</dd>
 </dl>
 </li>
 </ul>
@@ -396,11 +488,15 @@ extends <a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova
 <h4>add</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;add&#8203;(<a href="Storage.html" title="type parameter in Storage">T</a>&nbsp;t)
          throws java.lang.InterruptedException</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../queue/MyBlockingQueue.html#add(T)">MyBlockingQueue</a></code></span></div>
+<div class="block">add element to tail of queue.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../queue/MyBlockingQueue.html#add(T)">add</a></code>&nbsp;in class&nbsp;<code><a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova.queue">MyBlockingQueue</a>&lt;<a href="Storage.html" title="type parameter in Storage">T</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>t</code> - - element</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.InterruptedException</code></dd>
+<dd><code>java.lang.InterruptedException</code> - -</dd>
 </dl>
 </li>
 </ul>
@@ -409,16 +505,40 @@ extends <a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova
 </a><a id="addFirst(T)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>addFirst</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;addFirst&#8203;(<a href="Storage.html" title="type parameter in Storage">T</a>&nbsp;t)
               throws java.lang.InterruptedException</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../queue/MyBlockingQueue.html#addFirst(T)">MyBlockingQueue</a></code></span></div>
+<div class="block">add element to head of queue.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../queue/MyBlockingQueue.html#addFirst(T)">addFirst</a></code>&nbsp;in class&nbsp;<code><a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova.queue">MyBlockingQueue</a>&lt;<a href="Storage.html" title="type parameter in Storage">T</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>t</code> - - element</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.InterruptedException</code></dd>
+<dd><code>java.lang.InterruptedException</code> - -</dd>
+</dl>
+</li>
+</ul>
+<a id="addAll(java.util.Deque)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>addAll</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;addAll&#8203;(java.util.Deque&lt;<a href="Storage.html" title="type parameter in Storage">T</a>&gt;&nbsp;t)
+            throws java.lang.InterruptedException</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../queue/MyBlockingQueue.html#addAll(java.util.Deque)">MyBlockingQueue</a></code></span></div>
+<div class="block">add list of elements to tail of queue.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../queue/MyBlockingQueue.html#addAll(java.util.Deque)">addAll</a></code>&nbsp;in class&nbsp;<code><a href="../queue/MyBlockingQueue.html" title="class in ru.nsu.primakova.queue">MyBlockingQueue</a>&lt;<a href="Storage.html" title="type parameter in Storage">T</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>t</code> - - deque</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.InterruptedException</code> - -</dd>
 </dl>
 </li>
 </ul>

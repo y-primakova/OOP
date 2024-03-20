@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
+var data = {"i0":10,"i1":10,"i2":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -154,8 +154,12 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.lang.String)">Pizzeria</a></span>&#8203;(java.lang.String&nbsp;configPath)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.lang.String,java.lang.String,java.lang.String)">Pizzeria</a></span>&#8203;(java.lang.String&nbsp;configPath,
+        java.lang.String&nbsp;ordersPath,
+        java.lang.String&nbsp;storagePath)</code></th>
+<td class="colLast">
+<div class="block">class constructor.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -181,24 +185,16 @@ extends java.lang.Object</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSizeBakers()">getSizeBakers</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSizeDelivery()">getSizeDelivery</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="Storage.html" title="class in ru.nsu.primakova.pizzeria">Storage</a>&lt;java.lang.Integer&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getStorage()">getStorage</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#pizzeria()">pizzeria</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">start pizzeria.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -224,13 +220,25 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a id="&lt;init&gt;(java.lang.String)">
+<a id="&lt;init&gt;(java.lang.String,java.lang.String,java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>Pizzeria</h4>
-<pre>public&nbsp;Pizzeria&#8203;(java.lang.String&nbsp;configPath)</pre>
+<pre>public&nbsp;Pizzeria&#8203;(java.lang.String&nbsp;configPath,
+                java.lang.String&nbsp;ordersPath,
+                java.lang.String&nbsp;storagePath)
+         throws java.lang.InterruptedException</pre>
+<div class="block">class constructor.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>configPath</code> - the path to the configuration</dd>
+<dd><code>ordersPath</code> - the path to the orders</dd>
+<dd><code>storagePath</code> - the path to the storage</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.InterruptedException</code> - -</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -243,24 +251,6 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="getSizeBakers()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getSizeBakers</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;getSizeBakers()</pre>
-</li>
-</ul>
-<a id="getSizeDelivery()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getSizeDelivery</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;getSizeDelivery()</pre>
-</li>
-</ul>
 <a id="pizzeria()">
 <!--   -->
 </a>
@@ -269,9 +259,10 @@ extends java.lang.Object</pre>
 <h4>pizzeria</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;pizzeria()
               throws java.lang.InterruptedException</pre>
+<div class="block">start pizzeria.</div>
 <dl>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.InterruptedException</code></dd>
+<dd><code>java.lang.InterruptedException</code> - -</dd>
 </dl>
 </li>
 </ul>
