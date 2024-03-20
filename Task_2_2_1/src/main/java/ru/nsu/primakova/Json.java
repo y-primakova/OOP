@@ -20,7 +20,7 @@ public class Json {
     public static Config readJson(String filepath) {
         var objectMapper = new ObjectMapper();
         try {
-            return objectMapper.readValue(new File(filepath), new TypeReference<Config>() {});
+            return objectMapper.readValue(new File(filepath), new TypeReference<>() {});
         } catch (IOException e) {
             System.out.println("Read failed.");
             return null;
@@ -36,7 +36,7 @@ public class Json {
     public static Deque<Integer> readJsonDeque(String filepath) {
         var objectMapper = new ObjectMapper();
         try {
-            return objectMapper.readValue(new File(filepath), new TypeReference<Deque<Integer>>() {});
+            return objectMapper.readValue(new File(filepath), new TypeReference<>() {});
         } catch (IOException e) {
             System.out.println("Read failed.");
             return null;
@@ -52,7 +52,7 @@ public class Json {
     public static HashMap<Integer, Double> readJsonMap(String filepath) {
         var objectMapper = new ObjectMapper();
         try {
-            return objectMapper.readValue(new File(filepath), new TypeReference<HashMap<Integer, Double>>() {});
+            return objectMapper.readValue(new File(filepath), new TypeReference<>() {});
         } catch (IOException e) {
             System.out.println("Read failed.");
             return null;

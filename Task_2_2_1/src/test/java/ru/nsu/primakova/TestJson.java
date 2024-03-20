@@ -6,13 +6,12 @@ import static ru.nsu.primakova.Json.readJsonDeque;
 import static ru.nsu.primakova.Json.readJsonMap;
 import static ru.nsu.primakova.Json.writeJson;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.List;
 import java.util.LinkedList;
-import java.util.HashMap;
+import org.junit.jupiter.api.Test;
 
 /**
  * Class TestJson.

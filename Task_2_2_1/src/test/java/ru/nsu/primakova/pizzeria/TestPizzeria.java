@@ -30,7 +30,8 @@ public class TestPizzeria {
     public void test1() throws InterruptedException {
         initialState();
         System.setOut(new PrintStream(new ByteArrayOutputStream()));
-        var p = new Pizzeria("src/test/resources/testPizzeria1", "src/test/resources/testOrders1", "src/test/resources/testStorage1");
+        var p = new Pizzeria("src/test/resources/testPizzeria1",
+                "src/test/resources/testOrders1", "src/test/resources/testStorage1");
         p.pizzeria();
 
         assertEquals(p.getStorage().getQueue().pollFirst(), 20);
@@ -42,7 +43,8 @@ public class TestPizzeria {
     public void test2() throws InterruptedException {
         initialState();
         System.setOut(new PrintStream(new ByteArrayOutputStream()));
-        var p = new Pizzeria("src/test/resources/testPizzeria2", "src/test/resources/testOrders1", "src/test/resources/testStorage1");
+        var p = new Pizzeria("src/test/resources/testPizzeria2",
+                "src/test/resources/testOrders1", "src/test/resources/testStorage1");
         p.pizzeria();
 
         assertEquals(p.getStorage().getQueue().pollFirst(), 21);
@@ -53,7 +55,8 @@ public class TestPizzeria {
     public void test3() throws InterruptedException {
         initialState();
         System.setOut(new PrintStream(new ByteArrayOutputStream()));
-        var p = new Pizzeria("src/test/resources/testPizzeria3", "src/test/resources/testOrders1", "src/test/resources/testStorage1");
+        var p = new Pizzeria("src/test/resources/testPizzeria3",
+                "src/test/resources/testOrders1", "src/test/resources/testStorage1");
         p.pizzeria();
 
         assertNull(p.getStorage().getQueue().pollFirst());

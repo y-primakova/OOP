@@ -12,6 +12,8 @@ public class Storage<T> extends MyBlockingQueue<T> {
     private int countActiveThreads;
 
     /**
+     * class constructor.
+     *
      * @param capacity storage capacity
      */
     public Storage(int capacity) {
@@ -21,6 +23,8 @@ public class Storage<T> extends MyBlockingQueue<T> {
     }
 
     /**
+     * class constructor.
+     *
      * @param capacity storage capacity
      * @param storage storage
      * @throws InterruptedException -
