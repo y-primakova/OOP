@@ -2,10 +2,12 @@ package ru.nsu.primakova;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static ru.nsu.primakova.Json.readJson;
+import static ru.nsu.primakova.Json.readJsonDeque;
+import static ru.nsu.primakova.Json.readJsonMap;
 import static ru.nsu.primakova.Json.writeJson;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
 import org.junit.jupiter.api.Test;
 
 /**
@@ -13,21 +15,53 @@ import org.junit.jupiter.api.Test;
  */
 public class TestJson {
     @Test
-    public void testWrite() {
+    public void testReadConfig() {
         List<Integer> cookingTime = new ArrayList<>();
         cookingTime.add(1000);
         cookingTime.add(2000);
-        List<Integer> orders = new ArrayList<>();
+        List<Integer> courierCapacity = new ArrayList<>();
+        courierCapacity.add(10);
+
+        var res = readJson("src/test/resources/testJsonConfig");
+        assertEquals(cookingTime, res.getcookingTime());
+        assertEquals(courierCapacity, res.getcourierCapacity());
+        assertEquals(4000, res.getworkTime());
+        assertEquals(2, res.getstorageCapacity());
+    }
+
+    @Test
+    public void testReadList() {
+        Deque<Integer> orders = new LinkedList<>();
         for (int i = 20; i < 25; i++) {
             orders.add(i);
         }
+
+        var res = readJsonDeque("src/test/resources/testJsonDeque");
+        assertEquals(orders, res);
+    }
+
+    @Test
+    public void testReadMap() {
+        var orders = new HashMap<Integer, Double>();
+        for (int i = 20; i < 25; i++) {
+            orders.put(i, (double) (i / 2));
+        }
+
+        var res = readJsonMap("src/test/resources/testJsonMap");
+        assertEquals(orders, res);
+    }
+
+    @Test
+    public void testWriteConfig() {
+        List<Integer> cookingTime = new ArrayList<>();
+        cookingTime.add(1000);
+        cookingTime.add(2000);
         List<Integer> courierCapacity = new ArrayList<>();
         courierCapacity.add(10);
-        Config config = new Config(cookingTime, courierCapacity, 2, 4000, orders);
-        writeJson(config, "src/test/resources/testJson");
-        var res = readJson("src/test/resources/testJson");
-        assertEquals(config.getstorage(), res.getstorage());
-        assertEquals(config.getorders(), res.getorders());
+        Config config = new Config(cookingTime, courierCapacity, 2, 4000);
+        writeJson(config, "src/test/resources/testJsonConfig");
+
+        var res = readJson("src/test/resources/testJsonConfig");
         assertEquals(config.getcookingTime(), res.getcookingTime());
         assertEquals(config.getcourierCapacity(), res.getcourierCapacity());
         assertEquals(config.getworkTime(), res.getworkTime());
@@ -35,23 +69,26 @@ public class TestJson {
     }
 
     @Test
-    public void testRead() {
-        List<Integer> cookingTime = new ArrayList<>();
-        cookingTime.add(1000);
-        cookingTime.add(2000);
-        List<Integer> orders = new ArrayList<>();
+    public void testWriteDeque() {
+        Deque<Integer> orders = new LinkedList<>();
         for (int i = 20; i < 25; i++) {
             orders.add(i);
         }
-        List<Integer> courierCapacity = new ArrayList<>();
-        courierCapacity.add(10);
+        writeJson(orders, "src/test/resources/testJsonDeque");
 
-        var res = readJson("src/test/resources/testJson");
-        assertEquals(new ArrayList<>(), res.getstorage());
-        assertEquals(orders, res.getorders());
-        assertEquals(cookingTime, res.getcookingTime());
-        assertEquals(courierCapacity, res.getcourierCapacity());
-        assertEquals(4000, res.getworkTime());
-        assertEquals(2, res.getstorageCapacity());
+        var res = readJsonDeque("src/test/resources/testJsonDeque");
+        assertEquals(orders, res);
+    }
+
+    @Test
+    public void testWriteMap() {
+        var orders = new HashMap<Integer,Double>();
+        for (int i = 20; i < 25; i++) {
+            orders.put(i, (double) (i/2));
+        }
+        writeJson(orders, "src/test/resources/testJsonMap");
+
+        var res = readJsonMap("src/test/resources/testJsonMap");
+        assertEquals(orders, res);
     }
 }

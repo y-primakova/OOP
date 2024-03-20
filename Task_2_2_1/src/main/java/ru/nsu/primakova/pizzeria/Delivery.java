@@ -37,11 +37,13 @@ public class Delivery implements Runnable {
                 throw new RuntimeException(ex);
             }
         }
+        storage.decActiveThreads();
     }
 
     @Override
     public void run() {
         while ((orders.getCurrSize() != 0 || !storage.isEmpty()) && !Thread.currentThread().isInterrupted()) {
+            storage.incActiveThreads();
             var currOrders = new ArrayList<Integer>();
             for (int i = this.capacity; i > 0; i--) {
                 if (storage.isEmpty()) {
@@ -61,14 +63,17 @@ public class Delivery implements Runnable {
             }
             try {
                 Thread.sleep(deliveryTime);
-            } catch (InterruptedException e) {
+            } catch (InterruptedException e) { //}
+//            if (Thread.currentThread().isInterrupted()){
                 returnInStorage(currOrders);
                 break;
             }
             for (var order : currOrders) {
                 System.out.println(order + "\t\t" + indThread + "\t\tзаказ доставлен");
+                orders.removeTime(order);
             }
             storage.setCurrSize(storage.getCurrSize() - currOrders.size());
+            storage.decActiveThreads();
         }
     }
 }

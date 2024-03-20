@@ -1,40 +1,63 @@
 package ru.nsu.primakova.queue;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.util.ArrayList;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.LinkedList;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Class TestMyBlockingQueue.
  */
 public class TestMyBlockingQueue {
-    private MyBlockingQueue<Integer> testQueue() throws InterruptedException {
-        var q = new MyBlockingQueue<Integer>();
-        q.add(1);
-        q.add(2);
-        q.add(3);
-        return q;
+    /**
+     * create queue for tests.
+     *
+     * @return queue
+     */
+    private MyBlockingQueue<Integer> testQueue() {
+        var q = new HashMap<Integer, Double>();
+        q.put(1, 0.77);
+        q.put(2, 0.9);
+        q.put(3, null);
+        return new MyBlockingQueue<>(q);
     }
 
     @Test
-    public void testIsEmpty() throws InterruptedException {
+    public void testTime() {
+        var s = testQueue();
+        assertEquals(s.getTime(1),0.77);
+        assertEquals(s.getTime(2),0.9);
+        assertNull(s.getTime(3));
+        assertNull(s.getTime(10));
+    }
+
+    @Test
+    public void testIsEmpty() {
         var q = testQueue();
         assertFalse(q.isEmpty());
     }
 
     @Test
-    public void testCurrSize() throws InterruptedException {
+    public void testIsEnd() {
+        var q = testQueue();
+        assertTrue(q.isActiveThreads());
+        q.incActiveThreads();
+        assertFalse(q.isActiveThreads());
+        q.decActiveThreads();
+        assertTrue(q.isActiveThreads());
+    }
+
+    @Test
+    public void testCurrSize() {
         var s = testQueue();
         assertEquals(s.getCurrSize(), 3);
     }
 
     @Test
-    public void testSize() throws InterruptedException {
+    public void testSize() {
         var q = testQueue();
         assertEquals(q.size(), 3);
     }
@@ -74,7 +97,7 @@ public class TestMyBlockingQueue {
     @Test
     public void testAddAll() throws InterruptedException {
         var q = testQueue();
-        var x = new ArrayList<Integer>();
+        var x = new LinkedList<Integer>();
         x.add(4);
         x.add(5);
         q.addAll(x);

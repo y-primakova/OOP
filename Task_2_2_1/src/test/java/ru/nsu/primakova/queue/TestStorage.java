@@ -1,13 +1,21 @@
 package ru.nsu.primakova.queue;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Deque;
 import java.util.LinkedList;
 import org.junit.jupiter.api.Test;
 import ru.nsu.primakova.pizzeria.Storage;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 public class TestStorage {
+    /**
+     * create storage for tests.
+     *
+     * @return storage
+     * @throws InterruptedException -
+     */
     private Storage<Integer> testStorage() throws InterruptedException {
         var s = new Storage<Integer>(4);
         s.add(1);
@@ -26,6 +34,16 @@ public class TestStorage {
     public void testIsFull() throws InterruptedException {
         var s = testStorage();
         assertFalse(s.isFull());
+    }
+
+    @Test
+    public void testIsEnd() throws InterruptedException {
+        var s = testStorage();
+        assertTrue(s.isActiveThreads());
+        s.incActiveThreads();
+        assertFalse(s.isActiveThreads());
+        s.decActiveThreads();
+        assertTrue(s.isActiveThreads());
     }
 
     @Test
@@ -69,6 +87,22 @@ public class TestStorage {
         actual.add(2);
         actual.add(3);
         actual.add(4);
+        assertEquals(s.getQueue(), actual);
+    }
+
+    @Test
+    public void testAddAll() throws InterruptedException {
+        var s = testStorage();
+        var x = new LinkedList<Integer>();
+        x.add(4);
+        x.add(5);
+        s.addAll(x);
+        Deque<Integer> actual = new LinkedList<>();
+        actual.add(1);
+        actual.add(2);
+        actual.add(3);
+        actual.add(4);
+        actual.add(5);
         assertEquals(s.getQueue(), actual);
     }
 

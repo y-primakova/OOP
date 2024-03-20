@@ -1,1 +1,1 @@
-{"storage":[],"orders":[20,21],"cookingTime":[1000],"courierCapacity":[1],"storageCapacity":1,"workTime":900}
+{"cookingTime":[2000,3000],"courierCapacity":[2],"storageCapacity":2,"workTime":3500}
