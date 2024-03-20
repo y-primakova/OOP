@@ -1,10 +1,12 @@
 package ru.nsu.primakova;
 
-import static ru.nsu.primakova.Json.readJsonMap;
 import static ru.nsu.primakova.Json.writeJson;
 
-import java.util.*;
-
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import ru.nsu.primakova.pizzeria.Pizzeria;
 
 /**
@@ -13,18 +15,22 @@ import ru.nsu.primakova.pizzeria.Pizzeria;
 public class Main {
     /**
      * main.
+     *
+     * @param args -
+     * @throws InterruptedException -
      */
     public static void main(String[] args) throws InterruptedException {
         List<Integer> cookingTime = new ArrayList<>();
-        cookingTime.add(5000);
+        cookingTime.add(1000);
+        cookingTime.add(2000);
         List<Integer> courierCapacity = new ArrayList<>();
         courierCapacity.add(3);
-        Config config = new Config(cookingTime, courierCapacity, 5, 3500);
+        Config config = new Config(cookingTime, courierCapacity, 5, 20000);
         writeJson(config, "src/main/resources/pizzeria");
 
-        var orders = new HashMap<Integer,Double>();
-        for (int i = 20; i < 23; i++) {
-            orders.put(i,null);
+        var orders = new HashMap<Integer, Double>();
+        for (int i = 20; i < 26; i++) {
+            orders.put(i, null);
         }
         writeJson(orders, "src/main/resources/orders");
 

@@ -21,6 +21,14 @@ public class Pizzeria {
     private final String ordersPath;
     private final String storagePath;
 
+    /**
+     * class constructor.
+     *
+     * @param configPath the path to the configuration
+     * @param ordersPath the path to the orders
+     * @param storagePath the path to the storage
+     * @throws InterruptedException -
+     */
     public Pizzeria(String configPath, String ordersPath, String storagePath) throws InterruptedException {
         var config = readJson(configPath);
         var storage = readJsonDeque(storagePath);
@@ -28,12 +36,12 @@ public class Pizzeria {
             this.cookingTime = config.getcookingTime();
             this.courierCapacity = config.getcourierCapacity();
             this.workTime = config.getworkTime();
-            this.storage = new Storage<>(config.getstorageCapacity(),storage);
+            this.storage = new Storage<>(config.getstorageCapacity(), storage);
         } else {
             this.cookingTime = new ArrayList<>();
             this.courierCapacity = new ArrayList<>();
             this.workTime = 0;
-            this.storage = new Storage<>(0,storage);
+            this.storage = new Storage<>(0, storage);
         }
 
         var orders = readJsonMap(ordersPath);
@@ -44,6 +52,7 @@ public class Pizzeria {
 
     /**
      * start pizzeria.
+     *
      * @throws InterruptedException -
      */
     public void pizzeria() throws InterruptedException {
@@ -60,16 +69,7 @@ public class Pizzeria {
             threadsDelivery[i].start();
         }
 
-        var time = workTime;
-        while (storage.getCurrSize() != 0 || orders.getCurrSize() != 0) {
-            if (time > 1000) {
-                Thread.sleep(1000);
-                time -= 1000;
-            } else {
-                Thread.sleep(time);
-                break;
-            }
-        }
+        Thread.sleep(workTime);
 
         for (int i = 0; i < cookingTime.size(); i++) {
             threadsBaker[i].interrupt();
@@ -79,9 +79,7 @@ public class Pizzeria {
         }
         orders.myNotify();
         storage.myNotify();
-        while (!orders.isActiveThreads() || !storage.isActiveThreads()) {
-
-        }
+        while (!orders.isActiveThreads() || !storage.isActiveThreads()) { }
         System.out.println("Пиццерия закрыта");
 
         writeJson(orders.getTime(), ordersPath);

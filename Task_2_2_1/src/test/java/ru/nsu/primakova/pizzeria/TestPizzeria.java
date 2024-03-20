@@ -16,9 +16,9 @@ import org.junit.jupiter.api.Test;
  */
 public class TestPizzeria {
     private void initialState() {
-        var orders = new HashMap<Integer,Double>();
+        var orders = new HashMap<Integer, Double>();
         for (int i = 20; i < 23; i++) {
-            orders.put(i,null);
+            orders.put(i, null);
         }
         writeJson(orders, "src/test/resources/testOrders1");
 

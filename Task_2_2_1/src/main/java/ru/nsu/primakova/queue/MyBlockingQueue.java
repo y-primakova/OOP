@@ -10,27 +10,31 @@ import java.util.LinkedList;
 public class MyBlockingQueue<T> {
     private final Deque<T> queue;
     private final HashMap<T, Double> time;
-    private int currSize;
-    private int CountActiveThreads;
+    private int countActiveThreads;
 
+    /**
+     * class constructor.
+     */
     public MyBlockingQueue() {
         this.queue = new LinkedList<>();
         this.time = new HashMap<>();
-        this.currSize = 0;
-        this.CountActiveThreads = 0;
+        this.countActiveThreads = 0;
     }
 
+    /**
+     * class constructor.
+     *
+     * @param time the percentage of incomplete cooking
+     */
     public MyBlockingQueue(HashMap<T, Double> time) {
         this.queue = new LinkedList<>();
         if (time != null) {
             this.queue.addAll(time.keySet());
             this.time = time;
-            this.currSize = time.size();
         } else {
             this.time = new HashMap<>();
-            this.currSize = 0;
         }
-        this.CountActiveThreads = 0;
+        this.countActiveThreads = 0;
     }
 
     public Deque<T> getQueue() {
@@ -63,7 +67,7 @@ public class MyBlockingQueue<T> {
      * @return true if queue is end
      */
     public synchronized boolean isActiveThreads() {
-        if (this.CountActiveThreads == 0) {
+        if (this.countActiveThreads == 0) {
             return true;
         }
         return false;
@@ -73,14 +77,14 @@ public class MyBlockingQueue<T> {
      * increment CountActiveThreads.
      */
     public synchronized void incActiveThreads() {
-        this.CountActiveThreads++;
+        this.countActiveThreads++;
     }
 
     /**
      * decrement CountActiveThreads.
      */
     public synchronized void decActiveThreads() {
-        this.CountActiveThreads--;
+        this.countActiveThreads--;
     }
 
     /**
@@ -97,14 +101,6 @@ public class MyBlockingQueue<T> {
 
     public synchronized int size() {
         return this.queue.size();
-    }
-
-    public synchronized int getCurrSize() {
-        return this.currSize;
-    }
-
-    public synchronized void setCurrSize(int size) {
-        this.currSize = size;
     }
 
     /**
@@ -136,31 +132,33 @@ public class MyBlockingQueue<T> {
     /**
      * add element to tail of queue.
      *
+     * @param t - element
      * @throws InterruptedException -
      */
     public synchronized void add(T t) throws InterruptedException {
         this.queue.add(t);
-        currSize++;
         notify();
     }
 
     /**
      * add element to head of queue.
      *
+     * @param t - element
      * @throws InterruptedException -
      */
     public synchronized void addFirst(T t) throws InterruptedException {
         this.queue.addFirst(t);
-        currSize++;
         notify();
     }
 
     /**
      * add list of elements to tail of queue.
+     *
+     * @param t - deque
+     * @throws InterruptedException -
      */
     public synchronized void addAll(Deque<T> t) throws InterruptedException {
         this.queue.addAll(t);
-        currSize += t.size();
         notify();
     }
 }

@@ -2,7 +2,6 @@ package ru.nsu.primakova;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Deque;
@@ -32,7 +31,7 @@ public class Json {
      * read .json file.
      *
      * @param filepath - path to the file
-     * @return Deque<Integer>
+     * @return Deque
      */
     public static Deque<Integer> readJsonDeque(String filepath) {
         var objectMapper = new ObjectMapper();
@@ -48,12 +47,12 @@ public class Json {
      * read .json file.
      *
      * @param filepath - path to the file
-     * @return HashMap<Integer,Long>
+     * @return HashMap
      */
-    public static HashMap<Integer,Double> readJsonMap(String filepath) {
+    public static HashMap<Integer, Double> readJsonMap(String filepath) {
         var objectMapper = new ObjectMapper();
         try {
-            return objectMapper.readValue(new File(filepath), new TypeReference<HashMap<Integer,Double>>() {});
+            return objectMapper.readValue(new File(filepath), new TypeReference<HashMap<Integer, Double>>() {});
         } catch (IOException e) {
             System.out.println("Read failed.");
             return null;
@@ -79,7 +78,7 @@ public class Json {
     /**
      * write .json file.
      *
-     * @param notes - Deque<Integer>
+     * @param notes - Deque
      *
      * @param filepath - path to the file
      */
@@ -95,11 +94,11 @@ public class Json {
     /**
      * write .json file.
      *
-     * @param notes - HashMap<T,Long>
+     * @param notes - HashMap
      *
      * @param filepath - path to the file
      */
-    public static void writeJson(HashMap<Integer,Double> notes, String filepath) {
+    public static void writeJson(HashMap<Integer, Double> notes, String filepath) {
         var objectMapper = new ObjectMapper();
         try {
             objectMapper.writeValue(new File(filepath), notes);

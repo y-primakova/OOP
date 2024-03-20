@@ -11,6 +11,14 @@ public class Baker implements Runnable {
     private final int cookingTime;
     private final int indThread;
 
+    /**
+     * class constructor.
+     *
+     * @param cookingTime cooking time
+     * @param orders order queue
+     * @param storage storage
+     * @param indThread index of thread
+     */
     public Baker(int cookingTime, MyBlockingQueue<Integer> orders, Storage<Integer> storage, int indThread) {
         if (cookingTime <= 0) {
             this.cookingTime = 1;
@@ -24,7 +32,10 @@ public class Baker implements Runnable {
 
     @Override
     public void run() {
-        while (!orders.isEmpty() && !Thread.currentThread().isInterrupted()) {
+        while (!Thread.currentThread().isInterrupted()) {
+            if (orders.isEmpty()) {
+                continue;
+            }
             orders.incActiveThreads();
             int order = 0;
             long start = 0;
@@ -48,6 +59,7 @@ public class Baker implements Runnable {
                 if (orders.getTime(order) != null) {
                     time += orders.getTime(order) - 1;
                 }
+
                 if (time < 0) {
                    time = 0;
                 }
@@ -62,7 +74,6 @@ public class Baker implements Runnable {
             }
             orders.setTime(order, 0);
             System.out.println(order + "\t\t" + indThread + "\t\tзаказ ожидает курьера");
-            orders.setCurrSize(orders.getCurrSize() - 1);
             orders.decActiveThreads();
         }
     }

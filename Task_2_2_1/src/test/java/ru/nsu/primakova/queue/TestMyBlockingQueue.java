@@ -1,12 +1,14 @@
 package ru.nsu.primakova.queue;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Class TestMyBlockingQueue.
@@ -28,8 +30,8 @@ public class TestMyBlockingQueue {
     @Test
     public void testTime() {
         var s = testQueue();
-        assertEquals(s.getTime(1),0.77);
-        assertEquals(s.getTime(2),0.9);
+        assertEquals(s.getTime(1), 0.77);
+        assertEquals(s.getTime(2), 0.9);
         assertNull(s.getTime(3));
         assertNull(s.getTime(10));
     }
@@ -48,12 +50,6 @@ public class TestMyBlockingQueue {
         assertFalse(q.isActiveThreads());
         q.decActiveThreads();
         assertTrue(q.isActiveThreads());
-    }
-
-    @Test
-    public void testCurrSize() {
-        var s = testQueue();
-        assertEquals(s.getCurrSize(), 3);
     }
 
     @Test

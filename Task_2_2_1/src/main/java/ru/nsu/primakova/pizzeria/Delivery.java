@@ -13,6 +13,14 @@ public class Delivery implements Runnable {
     private final int deliveryTime = 3000;
     private final int indThread;
 
+    /**
+     * class constructor.
+     *
+     * @param capacity courier capacity
+     * @param orders order queue
+     * @param storage storage
+     * @param indThread index of thread
+     */
     public Delivery(int capacity, MyBlockingQueue<Integer> orders, Storage<Integer> storage, int indThread) {
         if (capacity <= 0) {
             this.capacity = 1;
@@ -30,7 +38,6 @@ public class Delivery implements Runnable {
                 if (storage.isFull()) {
                     var x = storage.pollLast();
                     orders.addFirst(x);
-                    storage.setCurrSize(storage.getCurrSize() - 1);
                 }
                 storage.addFirst(o);
             } catch (InterruptedException ex) {
@@ -42,7 +49,10 @@ public class Delivery implements Runnable {
 
     @Override
     public void run() {
-        while ((orders.getCurrSize() != 0 || !storage.isEmpty()) && !Thread.currentThread().isInterrupted()) {
+        while (!Thread.currentThread().isInterrupted()) {
+            if (storage.isEmpty()) {
+                continue;
+            }
             storage.incActiveThreads();
             var currOrders = new ArrayList<Integer>();
             for (int i = this.capacity; i > 0; i--) {
@@ -63,8 +73,7 @@ public class Delivery implements Runnable {
             }
             try {
                 Thread.sleep(deliveryTime);
-            } catch (InterruptedException e) { //}
-//            if (Thread.currentThread().isInterrupted()){
+            } catch (InterruptedException e) {
                 returnInStorage(currOrders);
                 break;
             }
@@ -72,7 +81,6 @@ public class Delivery implements Runnable {
                 System.out.println(order + "\t\t" + indThread + "\t\tзаказ доставлен");
                 orders.removeTime(order);
             }
-            storage.setCurrSize(storage.getCurrSize() - currOrders.size());
             storage.decActiveThreads();
         }
     }

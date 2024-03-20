@@ -15,6 +15,14 @@ public class Config {
 
     }
 
+    /**
+     * class constructor.
+     *
+     * @param cookingTime cooking time
+     * @param courierCapacity courier capacity
+     * @param storageCapacity storage capacity
+     * @param workTime pizzeria work time
+     */
     public Config(List<Integer> cookingTime, List<Integer> courierCapacity, int storageCapacity, int workTime) {
         this.cookingTime = cookingTime;
         this.courierCapacity = courierCapacity;

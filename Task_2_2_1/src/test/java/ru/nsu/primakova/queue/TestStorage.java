@@ -9,6 +9,9 @@ import java.util.LinkedList;
 import org.junit.jupiter.api.Test;
 import ru.nsu.primakova.pizzeria.Storage;
 
+/**
+ * Class TestStorage.
+ */
 public class TestStorage {
     /**
      * create storage for tests.
@@ -44,12 +47,6 @@ public class TestStorage {
         assertFalse(s.isActiveThreads());
         s.decActiveThreads();
         assertTrue(s.isActiveThreads());
-    }
-
-    @Test
-    public void testCurrSize() throws InterruptedException {
-        var s = testStorage();
-        assertEquals(s.getCurrSize(), 3);
     }
 
     @Test

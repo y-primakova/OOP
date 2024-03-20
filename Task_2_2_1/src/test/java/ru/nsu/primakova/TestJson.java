@@ -6,9 +6,13 @@ import static ru.nsu.primakova.Json.readJsonDeque;
 import static ru.nsu.primakova.Json.readJsonMap;
 import static ru.nsu.primakova.Json.writeJson;
 
-import java.util.*;
-
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
+import java.util.LinkedList;
+import java.util.HashMap;
 
 /**
  * Class TestJson.
@@ -82,9 +86,9 @@ public class TestJson {
 
     @Test
     public void testWriteMap() {
-        var orders = new HashMap<Integer,Double>();
+        var orders = new HashMap<Integer, Double>();
         for (int i = 20; i < 25; i++) {
-            orders.put(i, (double) (i/2));
+            orders.put(i, (double) (i / 2));
         }
         writeJson(orders, "src/test/resources/testJsonMap");
 
