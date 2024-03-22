@@ -9,8 +9,8 @@ import static ru.nsu.primakova.Json.writeJson;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.HashMap;
-import java.util.List;
 import java.util.LinkedList;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 /**

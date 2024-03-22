@@ -25,12 +25,12 @@ public class Main {
         cookingTime.add(2000);
         List<Integer> courierCapacity = new ArrayList<>();
         courierCapacity.add(3);
-        Config config = new Config(cookingTime, courierCapacity, 5, 20000);
+        Config config = new Config(cookingTime, courierCapacity, 5, 5000);
         writeJson(config, "src/main/resources/pizzeria");
 
         var orders = new HashMap<Integer, Double>();
-        for (int i = 20; i < 26; i++) {
-            orders.put(i, null);
+        for (int i = 20; i < 23; i++) {
+            orders.put(i, 1.0);
         }
         writeJson(orders, "src/main/resources/orders");
 
@@ -38,6 +38,8 @@ public class Main {
         writeJson(storage, "src/main/resources/storage");
 
         var p = new Pizzeria("src/main/resources/pizzeria", "src/main/resources/orders", "src/main/resources/storage");
+        p.addOrder(1);
+        p.addOrder(5);
         p.pizzeria();
     }
 }

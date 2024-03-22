@@ -5,6 +5,8 @@ import static ru.nsu.primakova.Json.readJsonDeque;
 import static ru.nsu.primakova.Json.readJsonMap;
 import static ru.nsu.primakova.Json.writeJson;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import java.util.ArrayList;
 import java.util.List;
 import ru.nsu.primakova.queue.MyBlockingQueue;
@@ -20,6 +22,7 @@ public class Pizzeria {
     private final int workTime;
     private final String ordersPath;
     private final String storagePath;
+    private static final Logger log = LogManager.getLogger();
 
     /**
      * class constructor.
@@ -56,16 +59,15 @@ public class Pizzeria {
      * @throws InterruptedException -
      */
     public void pizzeria() throws InterruptedException {
-        System.out.println("order" + "\tthread" + "\tstate");
-
+        log.info("\t\torder" + "\tstate");
         var threadsBaker = new Thread[cookingTime.size()];
         var threadsDelivery = new Thread[courierCapacity.size()];
         for (int i = 0; i < cookingTime.size(); i++) {
-            threadsBaker[i] = new Thread(new Baker(cookingTime.get(i), orders, storage, i));
+            threadsBaker[i] = new Thread(new Baker(cookingTime.get(i), orders, storage));
             threadsBaker[i].start();
         }
         for (int i = 0; i < courierCapacity.size(); i++) {
-            threadsDelivery[i] = new Thread(new Delivery(courierCapacity.get(i), orders, storage, i + cookingTime.size()));
+            threadsDelivery[i] = new Thread(new Delivery(courierCapacity.get(i), orders, storage));
             threadsDelivery[i].start();
         }
 
@@ -80,10 +82,15 @@ public class Pizzeria {
         orders.myNotify();
         storage.myNotify();
         while (!orders.isActiveThreads() || !storage.isActiveThreads()) { }
-        System.out.println("Пиццерия закрыта");
+        log.info("\t\tПиццерия закрыта");
 
         writeJson(orders.getTime(), ordersPath);
         writeJson(storage.getQueue(), storagePath);
+    }
+
+    public void addOrder(int order) throws InterruptedException {
+        orders.add(order);
+        orders.setTime(order, 1);
     }
 
     public Storage<Integer> getStorage() {

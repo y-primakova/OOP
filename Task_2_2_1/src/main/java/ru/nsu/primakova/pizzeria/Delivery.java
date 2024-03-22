@@ -1,5 +1,7 @@
 package ru.nsu.primakova.pizzeria;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import java.util.ArrayList;
 import ru.nsu.primakova.queue.MyBlockingQueue;
 
@@ -11,7 +13,7 @@ public class Delivery implements Runnable {
     private final Storage<Integer> storage;
     private final int capacity;
     private final int deliveryTime = 3000;
-    private final int indThread;
+    private static final Logger log = LogManager.getLogger();
 
     /**
      * class constructor.
@@ -19,9 +21,8 @@ public class Delivery implements Runnable {
      * @param capacity courier capacity
      * @param orders order queue
      * @param storage storage
-     * @param indThread index of thread
      */
-    public Delivery(int capacity, MyBlockingQueue<Integer> orders, Storage<Integer> storage, int indThread) {
+    public Delivery(int capacity, MyBlockingQueue<Integer> orders, Storage<Integer> storage) {
         if (capacity <= 0) {
             this.capacity = 1;
         } else {
@@ -29,10 +30,27 @@ public class Delivery implements Runnable {
         }
         this.storage = storage;
         this.orders = orders;
-        this.indThread = indThread;
     }
 
-    private void returnInStorage(ArrayList<Integer> currOrders) {
+    public ArrayList<Integer> currOrders() {
+        var currOrders = new ArrayList<Integer>();
+        for (int i = this.capacity; i > 0; i--) {
+            if (storage.isEmpty()) {
+                break;
+            }
+            int order;
+            try {
+                order = storage.poll();
+            } catch (InterruptedException e) {
+                returnInStorage(currOrders);
+                break;
+            }
+            currOrders.add(order);
+        }
+        return currOrders;
+    }
+
+    public void returnInStorage(ArrayList<Integer> currOrders) {
         for (var o : currOrders) {
             try {
                 if (storage.isFull()) {
@@ -54,22 +72,9 @@ public class Delivery implements Runnable {
                 continue;
             }
             storage.incActiveThreads();
-            var currOrders = new ArrayList<Integer>();
-            for (int i = this.capacity; i > 0; i--) {
-                if (storage.isEmpty()) {
-                    break;
-                }
-                int order;
-                try {
-                    order = storage.poll();
-                } catch (InterruptedException e) {
-                    returnInStorage(currOrders);
-                    break;
-                }
-                currOrders.add(order);
-            }
+            var currOrders = currOrders();
             for (var order : currOrders) {
-                System.out.println(order + "\t\t" + indThread + "\t\tкурьер забрал заказ");
+                log.info("\t" + order + "\t\tкурьер забрал заказ");
             }
             try {
                 Thread.sleep(deliveryTime);
@@ -78,7 +83,7 @@ public class Delivery implements Runnable {
                 break;
             }
             for (var order : currOrders) {
-                System.out.println(order + "\t\t" + indThread + "\t\tзаказ доставлен");
+                log.info("\t" + order + "\t\tзаказ доставлен");
                 orders.removeTime(order);
             }
             storage.decActiveThreads();
