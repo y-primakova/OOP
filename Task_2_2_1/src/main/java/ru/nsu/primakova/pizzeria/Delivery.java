@@ -1,8 +1,8 @@
 package ru.nsu.primakova.pizzeria;
 
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.LogManager;
 import java.util.ArrayList;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import ru.nsu.primakova.queue.MyBlockingQueue;
 
 /**

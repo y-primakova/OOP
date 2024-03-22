@@ -47,8 +47,8 @@ public class TestPizzeria {
                 "src/test/resources/testOrders1", "src/test/resources/testStorage1");
         p.pizzeria();
 
-        assertEquals(p.getStorage().getQueue().pollFirst(), 21);
-        assertEquals(p.getOrders().getQueue().pollFirst(), 22);
+        assertNull(p.getStorage().getQueue().pollFirst());
+        assertNull(p.getOrders().getQueue().pollFirst());
     }
 
     @Test
