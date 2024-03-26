@@ -11,7 +11,7 @@ public class Game implements Runnable {
     private final GraphicsContext context;
     private final Snake snake;
     private final Apple apple;
-    private final int workTime = 30000;
+    private final int workTime = 10000;
 
     public Game(GraphicsContext context, Snake snake, Apple apple) {
         this.context = context;
