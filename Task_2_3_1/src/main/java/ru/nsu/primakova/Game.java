@@ -1,33 +1,34 @@
 package ru.nsu.primakova;
 
-import javafx.scene.canvas.GraphicsContext;
-
 import static java.lang.System.currentTimeMillis;
 
 /**
  * Class Game.
  */
 public class Game implements Runnable {
-    private final GraphicsContext context;
     private final Snake snake;
     private final Apple apple;
-    private final int workTime = 10000;
+    private final Painter painter;
+    private final int speed;
+    private final int winLength;
 
-    public Game(GraphicsContext context, Snake snake, Apple apple) {
-        this.context = context;
+    public Game(Snake snake, Apple apple, Painter painter, int speed, int winLength) {
         this.snake = snake;
         this.apple = apple;
+        this.painter = painter;
+        this.speed = speed;
+        this.winLength = winLength;
+
     }
 
     @Override
     public void run() {
         long start = 0;
-        long startWork = currentTimeMillis();
-        while (!snake.isEnd() && workTime > currentTimeMillis() - startWork) {
-            if (currentTimeMillis() - start >= 500) {
+        while (!snake.isEnd() && snake.getLength() != winLength) {
+            if (currentTimeMillis() - start >= speed) {
                 snake.changeSnake();
                 try {
-                    Painter.paint(context, snake, apple.getApple());
+                    painter.paint(snake, apple);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
