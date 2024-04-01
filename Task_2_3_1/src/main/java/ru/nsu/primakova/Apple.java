@@ -7,21 +7,21 @@ import java.util.Random;
  */
 public class Apple {
     private final boolean[][] apple;
-    private final int nColumns;
-    private final int nRows;
-    private final int nApple;
+    private final int columns;
+    private final int rows;
+    private final int numApple;
 
     public Apple(int nApple, int nColumns, int nRows, boolean[][] barrier) {
-        this.nColumns = nColumns;
-        this.nRows = nRows;
-        this.nApple = nApple;
+        this.columns = nColumns;
+        this.rows = nRows;
+        this.numApple = nApple;
         this.apple = new boolean[nColumns][nRows];
         for (int i = 0; i < nColumns; i++) {
             for (int j = 0; j < nRows; j++) {
                 this.apple[i][j] = false;
             }
         }
-        for (int i = 0; i < nApple; i++){
+        for (int i = 0; i < nApple; i++) {
             createApple(barrier);
         }
     }
@@ -31,14 +31,14 @@ public class Apple {
     }
 
     public int getNumApple() {
-        return this.nApple;
+        return this.numApple;
     }
 
     public void createApple(boolean[][] array) {
         Random rand = new Random();
         while (true) {
-            var x = rand.nextInt(nColumns);
-            var y = rand.nextInt(nRows);
+            var x = rand.nextInt(columns);
+            var y = rand.nextInt(rows);
             if (!apple[x][y] && !array[x][y]) {
                 apple[x][y] = true;
                 break;
@@ -49,8 +49,8 @@ public class Apple {
     public void createApple(int[][] array) {
         Random rand = new Random();
         while (true) {
-            var x = rand.nextInt(nColumns);
-            var y = rand.nextInt(nRows);
+            var x = rand.nextInt(columns);
+            var y = rand.nextInt(rows);
             if (!apple[x][y] && array[x][y] == 0) {
                 apple[x][y] = true;
                 break;

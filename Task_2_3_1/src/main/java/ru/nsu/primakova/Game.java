@@ -1,5 +1,7 @@
 package ru.nsu.primakova;
 
+import javafx.application.Application;
+
 import static java.lang.System.currentTimeMillis;
 
 /**
@@ -12,13 +14,21 @@ public class Game implements Runnable {
     private final int speed;
     private final int winLength;
 
+    /**
+     * class constructor.
+     *
+     * @param snake - snake
+     * @param apple - apple
+     * @param painter - draws the snake
+     * @param speed - speed of the snake
+     * @param winLength - win length of the snake
+     */
     public Game(Snake snake, Apple apple, Painter painter, int speed, int winLength) {
         this.snake = snake;
         this.apple = apple;
         this.painter = painter;
         this.speed = speed;
         this.winLength = winLength;
-
     }
 
     @Override

@@ -19,14 +19,14 @@ public class TestSnake {
         var snake = new Snake(2, 2, apple, b);
 
         assertEquals(snake.getLength(), 1);
-        assertEquals(snake.getSnake(0, 0) , -1);
-        assertEquals(snake.getSnake(1, 0) , -1);
+        assertEquals(snake.getSnake(0, 0), -1);
+        assertEquals(snake.getSnake(1, 0), -1);
         if (apple.getApple(0, 1)) {
-            assertEquals(snake.getSnake(0, 1) , 0);
-            assertEquals(snake.getSnake(1, 1) , 1);
+            assertEquals(snake.getSnake(0, 1), 0);
+            assertEquals(snake.getSnake(1, 1), 1);
         } else {
-            assertEquals(snake.getSnake(0, 1) , 1);
-            assertEquals(snake.getSnake(1, 1) , 0);
+            assertEquals(snake.getSnake(0, 1), 1);
+            assertEquals(snake.getSnake(1, 1), 0);
         }
         assertFalse(snake.isEnd());
     }
@@ -41,14 +41,14 @@ public class TestSnake {
         snake.changeSnake();
 
         assertEquals(snake.getLength(), 1);
-        assertEquals(snake.getSnake(0, 0) , -1);
-        assertEquals(snake.getSnake(1, 0) , -1);
+        assertEquals(snake.getSnake(0, 0), -1);
+        assertEquals(snake.getSnake(1, 0), -1);
         if (apple.getApple(0, 1)) {
-            assertEquals(snake.getSnake(0, 1) , 0);
-            assertEquals(snake.getSnake(1, 1) , 1);
+            assertEquals(snake.getSnake(0, 1), 0);
+            assertEquals(snake.getSnake(1, 1), 1);
         } else {
-            assertEquals(snake.getSnake(0, 1) , 1);
-            assertEquals(snake.getSnake(1, 1) , 0);
+            assertEquals(snake.getSnake(0, 1), 1);
+            assertEquals(snake.getSnake(1, 1), 0);
         }
         assertTrue(snake.isEnd());
     }

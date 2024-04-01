@@ -10,16 +10,16 @@ public class Snake {
     private final int[] head = new int[2];
     private final int[][] snake;
     private int length;
-    private int maxLength;
-    private final int nColumns;
-    private final int nRows;
+    private final int maxLength;
+    private final int columns;
+    private final int rows;
     private String cond = "UP";
     private final Apple apple;
     private boolean isEnd = false;
 
     public Snake(int nColumns, int nRows, Apple apple, Barrier barrier) {
-        this.nColumns = nColumns;
-        this.nRows = nRows;
+        this.columns = nColumns;
+        this.rows = nRows;
         this.snake = new int[nColumns][nRows];
         for (int i = 0; i < nColumns; i++) {
             for (int j = 0; j < nRows; j++) {
@@ -58,8 +58,8 @@ public class Snake {
     }
 
     public void setCond(String cond) {
-        if (Objects.equals(cond, "UP") || Objects.equals(cond, "DOWN") ||
-                Objects.equals(cond, "LEFT") || Objects.equals(cond, "RIGHT")) {
+        if (Objects.equals(cond, "UP") || Objects.equals(cond, "DOWN")
+                || Objects.equals(cond, "LEFT") || Objects.equals(cond, "RIGHT")) {
             this.cond = cond;
         }
     }
@@ -67,24 +67,24 @@ public class Snake {
     public void changeSnake() {
         if (Objects.equals(cond, "UP")) {
             if (head[1] == 0) {
-                head[1] = nRows - 1;
+                head[1] = rows - 1;
             } else {
                 head[1] -= 1;
             }
         } else if (Objects.equals(cond, "DOWN")) {
-            if (head[1] == nRows - 1) {
+            if (head[1] == rows - 1) {
                 head[1] = 0;
             } else {
                 head[1] += 1;
             }
         } else if (Objects.equals(cond, "LEFT")) {
             if (head[0] == 0) {
-                head[0] = nColumns - 1;
+                head[0] = columns - 1;
             } else {
                 head[0] -= 1;
             }
         } else if (Objects.equals(cond, "RIGHT")) {
-            if (head[0] == nColumns - 1) {
+            if (head[0] == columns - 1) {
                 head[0] = 0;
             } else {
                 head[0] += 1;
@@ -106,9 +106,9 @@ public class Snake {
     }
 
     private void updateSnake() {
-        int[] tail = {-1,-1};
-        for (int i = 0; i < nColumns; i++) {
-            for (int j = 0; j < nRows; j++) {
+        int[] tail = {-1, -1};
+        for (int i = 0; i < columns; i++) {
+            for (int j = 0; j < rows; j++) {
                 if (snake[i][j] == length) {
                     tail[0] = i;
                     tail[1] = j;

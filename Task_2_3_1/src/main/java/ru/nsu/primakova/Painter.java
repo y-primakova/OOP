@@ -1,10 +1,10 @@
 package ru.nsu.primakova;
 
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
-
 import static java.lang.Double.min;
 
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 /**
  * Class Painter.
@@ -13,11 +13,11 @@ public class Painter {
     private final GraphicsContext gc;
     private final double startW;
     private final double startH;
-    private final double w;
-    private final double h;
+    private final double width;
+    private final double height;
     private final double size;
-    private final int nColumns;
-    private final int nRows;
+    private final int columns;
+    private final int rows;
     private final int winLength;
     private final Color fieldColor = new Color(0.1, 0.1, 0.1, 1);
     private final Color barrierColor = new Color(0, 0.2, 0, 1);
@@ -29,13 +29,13 @@ public class Painter {
 
     public Painter(GraphicsContext gc, double w, double h, int nColumns, int nRows, int winLength) {
         this.gc = gc;
-        this.size = min(w /nColumns, h /nRows);
+        this.size = min(w / nColumns, h / nRows);
         this.startW = (w - size * nColumns) / 2;
         this.startH = (h - size * nRows) / 2;
-        this.w = w;
-        this.h = h;
-        this.nColumns = nColumns;
-        this.nRows = nRows;
+        this.width = w;
+        this.height = h;
+        this.columns = nColumns;
+        this.rows = nRows;
         this.winLength = winLength;
     }
 
@@ -51,13 +51,13 @@ public class Painter {
 
     private void paintField() {
         gc.setFill(fieldColor);
-        gc.fillRect(startW, startH, size * nColumns, size * nRows);
+        gc.fillRect(startW, startH, size * columns, size * rows);
     }
 
     private void paintSnake(Snake snake) {
         gc.setFill(snakeColor);
-        for (int i = 0; i < nColumns; i++) {
-            for (int j = 0; j < nRows; j++) {
+        for (int i = 0; i < columns; i++) {
+            for (int j = 0; j < rows; j++) {
                 if (snake.getSnake(i, j) > 0) {
                     if (snake.getSnake(i, j) == 1) {
                         gc.setFill(headColor);
@@ -75,10 +75,10 @@ public class Painter {
 
     private void paintApple(Apple apple) {
         gc.setFill(appleColor);
-        for (int i = 0; i < nColumns; i++) {
-            for (int j = 0; j < nRows; j++) {
+        for (int i = 0; i < columns; i++) {
+            for (int j = 0; j < rows; j++) {
                 if (apple.getApple(i, j)) {
-                    gc.fillRect(startW + i * size, startH + j * size, size, size);
+                    gc.fillOval(startW + i * size, startH + j * size, size, size);
                 }
             }
         }
@@ -93,8 +93,8 @@ public class Painter {
             Thread.sleep(500);
         }
         gc.setFill(fieldColor);
-        gc.fillRect(0, 0, w, h);
-        if(snake.isEnd()) {
+        gc.fillRect(0, 0, width, height);
+        if (snake.isEnd()) {
             paintEnd();
         } else {
             paintWin();
@@ -104,28 +104,28 @@ public class Painter {
     private void paintEnd() {
         gc.setFill(endColor);
         int[] x = {0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 4, 4, 4, 5, 6,
-                6, 6, 8, 8, 8, 9, 9, 10, 10, 10, 10, 10};
+                   6, 6, 8, 8, 8, 9, 9, 10, 10, 10, 10, 10};
         int[] y = {0, 1, 2, 3, 4, 0, 2, 4, 0, 4, 2, 3, 4,
-                2, 2, 3, 4, 2, 3, 4, 2, 4, 0, 1, 2, 3, 4};
-        double s = min(w,h) / 25;
-        var startX = (w - 11 * s) / 2;
-        var startY = (h - 5 * s) / 2;
+                   2, 2, 3, 4, 2, 3, 4, 2, 4, 0, 1, 2, 3, 4};
+        double s = min(width, height) / 25;
+        var startX = (width - 11 * s) / 2;
+        var startY = (height - 5 * s) / 2;
         for (int i = 0; i < 27; i++) {
-            gc.fillRect(startX + (double)x[i] * s, startY + (double)y[i] * s, s, s);
+            gc.fillRect(startX + (double) x[i] * s, startY + (double) y[i] * s, s, s);
         }
     }
 
     private void paintWin() {
         gc.setFill(winColor);
         int[] x = {0, 0, 0, 0, 1, 2, 3, 4, 4, 4, 4,
-                6, 6, 6, 8, 8, 8, 9, 10, 10, 10};
+                   6, 6, 6, 8, 8, 8, 9, 10, 10, 10};
         int[] y = {0, 1, 2, 3, 4, 3, 4, 0, 1, 2,
-                3, 2, 3, 4, 2, 3, 4, 2, 2, 3, 4};
-        double s = min(w,h) / 25;
-        var startX = (w - 11 * s) / 2;
-        var startY = (h - 5 * s) / 2;
+                   3, 2, 3, 4, 2, 3, 4, 2, 2, 3, 4};
+        double s = min(width, height) / 25;
+        var startX = (width - 11 * s) / 2;
+        var startY = (height - 5 * s) / 2;
         for (int i = 0; i < 21; i++) {
-            gc.fillRect(startX + (double)x[i] * s, startY + (double)y[i] * s, s, s);
+            gc.fillRect(startX + (double) x[i] * s, startY + (double) y[i] * s, s, s);
         }
     }
 }

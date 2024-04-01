@@ -24,9 +24,9 @@ public class TestBarrier {
     @Test
     public void test2() {
         var barrier = new Barrier(3, 2);
-        barrier.set(0,1);
-        barrier.set(2,0);
-        barrier.set(2,1);
+        barrier.set(0, 1);
+        barrier.set(2, 0);
+        barrier.set(2, 1);
         assertEquals(barrier.getLength(), 3);
         assertFalse(barrier.get(0, 0));
         assertTrue(barrier.get(0, 1));
