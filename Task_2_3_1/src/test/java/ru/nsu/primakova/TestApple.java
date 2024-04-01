@@ -40,7 +40,7 @@ public class TestApple {
     @Test
     public void test3() {
         var apple = new Apple(8, 3, 3, new boolean[3][3]);
-        int[] h = {1,0};
+        int[] h = {1, 0};
         apple.createApple(new int[3][3], h);
 
         assertTrue(apple.getApple(0, 0));
@@ -57,7 +57,6 @@ public class TestApple {
     @Test
     public void test4() {
         var apple = new Apple(8, 3, 3, new boolean[3][3]);
-        int[] h = {1,0};
         apple.createApple(new int[3][3]);
 
         assertTrue(apple.getApple(0, 0));

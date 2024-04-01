@@ -11,17 +11,17 @@ public class Apple {
     private final int rows;
     private final int numApple;
 
-    public Apple(int nApple, int nColumns, int nRows, boolean[][] barrier) {
-        this.columns = nColumns;
-        this.rows = nRows;
-        this.numApple = nApple;
-        this.apple = new boolean[nColumns][nRows];
-        for (int i = 0; i < nColumns; i++) {
-            for (int j = 0; j < nRows; j++) {
+    public Apple(int numApple, int columns, int rows, boolean[][] barrier) {
+        this.columns = columns;
+        this.rows = rows;
+        this.numApple = numApple;
+        this.apple = new boolean[columns][rows];
+        for (int i = 0; i < columns; i++) {
+            for (int j = 0; j < rows; j++) {
                 this.apple[i][j] = false;
             }
         }
-        for (int i = 0; i < nApple; i++) {
+        for (int i = 0; i < numApple; i++) {
             createApple(barrier);
         }
     }

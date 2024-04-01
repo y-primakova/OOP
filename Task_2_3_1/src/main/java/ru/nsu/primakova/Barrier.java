@@ -7,10 +7,10 @@ public class Barrier {
     private final boolean[][] barrier;
     private int length;
 
-    public Barrier(int nColumns, int nRows) {
-        barrier = new boolean[nColumns][nRows];
-        for (int i = 0; i < nColumns; i++) {
-            for (int j = 0; j < nRows; j++) {
+    public Barrier(int columns, int rows) {
+        barrier = new boolean[columns][rows];
+        for (int i = 0; i < columns; i++) {
+            for (int j = 0; j < rows; j++) {
                 this.barrier[i][j] = false;
             }
         }

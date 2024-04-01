@@ -27,15 +27,15 @@ public class Painter {
     private final Color endColor = new Color(0.7, 0.7, 0.7, 1);
     private final Color winColor = new Color(0.7, 0.7, 0, 1);
 
-    public Painter(GraphicsContext gc, double w, double h, int nColumns, int nRows, int winLength) {
+    public Painter(GraphicsContext gc, double width, double height, int columns, int rows, int winLength) {
         this.gc = gc;
-        this.size = min(w / nColumns, h / nRows);
-        this.startW = (w - size * nColumns) / 2;
-        this.startH = (h - size * nRows) / 2;
-        this.width = w;
-        this.height = h;
-        this.columns = nColumns;
-        this.rows = nRows;
+        this.size = min(width / columns, height / rows);
+        this.startW = (width - size * columns) / 2;
+        this.startH = (height - size * rows) / 2;
+        this.width = width;
+        this.height = height;
+        this.columns = columns;
+        this.rows = rows;
         this.winLength = winLength;
     }
 

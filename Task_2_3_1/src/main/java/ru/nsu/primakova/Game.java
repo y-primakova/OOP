@@ -1,7 +1,5 @@
 package ru.nsu.primakova;
 
-import javafx.application.Application;
-
 import static java.lang.System.currentTimeMillis;
 
 /**

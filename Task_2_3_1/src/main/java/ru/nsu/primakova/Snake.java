@@ -17,12 +17,12 @@ public class Snake {
     private final Apple apple;
     private boolean isEnd = false;
 
-    public Snake(int nColumns, int nRows, Apple apple, Barrier barrier) {
-        this.columns = nColumns;
-        this.rows = nRows;
-        this.snake = new int[nColumns][nRows];
-        for (int i = 0; i < nColumns; i++) {
-            for (int j = 0; j < nRows; j++) {
+    public Snake(int columns, int rows, Apple apple, Barrier barrier) {
+        this.columns = columns;
+        this.rows = rows;
+        this.snake = new int[columns][rows];
+        for (int i = 0; i < columns; i++) {
+            for (int j = 0; j < rows; j++) {
                 this.snake[i][j] = 0;
                 if (barrier.get(i, j)) {
                     this.snake[i][j] = -1;
@@ -31,8 +31,8 @@ public class Snake {
         }
         Random rand = new Random();
         while (true) {
-            var x = rand.nextInt(nColumns);
-            var y = rand.nextInt(nRows);
+            var x = rand.nextInt(columns);
+            var y = rand.nextInt(rows);
             if (!barrier.get(x, y) && !apple.getApple(x, y)) {
                 this.snake[x][y] = 1;
                 this.head[0] = x;
@@ -41,7 +41,7 @@ public class Snake {
             }
         }
         this.length = 1;
-        this.maxLength = nColumns * nRows - barrier.getLength() - apple.getNumApple() + 1;
+        this.maxLength = columns * rows - barrier.getLength() - apple.getNumApple() + 1;
         this.apple = apple;
     }
 
