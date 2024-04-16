@@ -1,5 +1,6 @@
 package ru.nsu.primakova;
 
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 
@@ -7,46 +8,37 @@ import java.util.Random;
  * Class Snake.
  */
 public class Snake {
-    private final int[] head = new int[2];
-    private final int[][] snake;
-    private int length;
+    private ArrayList<ArrayList<Integer>> snake;
+    private int length = 1;
     private final int maxLength;
     private final int columns;
     private final int rows;
     private String cond = "UP";
-    private final Apple apple;
-    private boolean isEnd = false;
+    private String prevCond = "UP";
+    private final Apples apples;
+    private boolean isEnd;
 
-    public Snake(int columns, int rows, Apple apple, Barrier barrier) {
+    public Snake(int columns, int rows, Apples apples, Barriers barriers) {
         this.columns = columns;
         this.rows = rows;
-        this.snake = new int[columns][rows];
-        for (int i = 0; i < columns; i++) {
-            for (int j = 0; j < rows; j++) {
-                this.snake[i][j] = 0;
-                if (barrier.get(i, j)) {
-                    this.snake[i][j] = -1;
-                }
-            }
-        }
+        this.snake = new ArrayList<>();
         Random rand = new Random();
         while (true) {
             var x = rand.nextInt(columns);
             var y = rand.nextInt(rows);
-            if (!barrier.get(x, y) && !apple.getApple(x, y)) {
-                this.snake[x][y] = 1;
-                this.head[0] = x;
-                this.head[1] = y;
+            if (!barriers.get(x, y) && !apples.getApple(x, y)) {
+                snake.add(new ArrayList<>());
+                snake.get(0).add(x);
+                snake.get(0).add(y);
                 break;
             }
         }
-        this.length = 1;
-        this.maxLength = columns * rows - barrier.getLength() - apple.getNumApple() + 1;
-        this.apple = apple;
+        this.maxLength = columns * rows - apples.getNumApple() - barriers.getLength() + 1;
+        this.apples = apples;
     }
 
-    public int getSnake(int x, int y) {
-        return snake[x][y];
+    public ArrayList<ArrayList<Integer>> getSnake() {
+        return snake;
     }
 
     public int getLength() {
@@ -65,6 +57,20 @@ public class Snake {
     }
 
     public void changeSnake() {
+        if (Objects.equals(prevCond, "DOWN") && Objects.equals(cond, "UP")) {
+            cond = "DOWN";
+        } else if (Objects.equals(prevCond, "UP") && Objects.equals(cond, "DOWN")) {
+            cond = "UP";
+        } else if (Objects.equals(prevCond, "LEFT") && Objects.equals(cond, "RIGHT")) {
+            cond = "LEFT";
+        } else if (Objects.equals(prevCond, "RIGHT") && Objects.equals(cond, "LEFT")) {
+            cond = "RIGHT";
+        }
+        prevCond = cond;
+
+        var head = new int[2];
+        head[0] = snake.get(0).get(0);
+        head[1] = snake.get(0).get(1);
         if (Objects.equals(cond, "UP")) {
             if (head[1] == 0) {
                 head[1] = rows - 1;
@@ -90,45 +96,42 @@ public class Snake {
                 head[0] += 1;
             }
         }
-        if (isSnakeEatApple()) {
+        if (isSnakeEatApple(head)) {
             length++;
             if (maxLength != length) {
-                apple.createApple(snake, head);
+                apples.createApple(snake, head);
             }
-        } else if (snake[head[0]][head[1]] == -1) {
-            isEnd = true;
-            return;
+            snake.add(new ArrayList<>());
         }
-        updateSnake();
-        if (!isEnd()) {
-            snake[head[0]][head[1]] = 1;
-        }
+        snake = updateSnake(head);
     }
 
-    private void updateSnake() {
-        int[] tail = {-1, -1};
-        for (int i = 0; i < columns; i++) {
-            for (int j = 0; j < rows; j++) {
-                if (snake[i][j] == length) {
-                    tail[0] = i;
-                    tail[1] = j;
-                    snake[i][j] = 0;
-                } else if (snake[i][j] > 0) {
-                    if (i == head[0] && j == head[1]) {
-                        isEnd = true;
-                        if (tail[0] != -1) {
-                            snake[tail[0]][tail[1]] = length;
-                        }
-                        return;
-                    }
-                    snake[i][j] += 1;
+    private ArrayList<ArrayList<Integer>> updateSnake(int[] head) {
+        ArrayList<ArrayList<Integer>> newS = new ArrayList<>();
+        newS.add(new ArrayList<>());
+        newS.get(0).add(head[0]);
+        newS.get(0).add(head[1]);
+        if (snake.get(0).get(0) == head[0] && snake.get(0).get(1) == head[1]) {
+            isEnd = true;
+            return snake;
+        }
+
+        for (int i = 1; i < length; i++) {
+            if (i != length - 1) {
+                if (snake.get(i).get(0) == head[0] && snake.get(i).get(1) == head[1]) {
+                    isEnd = true;
+                    return snake;
                 }
             }
+            newS.add(new ArrayList<>());
+            newS.get(i).add(snake.get(i - 1).get(0));
+            newS.get(i).add(snake.get(i - 1).get(1));
         }
+        return newS;
     }
 
-    private boolean isSnakeEatApple() {
-        if (apple.getApple(head[0], head[1])) {
+    private boolean isSnakeEatApple(int[] head) {
+        if (apples.getApple(head[0], head[1])) {
             return true;
         }
         return false;

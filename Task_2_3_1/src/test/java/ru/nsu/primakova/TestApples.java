@@ -1,17 +1,19 @@
 package ru.nsu.primakova;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 /**
  * Class TestApple.
  */
-public class TestApple {
+public class TestApples {
     @Test
     public void test1() {
-        var apple = new Apple(6, 3, 2, new boolean[3][2]);
+        var apple = new Apples(6, 3, 2, new boolean[3][2]);
 
         assertTrue(apple.getApple(0, 0));
         assertTrue(apple.getApple(0, 1));
@@ -19,6 +21,7 @@ public class TestApple {
         assertTrue(apple.getApple(1, 1));
         assertTrue(apple.getApple(2, 0));
         assertTrue(apple.getApple(2, 1));
+        assertEquals(apple.getNumApple(), 6);
     }
 
     @Test
@@ -27,7 +30,7 @@ public class TestApple {
         b[0][1] = true;
         b[1][1] = true;
         b[1][2] = true;
-        var apple = new Apple(3, 2, 3, b);
+        var apple = new Apples(3, 2, 3, b);
 
         assertTrue(apple.getApple(0, 0));
         assertFalse(apple.getApple(0, 1));
@@ -35,13 +38,15 @@ public class TestApple {
         assertTrue(apple.getApple(1, 0));
         assertFalse(apple.getApple(1, 1));
         assertFalse(apple.getApple(1, 2));
+        assertEquals(apple.getNumApple(), 3);
     }
 
     @Test
     public void test3() {
-        var apple = new Apple(8, 3, 3, new boolean[3][3]);
+        var apple = new Apples(8, 3, 3, new boolean[3][3]);
         int[] h = {1, 0};
-        apple.createApple(new int[3][3], h);
+        ArrayList<ArrayList<Integer>> s = new ArrayList<>();
+        apple.createApple(s, h);
 
         assertTrue(apple.getApple(0, 0));
         assertTrue(apple.getApple(0, 1));
@@ -52,12 +57,14 @@ public class TestApple {
         assertTrue(apple.getApple(2, 0));
         assertTrue(apple.getApple(2, 1));
         assertTrue(apple.getApple(2, 2));
+        assertEquals(apple.getNumApple(), 8);
     }
 
     @Test
     public void test4() {
-        var apple = new Apple(8, 3, 3, new boolean[3][3]);
-        apple.createApple(new int[3][3]);
+        var apple = new Apples(8, 3, 3, new boolean[3][3]);
+        ArrayList<ArrayList<Integer>> s = new ArrayList<>();
+        apple.createApple(s);
 
         assertTrue(apple.getApple(0, 0));
         assertTrue(apple.getApple(0, 1));
@@ -68,5 +75,6 @@ public class TestApple {
         assertTrue(apple.getApple(2, 0));
         assertTrue(apple.getApple(2, 1));
         assertTrue(apple.getApple(2, 2));
+        assertEquals(apple.getNumApple(), 8);
     }
 }

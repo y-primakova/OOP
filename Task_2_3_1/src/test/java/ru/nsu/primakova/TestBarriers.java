@@ -9,10 +9,10 @@ import org.junit.jupiter.api.Test;
 /**
  * Class TestBarrier.
  */
-public class TestBarrier {
+public class TestBarriers {
     @Test
     public void test1() {
-        var barrier = new Barrier(2, 2);
+        var barrier = new Barriers(2, 2);
 
         assertEquals(barrier.getLength(), 0);
         assertFalse(barrier.get(0, 0));
@@ -23,7 +23,7 @@ public class TestBarrier {
 
     @Test
     public void test2() {
-        var barrier = new Barrier(3, 2);
+        var barrier = new Barriers(3, 2);
         barrier.set(0, 1);
         barrier.set(2, 0);
         barrier.set(2, 1);

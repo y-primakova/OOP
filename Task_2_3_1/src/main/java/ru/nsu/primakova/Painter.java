@@ -4,7 +4,6 @@ import static java.lang.Double.min;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 
 /**
  * Class Painter.
@@ -39,13 +38,15 @@ public class Painter {
         this.winLength = winLength;
     }
 
-    public void paint(Snake snake, Apple apple) throws InterruptedException {
+    public void paint(Snake snake, Apples apples, Barriers barriers) throws InterruptedException {
         if (snake.isEnd() || snake.getLength() == winLength) {
-            end(snake, apple);
+            var x = new int[1];
+            end(snake, apples, barriers, false, x, x);
         } else {
             paintField();
             paintSnake(snake);
-            paintApple(apple);
+            paintBarriers(barriers);
+            paintApple(apples);
         }
     }
 
@@ -55,50 +56,66 @@ public class Painter {
     }
 
     private void paintSnake(Snake snake) {
-        gc.setFill(snakeColor);
+        var s = snake.getSnake();
+        for (int i = 0; i < s.size(); i++) {
+            if (i == 0) {
+                gc.setFill(headColor);
+            } else {
+                gc.setFill(snakeColor);
+            }
+            gc.fillRect(startW + s.get(i).get(0) * size, startH + s.get(i).get(1) * size, size, size);
+        }
+    }
+
+    private void paintBarriers(Barriers barriers) {
+        gc.setFill(barrierColor);
         for (int i = 0; i < columns; i++) {
             for (int j = 0; j < rows; j++) {
-                if (snake.getSnake(i, j) > 0) {
-                    if (snake.getSnake(i, j) == 1) {
-                        gc.setFill(headColor);
-                    } else {
-                        gc.setFill(snakeColor);
-                    }
-                    gc.fillRect(startW + i * size, startH + j * size, size, size);
-                } else if (snake.getSnake(i, j) == -1) {
-                    gc.setFill(barrierColor);
+                if (barriers.get(i, j)) {
                     gc.fillRect(startW + i * size, startH + j * size, size, size);
                 }
             }
         }
     }
 
-    private void paintApple(Apple apple) {
+    private void paintApple(Apples apples) {
         gc.setFill(appleColor);
         for (int i = 0; i < columns; i++) {
             for (int j = 0; j < rows; j++) {
-                if (apple.getApple(i, j)) {
+                if (apples.getApple(i, j)) {
                     gc.fillOval(startW + i * size, startH + j * size, size, size);
                 }
             }
         }
     }
 
-    private void end(Snake snake, Apple apple) throws InterruptedException {
+    public void end(Snake snake, Apples apples, Barriers barriers, boolean isBreak, int[] head, int[] tail) throws InterruptedException {
         for (int i = 0; i < 3; i++) {
             paintField();
             Thread.sleep(500);
-            paintApple(apple);
+            paintApple(apples);
             paintSnake(snake);
+            paintBarriers(barriers);
+            if (isBreak) {
+                ifBreak(head, tail);
+            }
             Thread.sleep(500);
         }
         gc.setFill(fieldColor);
         gc.fillRect(0, 0, width, height);
-        if (snake.isEnd()) {
+        if (snake.isEnd() || isBreak) {
             paintEnd();
         } else {
             paintWin();
         }
+    }
+
+    private void ifBreak(int[] head, int[] tail) {
+        gc.setFill(snakeColor);
+        gc.fillRect(startW + tail[0] * size, startH + tail[1] * size, size, size);
+
+        gc.setFill(headColor);
+        gc.fillRect(startW + head[0] * size, startH + head[1] * size, size, size);
     }
 
     private void paintEnd() {
