@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 /**
- * Class TestApple.
+ * Class TestApples.
  */
 public class TestApples {
     @Test

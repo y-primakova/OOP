@@ -49,6 +49,11 @@ public class Snake {
         return isEnd;
     }
 
+    /**
+     * set condition.
+     *
+     * @param cond - condition
+     */
     public void setCond(String cond) {
         if (Objects.equals(cond, "UP") || Objects.equals(cond, "DOWN")
                 || Objects.equals(cond, "LEFT") || Objects.equals(cond, "RIGHT")) {

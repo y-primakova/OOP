@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Class Apple.
+ * Class Apples.
  */
 public class Apples {
     private final boolean[][] apple;
@@ -12,13 +12,21 @@ public class Apples {
     private final int rows;
     private final int numApple;
 
-    public Apples(int numApple, int columns, int rows, boolean[][] barrier) {
+    /**
+     * class constructor.
+     *
+     * @param numApple - number of apples
+     * @param columns - number of columns
+     * @param rows - number of rows
+     * @param barriers - barriers
+     */
+    public Apples(int numApple, int columns, int rows, boolean[][] barriers) {
         this.columns = columns;
         this.rows = rows;
         this.numApple = numApple;
         this.apple = new boolean[columns][rows];
         for (int i = 0; i < numApple; i++) {
-            createApple(barrier);
+            createApple(barriers);
         }
     }
 

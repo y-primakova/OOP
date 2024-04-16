@@ -7,8 +7,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-
 /**
  * Class Field.
  */

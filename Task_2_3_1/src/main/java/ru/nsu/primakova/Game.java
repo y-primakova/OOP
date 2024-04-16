@@ -6,7 +6,6 @@ import static java.lang.System.currentTimeMillis;
  * Class Game.
  */
 public class Game implements Runnable {
-//    private final int[][] fieldState;
     private final Snake snake;
     private final Apples apples;
     private final Barriers barriers;

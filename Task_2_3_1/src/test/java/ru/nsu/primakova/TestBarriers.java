@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 /**
- * Class TestBarrier.
+ * Class TestBarriers.
  */
 public class TestBarriers {
     @Test

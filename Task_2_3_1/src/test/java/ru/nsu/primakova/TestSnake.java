@@ -37,12 +37,12 @@ public class TestSnake {
 
         snake.changeSnake();
         assertEquals(snake.getLength(), 1);
-        assertEquals(snake.getSnake().get(0).get(0), 0);
         if (y - 1 < 0) {
             assertEquals(snake.getSnake().get(0).get(1), 3);
         } else {
             assertEquals(snake.getSnake().get(0).get(1), y - 1);
         }
+        assertEquals(snake.getSnake().get(0).get(0), 0);
         assertFalse(snake.isEnd());
 
         snake.setCond("DOWN");

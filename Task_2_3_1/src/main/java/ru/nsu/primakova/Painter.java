@@ -26,7 +26,8 @@ public class Painter {
     private final Color endColor = new Color(0.7, 0.7, 0.7, 1);
     private final Color winColor = new Color(0.7, 0.7, 0, 1);
 
-    public Painter(GraphicsContext gc, double width, double height, int columns, int rows, int winLength) {
+    public Painter(GraphicsContext gc, double width, double height,
+                   int columns, int rows, int winLength) {
         this.gc = gc;
         this.size = min(width / columns, height / rows);
         this.startW = (width - size * columns) / 2;
@@ -63,7 +64,9 @@ public class Painter {
             } else {
                 gc.setFill(snakeColor);
             }
-            gc.fillRect(startW + s.get(i).get(0) * size, startH + s.get(i).get(1) * size, size, size);
+            var x = s.get(i).get(0);
+            var y = s.get(i).get(1);
+            gc.fillRect(startW + x * size, startH + y * size, size, size);
         }
     }
 
@@ -89,7 +92,8 @@ public class Painter {
         }
     }
 
-    public void end(Snake snake, Apples apples, Barriers barriers, boolean isBreak, int[] head, int[] tail) throws InterruptedException {
+    public void end(Snake snake, Apples apples, Barriers barriers,
+                    boolean isBreak, int[] head, int[] tail) throws InterruptedException {
         for (int i = 0; i < 3; i++) {
             paintField();
             Thread.sleep(500);

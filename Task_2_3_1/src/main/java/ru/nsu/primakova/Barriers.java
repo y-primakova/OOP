@@ -1,7 +1,7 @@
 package ru.nsu.primakova;
 
 /**
- * Class Barrier.
+ * Class Barriers.
  */
 public class Barriers {
     private final boolean[][] barriers;
